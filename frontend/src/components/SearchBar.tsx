@@ -31,7 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Type your message..."
-          className="pr-20 pl-4 py-3 h-12 rounded-full border border-gray-200 shadow-sm focus-visible:ring-1 focus-visible:ring-blue-500 w-full transition-all duration-300"
+          className="pr-20 pl-4 py-3 h-12 rounded-full border border-gray-200 shadow-sm focus-visible:ring-1 focus-visible:ring-blue-500 w-full transition-all duration-300 font-inter"
           autoFocus
         />
         {query && (
