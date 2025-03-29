@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import SearchBar from "@/components/SearchBar";
 import SearchFilters from "@/components/SearchFilters";
@@ -247,8 +248,9 @@ const Index = () => {
         </div>
       </main>
 
-      <footer className="border-t border-gray-200 py-4 bg-white sticky bottom-0 w-full z-10">
+      <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-blue-50 to-indigo-50 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-3 text-sm font-medium text-blue-700">Ask anything or search the web</div>
           <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
         </div>
       </footer>

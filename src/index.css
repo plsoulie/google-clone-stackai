@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,4 +99,37 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Add a pulsing border effect for the search input when focused */
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+input:focus {
+  animation: pulse-border 2s infinite;
+}
+
+/* Add a subtle bounce effect for the footer on page load */
+@keyframes footer-appear {
+  0% {
+    transform: translateY(10px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+footer {
+  animation: footer-appear 0.5s ease-out forwards;
 }
