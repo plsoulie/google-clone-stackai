@@ -26,17 +26,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
   return (
     <form onSubmit={handleSearch} className="relative w-full max-w-4xl mx-auto">
       <div className="relative flex items-center w-full">
-        <div className="w-full relative">
-          <div className="neon-glow absolute inset-0 rounded-full pointer-events-none"></div>
-          <Input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Type your message..."
-            className="pr-20 pl-4 py-3 h-12 rounded-full border border-gray-200 shadow-sm focus-visible:ring-1 focus-visible:ring-blue-500 w-full"
-            autoFocus
-          />
-        </div>
+        <Input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Type your message..."
+          className="pr-20 pl-4 py-3 h-12 rounded-full border border-gray-200 shadow-sm focus-visible:ring-1 focus-visible:ring-blue-500 w-full"
+          autoFocus
+        />
         {query && (
           <button
             type="button"
