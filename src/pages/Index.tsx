@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
@@ -8,7 +7,6 @@ import OrganicResult from "@/components/OrganicResult";
 import LocalMap from "@/components/LocalMap";
 import RelatedQuestions from "@/components/RelatedQuestions";
 import KnowledgePanel from "@/components/KnowledgePanel";
-
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("Coffee");
   const [filter, setFilter] = useState("all");
@@ -18,9 +16,7 @@ const Index = () => {
     setSearchQuery(query);
     setHasSearched(true);
   };
-
   const mockCoffeeImages = ["/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png"];
-
   const organicResults = [{
     title: "Coffee - Wikipedia",
     url: "https://en.wikipedia.org/wiki/Coffee",
@@ -49,7 +45,6 @@ const Index = () => {
     description: "Results 1 - 48 of 29000+ — ... Peet Good Coffee Company · Whole Bean Coffee · Donut Shop",
     breadcrumbs: ["https://www.amazon.com", "coffee", "s?k=coffee"]
   }];
-
   const localPlaces = [{
     id: "1",
     name: "Houndstooth Coffee",
@@ -78,7 +73,6 @@ const Index = () => {
     features: ["Dine-in", "Takeout", "No-contact delivery"],
     image: "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png"
   }];
-
   const relatedQuestions = [{
     id: "q1",
     question: "Is it healthy to drink coffee everyday?",
@@ -96,7 +90,6 @@ const Index = () => {
     question: "Is coffee good for you or bad for you?",
     answer: "Coffee can be both good and bad depending on consumption levels and individual factors. Moderate consumption may offer benefits such as improved cognitive function and lower risk of certain diseases, while excessive consumption can lead to anxiety, insomnia, and digestive issues."
   }];
-
   const nutritionFacts = {
     title: "Nutrition Facts",
     items: [{
@@ -148,7 +141,6 @@ const Index = () => {
       value: "95 mg"
     }]
   };
-
   const coffeeSections = [{
     title: "Species of coffee",
     moreLink: "5+ more",
@@ -174,10 +166,8 @@ const Index = () => {
       name: "The Curious Barista's"
     }]
   }];
-
   if (!hasSearched) {
-    return (
-      <div className="min-h-screen flex flex-col items-center">
+    return <div className="min-h-screen flex flex-col items-center">
         <div className="flex-grow flex flex-col items-center justify-center px-4">
           <div className="mb-8">
             <img src="/lovable-uploads/1cb347da-e9e7-4767-b7d2-f2dd952c4df2.png" alt="Stack Logo" className="h-16" />
@@ -186,12 +176,9 @@ const Index = () => {
         <div className="w-full py-4 px-4 border-t">
           <SearchBar onSearch={handleSearch} initialQuery="" />
         </div>
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <div className="min-h-screen flex flex-col w-full">
+  return <div className="min-h-screen flex flex-col w-full">
       <header className="border-b border-gray-200 sticky top-0 bg-white z-10">
         <div className="container mx-auto px-4 py-3 flex items-center">
           <a href="/" className="mr-8">
@@ -237,19 +224,17 @@ const Index = () => {
           <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
           <div className="flex flex-wrap justify-between text-sm text-gray-600 mt-4">
             <div className="flex space-x-6 mb-3 md:mb-0">
-              <span>United States</span>
+              
             </div>
             <div className="flex flex-wrap space-x-6">
-              <a href="#" className="hover:underline mb-2 md:mb-0">Help</a>
-              <a href="#" className="hover:underline mb-2 md:mb-0">Privacy</a>
-              <a href="#" className="hover:underline mb-2 md:mb-0">Terms</a>
-              <a href="#" className="hover:underline">Settings</a>
+              
+              
+              
+              
             </div>
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
