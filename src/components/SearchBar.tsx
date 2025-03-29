@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { X, Search } from "lucide-react";
+import { Send, X } from "lucide-react";
 
 interface SearchBarProps {
   initialQuery?: string;
@@ -14,7 +14,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query);
+    if (query.trim()) {
+      onSearch(query);
+    }
   };
 
   const clearSearch = () => {
@@ -28,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search Google or type a URL"
+          placeholder="Type your message..."
           className="pr-20 pl-4 py-3 h-12 rounded-full border border-gray-200 shadow-sm focus-visible:ring-1 focus-visible:ring-blue-500"
         />
         {query && (
@@ -36,7 +38,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
             type="button"
             onClick={clearSearch}
             className="absolute right-16 focus:outline-none"
-            aria-label="Clear search"
+            aria-label="Clear message"
           >
             <X className="h-5 w-5 text-gray-400" />
           </button>
@@ -46,8 +48,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
           size="icon"
           variant="ghost"
           className="absolute right-2 h-8 w-8 text-blue-500"
+          disabled={!query.trim()}
         >
-          <Search className="h-5 w-5" />
+          <Send className="h-5 w-5" />
         </Button>
       </div>
     </form>
