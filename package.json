@@ -16,6 +16,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^22.13.14",
     "lovable-tagger": "^1.1.7"
   }
 }

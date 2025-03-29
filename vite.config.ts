@@ -1,18 +1,20 @@
 
 import { defineConfig } from "vite";
-import path from "path";
-import { lovableTagger } from 'lovable-tagger';
+import { fileURLToPath } from 'url';
+import { componentTagger } from "lovable-tagger";
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [lovableTagger()],
+  plugins: [componentTagger()],
   server: {
     host: "::",
     port: 8080,
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./frontend/src"),
+      "@": fileURLToPath(new URL('./frontend/src', import.meta.url)),
     },
   },
   build: {
