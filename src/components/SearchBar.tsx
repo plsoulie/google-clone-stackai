@@ -48,7 +48,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
           type="submit"
           size="icon"
           variant="ghost"
-          className="absolute right-2 h-8 w-8 text-blue-500"
+          className="absolute right-2 h-8 w-8 text-blue-600"
           disabled={!query.trim()}
         >
           <Send className="h-5 w-5" />

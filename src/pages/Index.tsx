@@ -7,6 +7,8 @@ import OrganicResult from "@/components/OrganicResult";
 import LocalMap from "@/components/LocalMap";
 import RelatedQuestions from "@/components/RelatedQuestions";
 import KnowledgePanel from "@/components/KnowledgePanel";
+import { Button } from "@/components/ui/button";
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("Coffee");
   const [filter, setFilter] = useState("all");
@@ -16,6 +18,7 @@ const Index = () => {
     setSearchQuery(query);
     setHasSearched(true);
   };
+
   const mockCoffeeImages = ["/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png"];
   const organicResults = [{
     title: "Coffee - Wikipedia",
@@ -166,26 +169,72 @@ const Index = () => {
       name: "The Curious Barista's"
     }]
   }];
+
   if (!hasSearched) {
-    return <div className="min-h-screen flex flex-col items-center">
+    return (
+      <div className="min-h-screen flex flex-col">
+        <header className="border-b border-gray-200 py-4">
+          <div className="container mx-auto px-4 flex items-center justify-between">
+            <div className="flex items-center">
+              <img src="/lovable-uploads/e3fbb165-6a11-4002-86ce-77e32c338f0d.png" alt="StackAI Logo" className="h-8" />
+            </div>
+            <div className="flex items-center space-x-6">
+              <nav className="hidden md:flex items-center space-x-6">
+                <a href="#" className="text-gray-600 hover:text-gray-900">Solutions</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900">Templates</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900">Blog</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900">Customers</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900">Pricing</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900">Resources</a>
+                <a href="#" className="text-gray-600 hover:text-gray-900">Talk to us</a>
+              </nav>
+              <div className="flex items-center space-x-3">
+                <a href="#" className="text-gray-600 hover:text-gray-900">Log in</a>
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white">Sign up</Button>
+              </div>
+            </div>
+          </div>
+        </header>
+
         <div className="flex-grow flex flex-col items-center justify-center px-4">
-          <div className="mb-8">
-            <img src="/lovable-uploads/1cb347da-e9e7-4767-b7d2-f2dd952c4df2.png" alt="Stack Logo" className="h-16" />
+          <div className="max-w-2xl text-center mb-12">
+            <h1 className="text-5xl font-bold mb-6">AI Agents for the Enterprise</h1>
+            <p className="text-xl text-gray-600 mb-8">
+              Augment your workforce with AI Agents. Outsource back office processes to LLMs. Make your organization smarter.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">Get a Demo</Button>
+              <Button variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">Start for free</Button>
+            </div>
           </div>
         </div>
-        <div className="w-full py-4 px-4 border-t">
-          <SearchBar onSearch={handleSearch} initialQuery="" />
-        </div>
-      </div>;
+
+        <footer className="border-t border-gray-200 py-4 bg-white sticky bottom-0 w-full z-10">
+          <div className="container mx-auto px-4">
+            <SearchBar onSearch={handleSearch} initialQuery="" />
+          </div>
+        </footer>
+      </div>
+    );
   }
-  return <div className="min-h-screen flex flex-col w-full">
+
+  return (
+    <div className="min-h-screen flex flex-col w-full">
       <header className="border-b border-gray-200 sticky top-0 bg-white z-10">
         <div className="container mx-auto px-4 py-3 flex items-center">
           <a href="/" className="mr-8">
-            <img src="/lovable-uploads/1cb347da-e9e7-4767-b7d2-f2dd952c4df2.png" alt="Stack Logo" className="h-8" />
+            <img src="/lovable-uploads/e3fbb165-6a11-4002-86ce-77e32c338f0d.png" alt="StackAI Logo" className="h-8" />
           </a>
           <div className="ml-auto hidden sm:flex items-center space-x-4">
-            {/* Empty space for future header items */}
+            <nav className="hidden md:flex items-center space-x-6">
+              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Solutions</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Templates</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Blog</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Customers</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Pricing</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Resources</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Talk to us</a>
+            </nav>
           </div>
         </div>
         <div className="container mx-auto px-4">
@@ -222,19 +271,10 @@ const Index = () => {
       <footer className="border-t border-gray-200 py-4 bg-white sticky bottom-0 w-full z-10">
         <div className="container mx-auto px-4">
           <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
-          <div className="flex flex-wrap justify-between text-sm text-gray-600 mt-4">
-            <div className="flex space-x-6 mb-3 md:mb-0">
-              
-            </div>
-            <div className="flex flex-wrap space-x-6">
-              
-              
-              
-              
-            </div>
-          </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
