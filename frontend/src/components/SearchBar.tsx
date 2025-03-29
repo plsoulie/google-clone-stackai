@@ -31,7 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Type your message..."
-          className="pr-20 pl-4 py-3 h-12 rounded-full border border-gray-200 shadow-sm focus-visible:ring-1 focus-visible:ring-stackai-accent w-full transition-all duration-300 font-inter animate-pulse-glow"
+          className="pr-20 pl-4 py-3 h-12 rounded-full border border-gray-200 shadow-sm focus-visible:ring-1 focus-visible:ring-blue-500 w-full transition-all duration-300"
           autoFocus
         />
         {query && (
@@ -41,14 +41,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch }) =>
             className="absolute right-16 focus:outline-none"
             aria-label="Clear message"
           >
-            <X className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors" />
+            <X className="h-5 w-5 text-gray-400" />
           </button>
         )}
         <Button
           type="submit"
           size="icon"
           variant="ghost"
-          className="absolute right-2 h-8 w-8 text-stackai-accent hover:text-stackai-accent/80 transition-colors duration-300"
+          className="absolute right-2 h-8 w-8 text-blue-600 hover:text-blue-800 transition-colors duration-300"
           disabled={!query.trim()}
         >
           <Send className="h-5 w-5" />
