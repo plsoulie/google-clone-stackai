@@ -1,29 +1,32 @@
-
 import React, { useState } from "react";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import SearchBar from "@/components/SearchBar";
-import SearchFilters from "@/components/SearchFilters";
+import SearchSidebar from "@/components/SearchSidebar";
 import SearchInfo from "@/components/SearchInfo";
 import OrganicResult from "@/components/OrganicResult";
 import LocalMap from "@/components/LocalMap";
 import RelatedQuestions from "@/components/RelatedQuestions";
 import KnowledgePanel from "@/components/KnowledgePanel";
 import { Button } from "@/components/ui/button";
+import useSearchHistory from "@/hooks/useSearchHistory";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("Coffee");
   const [filter, setFilter] = useState("all");
   const [hasSearched, setHasSearched] = useState(true); // Set to true for initial display
+  const { searchHistory, addToHistory } = useSearchHistory(['Coffee', 'Best restaurants in Austin', 'Weather forecast']);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     setHasSearched(true);
+    addToHistory(query);
   };
 
   const mockCoffeeImages = ["/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png"];
   const organicResults = [{
     title: "Coffee - Wikipedia",
     url: "https://en.wikipedia.org/wiki/Coffee",
-    description: "Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffea species. From the coffee fruit, the seeds are ...",
+    description: "Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffea species. From the coffee fruit, the seeds are separated to produce a stable, raw product: unroasted green coffee.",
     breadcrumbs: ["https://en.wikipedia.org", "wiki", "Coffee"],
     tags: ["Coffee bean", "History", "Coffee production", "Coffee preparation"],
     metadata: {
@@ -170,91 +173,81 @@ const Index = () => {
     }]
   }];
 
-  if (!hasSearched) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <header className="border-b border-gray-200 py-4">
-          <div className="container mx-auto px-4 flex items-center justify-between">
-            <div className="flex items-center">
-              <img src="/lovable-uploads/2bacea9e-1086-4721-b6ed-a3ea64b4bd15.png" alt="StackAI Logo" className="h-12" />
-            </div>
-            <div className="flex items-center">
-              <div className="flex items-center space-x-3">
-                <a href="#" className="text-gray-600 hover:text-gray-900">Log in</a>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">Sign up</Button>
+  return (
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full font-inter">
+        <SearchSidebar 
+          activeFilter={filter} 
+          onFilterChange={setFilter} 
+          searchHistory={searchHistory}
+          onHistoryItemClick={handleSearch}
+        />
+        
+        <SidebarInset className="flex-1 bg-white">
+          {!hasSearched ? (
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="max-w-2xl text-center mb-12">
+                <h1 className="text-5xl font-bold mb-6">AI Agents for the Enterprise</h1>
+                <p className="text-xl text-gray-600 mb-8">
+                  Augment your workforce with AI Agents. Outsource back office processes to LLMs. Make your organization smarter.
+                </p>
+                <div className="flex gap-4 justify-center">
+                  <Button className="bg-stackai-accent hover:bg-stackai-accent/90 text-white px-6 py-2">Get a Demo</Button>
+                  <Button variant="outline" className="text-stackai-accent border-stackai-accent hover:bg-stackai-accent/10">Start for free</Button>
+                </div>
               </div>
             </div>
-          </div>
-        </header>
-
-        <div className="flex-grow flex flex-col items-center justify-center px-4">
-          <div className="max-w-2xl text-center mb-12">
-            <h1 className="text-5xl font-bold mb-6">AI Agents for the Enterprise</h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Augment your workforce with AI Agents. Outsource back office processes to LLMs. Make your organization smarter.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">Get a Demo</Button>
-              <Button variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">Start for free</Button>
+          ) : (
+            <div className="flex flex-col h-full">
+              <main className="flex-grow p-6 overflow-auto">
+                <SearchInfo totalResults="2,600,000,000" searchTime="0.64" query={searchQuery} />
+                
+                <div className="flex flex-col lg:flex-row">
+                  <div className="lg:w-2/3 pr-0 lg:pr-6">
+                    {organicResults.slice(0, 1).map((result, index) => (
+                      <OrganicResult key={index} {...result} />
+                    ))}
+                    
+                    <LocalMap title="Coffee Shops" places={localPlaces} />
+                    
+                    {organicResults.slice(1).map((result, index) => (
+                      <OrganicResult key={index + 1} {...result} />
+                    ))}
+                    
+                    <RelatedQuestions title="People also ask" questions={relatedQuestions} />
+                    
+                    <div className="mt-8 text-center">
+                      <button className="bg-gray-50 hover:bg-gray-100 text-stackai-accent font-semibold py-3 px-6 rounded-md">
+                        See more results
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="md:w-1/3 mt-8 md:mt-0">
+                    <KnowledgePanel 
+                      title="Coffee" 
+                      subtitle="Drink" 
+                      description="Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffea species. From the coffee fruit, the seeds are separated to produce a stable, raw product: unroasted green coffee." 
+                      source="Wikipedia" 
+                      images={mockCoffeeImages} 
+                      facts={nutritionFacts} 
+                      sections={coffeeSections} 
+                    />
+                  </div>
+                </div>
+              </main>
+              
+              <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+                <div className="container mx-auto px-4">
+                  <div className="text-center mb-3 text-sm font-medium text-stackai-accent">Ask anything or search the web</div>
+                  <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
+                </div>
+              </footer>
             </div>
-          </div>
-        </div>
-
-        <footer className="border-t border-gray-200 py-4 bg-white sticky bottom-0 w-full z-10">
-          <div className="container mx-auto px-4">
-            <SearchBar onSearch={handleSearch} initialQuery="" />
-          </div>
-        </footer>
+          )}
+        </SidebarInset>
       </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen flex flex-col w-full">
-      <header className="border-b border-gray-200 sticky top-0 bg-white z-10">
-        <div className="container mx-auto px-4 py-3 flex items-center">
-          <a href="/" className="mr-auto">
-            <img src="/lovable-uploads/2bacea9e-1086-4721-b6ed-a3ea64b4bd15.png" alt="StackAI Logo" className="h-10" />
-          </a>
-        </div>
-        <div className="container mx-auto px-4">
-          <SearchFilters activeFilter={filter} onFilterChange={setFilter} />
-        </div>
-      </header>
-
-      <main className="container mx-auto px-4 py-4 flex-grow">
-        <SearchInfo totalResults="2,600,000,000" searchTime="0.64" query={searchQuery} />
-
-        <div className="flex flex-col md:flex-row">
-          <div className="md:w-2/3 pr-0 md:pr-6">
-            {organicResults.slice(0, 1).map((result, index) => <OrganicResult key={index} {...result} />)}
-
-            <LocalMap title="Coffee Shops" places={localPlaces} />
-
-            {organicResults.slice(1).map((result, index) => <OrganicResult key={index + 1} {...result} />)}
-
-            <RelatedQuestions title="People also ask" questions={relatedQuestions} />
-
-            <div className="mt-8 text-center">
-              <button className="bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-3 px-6 rounded-md">
-                See more results
-              </button>
-            </div>
-          </div>
-
-          <div className="md:w-1/3 mt-8 md:mt-0">
-            <KnowledgePanel title="Coffee" subtitle="Drink" description="Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffea species. From the coffee fruit, the seeds are separated to produce a stable, raw product: unroasted green coffee." source="Wikipedia" images={mockCoffeeImages} facts={nutritionFacts} sections={coffeeSections} />
-          </div>
-        </div>
-      </main>
-
-      <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-blue-50 to-indigo-50 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-3 text-sm font-medium text-blue-700">Ask anything or search the web</div>
-          <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
-        </div>
-      </footer>
-    </div>
+    </SidebarProvider>
   );
 };
 
