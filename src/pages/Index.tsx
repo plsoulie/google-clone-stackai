@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Search } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
 import SearchFilters from "@/components/SearchFilters";
 import SearchInfo from "@/components/SearchInfo";
@@ -176,18 +175,9 @@ const Index = () => {
         <header className="border-b border-gray-200 py-4">
           <div className="container mx-auto px-4 flex items-center justify-between">
             <div className="flex items-center">
-              <img src="/lovable-uploads/e3fbb165-6a11-4002-86ce-77e32c338f0d.png" alt="StackAI Logo" className="h-8" />
+              <img src="/lovable-uploads/2bacea9e-1086-4721-b6ed-a3ea64b4bd15.png" alt="StackAI Logo" className="h-12" />
             </div>
-            <div className="flex items-center space-x-6">
-              <nav className="hidden md:flex items-center space-x-6">
-                <a href="#" className="text-gray-600 hover:text-gray-900">Solutions</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">Templates</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">Blog</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">Customers</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">Pricing</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">Resources</a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">Talk to us</a>
-              </nav>
+            <div className="flex items-center">
               <div className="flex items-center space-x-3">
                 <a href="#" className="text-gray-600 hover:text-gray-900">Log in</a>
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">Sign up</Button>
@@ -222,20 +212,9 @@ const Index = () => {
     <div className="min-h-screen flex flex-col w-full">
       <header className="border-b border-gray-200 sticky top-0 bg-white z-10">
         <div className="container mx-auto px-4 py-3 flex items-center">
-          <a href="/" className="mr-8">
-            <img src="/lovable-uploads/e3fbb165-6a11-4002-86ce-77e32c338f0d.png" alt="StackAI Logo" className="h-8" />
+          <a href="/" className="mr-auto">
+            <img src="/lovable-uploads/2bacea9e-1086-4721-b6ed-a3ea64b4bd15.png" alt="StackAI Logo" className="h-10" />
           </a>
-          <div className="ml-auto hidden sm:flex items-center space-x-4">
-            <nav className="hidden md:flex items-center space-x-6">
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Solutions</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Templates</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Blog</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Customers</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Pricing</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Resources</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm">Talk to us</a>
-            </nav>
-          </div>
         </div>
         <div className="container mx-auto px-4">
           <SearchFilters activeFilter={filter} onFilterChange={setFilter} />
