@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import path from "path";
 import { lovableTagger } from 'lovable-tagger';
