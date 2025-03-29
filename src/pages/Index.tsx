@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
@@ -175,28 +176,29 @@ const Index = () => {
   }];
 
   if (!hasSearched) {
-    return <div className="min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="mb-8">
-          <img src="/lovable-uploads/1cb347da-e9e7-4767-b7d2-f2dd952c4df2.png" alt="Stack Logo" className="h-16" />
+    return (
+      <div className="min-h-screen flex flex-col items-center">
+        <div className="flex-grow flex flex-col items-center justify-center px-4">
+          <div className="mb-8">
+            <img src="/lovable-uploads/1cb347da-e9e7-4767-b7d2-f2dd952c4df2.png" alt="Stack Logo" className="h-16" />
+          </div>
         </div>
-        <SearchBar onSearch={handleSearch} initialQuery="" />
-      </div>;
+        <div className="w-full py-4 px-4 border-t">
+          <SearchBar onSearch={handleSearch} initialQuery="" />
+        </div>
+      </div>
+    );
   }
 
-  return <div className="min-h-screen flex flex-col w-full">
+  return (
+    <div className="min-h-screen flex flex-col w-full">
       <header className="border-b border-gray-200 sticky top-0 bg-white z-10">
-        <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center">
-          <div className="flex items-center mb-3 sm:mb-0">
-            <a href="/" className="mr-8">
-              <img src="/lovable-uploads/1cb347da-e9e7-4767-b7d2-f2dd952c4df2.png" alt="Stack Logo" className="h-8" />
-            </a>
-            <div className="flex-grow sm:max-w-xl">
-              <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
-            </div>
-          </div>
+        <div className="container mx-auto px-4 py-3 flex items-center">
+          <a href="/" className="mr-8">
+            <img src="/lovable-uploads/1cb347da-e9e7-4767-b7d2-f2dd952c4df2.png" alt="Stack Logo" className="h-8" />
+          </a>
           <div className="ml-auto hidden sm:flex items-center space-x-4">
-            
-            
+            {/* Empty space for future header items */}
           </div>
         </div>
         <div className="container mx-auto px-4">
@@ -230,9 +232,10 @@ const Index = () => {
         </div>
       </main>
 
-      <footer className="border-t border-gray-200 py-4 bg-gray-50">
+      <footer className="border-t border-gray-200 py-4 bg-white sticky bottom-0 w-full z-10">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-between text-sm text-gray-600">
+          <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
+          <div className="flex flex-wrap justify-between text-sm text-gray-600 mt-4">
             <div className="flex space-x-6 mb-3 md:mb-0">
               <span>United States</span>
             </div>
@@ -245,7 +248,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
 
 export default Index;
