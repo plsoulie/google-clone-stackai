@@ -5,6 +5,11 @@ from serpapi import GoogleSearch
 import os
 from dotenv import load_dotenv
 from typing import List, Optional, Dict, Any
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -61,7 +66,11 @@ class SearchResponse(BaseModel):
 
 def normalize_organic_results(results: List[Dict[str, Any]]) -> List[OrganicResult]:
     normalized = []
+    if not isinstance(results, list):
+        return normalized
     for result in results:
+        if not isinstance(result, dict):
+            continue
         normalized.append(OrganicResult(
             title=result.get("title", ""),
             link=result.get("link", ""),
@@ -73,7 +82,11 @@ def normalize_organic_results(results: List[Dict[str, Any]]) -> List[OrganicResu
 
 def normalize_local_results(results: List[Dict[str, Any]]) -> List[LocalResult]:
     normalized = []
+    if not isinstance(results, list):
+        return normalized
     for result in results:
+        if not isinstance(result, dict):
+            continue
         normalized.append(LocalResult(
             title=result.get("title", ""),
             address=result.get("address", ""),
@@ -85,7 +98,7 @@ def normalize_local_results(results: List[Dict[str, Any]]) -> List[LocalResult]:
     return normalized
 
 def normalize_knowledge_graph(graph: Dict[str, Any]) -> KnowledgeGraph:
-    if not graph:
+    if not graph or not isinstance(graph, dict):
         return None
     
     attributes = {}
@@ -99,6 +112,11 @@ def normalize_knowledge_graph(graph: Dict[str, Any]) -> KnowledgeGraph:
         attributes=attributes
     )
 
+def extract_related_searches(related_searches: List[Dict[str, Any]]) -> List[str]:
+    if not related_searches or not isinstance(related_searches, list):
+        return []
+    return [item.get("query", "") for item in related_searches if isinstance(item, dict) and "query" in item]
+
 @app.get("/api/health")
 async def health_check():
     return {"status": "ok"}
@@ -109,8 +127,11 @@ async def search(query: SearchQuery):
         # Get SerpAPI key from environment variables
         serpapi_key = os.getenv("SERPAPI_KEY")
         if not serpapi_key:
+            logger.error("SERPAPI_KEY not found in environment variables")
             raise HTTPException(status_code=500, detail="SERPAPI_KEY not configured")
 
+        logger.info(f"Making search request for query: {query.query}")
+        
         # Create search parameters
         params = {
             "engine": "google",
@@ -121,9 +142,16 @@ async def search(query: SearchQuery):
             "hl": "en"   # Set to English for consistent results
         }
 
+        logger.info("Calling SerpAPI...")
         # Perform the search
         search = GoogleSearch(params)
         results = search.get_dict()
+        
+        if not isinstance(results, dict):
+            logger.error(f"Unexpected response type from SerpAPI: {type(results)}")
+            raise HTTPException(status_code=500, detail="Invalid response from SerpAPI")
+
+        logger.info("Successfully received results from SerpAPI")
 
         # Extract and normalize different result types
         response = SearchResponse(
@@ -137,16 +165,18 @@ async def search(query: SearchQuery):
                     snippet=q.get("snippet", None)
                 )
                 for q in results.get("related_questions", [])
+                if isinstance(q, dict)
             ],
-            related_searches=results.get("related_searches", []),
-            inline_images=results.get("inline_images", []),
-            answer_box=results.get("answer_box", None),
-            ai_response=results.get("ai_generated_response", None)
+            related_searches=extract_related_searches(results.get("related_searches", [])),
+            inline_images=results.get("inline_images", []) if isinstance(results.get("inline_images"), list) else [],
+            answer_box=results.get("answer_box", None) if isinstance(results.get("answer_box"), dict) else None,
+            ai_response=results.get("ai_generated_response", None) if isinstance(results.get("ai_generated_response"), str) else None
         )
 
         return response
 
     except Exception as e:
+        logger.error(f"Error during search: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
