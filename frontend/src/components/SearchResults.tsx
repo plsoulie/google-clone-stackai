@@ -262,7 +262,15 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
 
   return (
     <div className="flex flex-col md:flex-row pb-40">
+      
       <div className="md:w-2/3 pr-0 md:pr-6">
+
+      {localResults && (
+          <div className="">
+            <LocalMap title={localResults.title} places={localResults.places} />
+          </div>
+        )}
+       
         {/* Create a grid layout for organic results */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {organicResults.map((result: any, index: number) => (
@@ -295,11 +303,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
           </div>
         )}
 
-        {localResults && (
-          <div className="mt-6">
-            <LocalMap title={localResults.title} places={localResults.places} />
-          </div>
-        )}
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 pt-0 pb-6 bg-gradient-to-r from-gray-50 to-gray-100 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
