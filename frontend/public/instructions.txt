@@ -1,0 +1,12 @@
+Instructions for using the PNG logo:
+
+1. Save the StackAI Search logo PNG from the conversation to:
+   frontend/public/stackai-search-logo.png
+
+2. The logo file should replace the temporary file that was created.
+
+This is necessary because as an AI assistant, I cannot directly save binary PNG data 
+from the message to the filesystem. 
+
+The PNG logo shows a black StackAI Search logo with a geometric hexagon-based icon 
+on the left and the "StackAI Search" text on the right. 

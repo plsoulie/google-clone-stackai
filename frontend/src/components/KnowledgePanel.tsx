@@ -42,7 +42,7 @@ const KnowledgePanel: React.FC<KnowledgePanelProps> = ({
   sections,
 }) => {
   return (
-    <div className="border border-gray-200 rounded-md overflow-hidden">
+    <div className="border border-gray-200 rounded-md overflow-hidden bg-white">
       <div className="p-4">
         <div className="flex justify-between">
           <h2 className="text-2xl font-medium mb-1">{title}</h2>

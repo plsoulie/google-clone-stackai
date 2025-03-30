@@ -48,11 +48,11 @@ const Index = () => {
 
   if (!hasSearched) {
     return (
-      <div className="min-h-screen flex flex-col">
-        <header className="border-b border-gray-200 py-4">
+      <div className="min-h-screen flex flex-col bg-gray-50">
+        <header className="border-b border-gray-200 py-4 bg-white">
           <div className="container mx-auto px-4 flex items-center justify-between">
             <div className="flex items-center">
-              <img src="/lovable-uploads/2bacea9e-1086-4721-b6ed-a3ea64b4bd15.png" alt="StackAI Logo" className="h-12" />
+              <img src="/stackai-search-logo.png" alt="StackAI Search Logo" className="h-12" />
             </div>
             <div className="flex items-center">
               <Button 
@@ -77,7 +77,6 @@ const Index = () => {
 
         <div className="flex-grow flex flex-col items-center justify-center px-4">
           <div className="max-w-2xl text-center mb-8">
-            <h1 className="text-5xl font-bold mb-6">Stack<span className="text-black">AI</span> Search</h1>
             <p className="text-xl text-gray-600 mb-8">
               Discover the power of AI-enhanced search. Get smarter results powered by StackAI's advanced machine learning algorithms.
             </p>
@@ -99,12 +98,11 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <header className="border-b border-gray-200 sticky top-0 bg-white z-10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <a href="/" className="flex items-center">
-            <img src="/lovable-uploads/2bacea9e-1086-4721-b6ed-a3ea64b4bd15.png" alt="StackAI Logo" className="h-10" />
-            <span className="ml-3 text-xl font-medium">Search</span>
+            <img src="/stackai-search-logo.png" alt="StackAI Search Logo" className="h-10" />
           </a>
           <Button 
             size="sm" 
@@ -137,7 +135,7 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
     <div className="flex flex-col md:flex-row">
       <div className="md:w-2/3 pr-0 md:pr-6">
         {/* Organic Results */}
-        <div className="mb-6 max-w-2xl border border-gray-200 rounded-lg overflow-hidden p-4">
+        <div className="mb-6 max-w-2xl border border-gray-200 rounded-lg overflow-hidden p-4 bg-white">
           <div className="flex items-start">
             <div>
               <div className="flex text-sm text-gray-500 items-center mb-1">
@@ -164,7 +162,7 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
         </div>
 
         {/* Related Questions */}
-        <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden">
+        <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden bg-white">
           <div className="flex justify-between items-center p-3 border-b border-gray-200">
             <h3 className="text-lg font-medium">People also ask</h3>
             <button className="text-gray-500 bg-gray-100 p-1 rounded-md hover:bg-gray-200 transition-colors">
@@ -195,7 +193,7 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
         </div>
 
         <div className="mt-8 text-center">
-          <button className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-md transition-colors">
+          <button className="bg-white hover:bg-gray-100 text-gray-800 font-medium py-2 px-6 rounded-md transition-colors border border-gray-200">
             See more results
           </button>
         </div>
@@ -203,7 +201,7 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
 
       <div className="md:w-1/3 mt-8 md:mt-0">
         {/* Knowledge Panel */}
-        <div className="border border-gray-200 rounded-lg overflow-hidden">
+        <div className="border border-gray-200 rounded-lg overflow-hidden bg-white">
           <div className="p-4">
             <div className="flex justify-between">
               <h2 className="text-2xl font-medium mb-1">Artificial intelligence</h2>
@@ -249,11 +247,62 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
             </div>
           </div>
         </div>
+
+        {/* Local Results */}
+        <div className="mt-6">
+          <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden bg-white">
+            <div className="flex justify-between items-center p-3 border-b border-gray-200">
+              <h3 className="text-lg font-medium">AI near you</h3>
+              <button className="text-gray-500">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="h-44 bg-gray-200 relative">
+              <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+                Map View
+              </div>
+              
+              <div className="absolute bottom-2 right-2 bg-white rounded px-2 py-1 text-xs text-gray-600">
+                Map data ©2023 Google
+              </div>
+            </div>
+
+            <div className="border-t border-gray-200">
+              {[
+                { id: "place1", name: "AI Research Center", rating: 4.8, reviews: 120, type: "Research", address: "123 Tech Blvd, Austin, TX", features: ["Open now", "Workshops"] },
+                { id: "place2", name: "Machine Learning Institute", rating: 4.5, reviews: 86, type: "Education", address: "456 Innovation Dr, Austin, TX", features: ["Appointment only"] }
+              ].map((place) => (
+                <div key={place.id} className="p-3 border-b border-gray-100 flex">
+                  <div className="flex-grow">
+                    <h4 className="font-medium">{place.name}</h4>
+                    <div className="flex items-center text-sm mb-1">
+                      <div className="flex text-amber-500">
+                        {"★".repeat(Math.floor(place.rating))}
+                        {"☆".repeat(5 - Math.floor(place.rating))}
+                      </div>
+                      <span className="text-gray-500 ml-1">({place.reviews})</span>
+                      <span className="mx-1">·</span>
+                      <span className="text-gray-500">{place.type}</span>
+                    </div>
+                    <p className="text-sm text-gray-600">{place.address}</p>
+                    <div className="text-sm text-gray-600 mt-1">
+                      {place.features.join(" · ")}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-3 text-sm font-medium text-black">Search smarter with StackAI</div>
+          <div className="text-center mb-1 text-sm font-medium text-black">Search smarter with StackAI</div>
           <SearchBar onSearch={(newQuery) => window.location.href = `/?q=${encodeURIComponent(newQuery)}`} initialQuery={query} />
         </div>
       </div>

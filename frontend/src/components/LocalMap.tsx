@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MapPin } from "lucide-react";
 
 interface Place {
@@ -18,8 +18,28 @@ interface LocalMapProps {
 }
 
 const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
+  const [failedImages, setFailedImages] = useState<{[key: string]: boolean}>({});
+  
+  const handleImageError = (id: string, name: string, url: string) => {
+    console.error(`Image load error for ${name}:`, url);
+    setFailedImages(prev => ({...prev, [id]: true}));
+  };
+  
+  const getDefaultImage = (name: string) => {
+    // Return a default image based on business name
+    const normalizedName = name.toLowerCase();
+    if (normalizedName.includes('starbucks')) {
+      return "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png";
+    } else if (normalizedName.includes('houndstooth')) {
+      return "https://images.squarespace-cdn.com/content/v1/5b69adef7106992a45ce2bfb/1604615229582-YI4V6T80V33DHPZPPVHH/houndstoothlogo.png";
+    } else if (normalizedName.includes('lucky') && normalizedName.includes('lab')) {
+      return "https://luckylabcoffee.com/wp-content/uploads/2020/03/luckydog.png";
+    }
+    return "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png";
+  };
+
   return (
-    <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden">
+    <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden bg-white">
       <div className="flex justify-between items-center p-3 border-b border-gray-200">
         <h3 className="text-lg font-medium">{title}</h3>
         <button className="text-gray-500">
@@ -77,17 +97,20 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
                 {place.features.join(" · ")}
               </div>
             </div>
-            {place.image && (
-              <div className="ml-3">
-                <div className="h-16 w-16 bg-gray-200 rounded overflow-hidden">
-                  <img
-                    src={place.image}
-                    alt={place.name}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+            <div className="ml-3">
+              {(() => { 
+                console.log("Rendering image section for", place.name, ":", place.image, "failed:", failedImages[place.id]); 
+                return null; 
+              })()}
+              <div className="h-16 w-16 bg-gray-200 rounded overflow-hidden">
+                <img
+                  src={failedImages[place.id] ? getDefaultImage(place.name) : (place.image || getDefaultImage(place.name))}
+                  alt={place.name}
+                  className="h-full w-full object-cover"
+                  onError={() => handleImageError(place.id, place.name, place.image || "")}
+                />
               </div>
-            )}
+            </div>
           </div>
         ))}
 

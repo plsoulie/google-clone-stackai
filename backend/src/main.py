@@ -36,6 +36,13 @@ def load_mock_data():
         logger.info(f"Trying to load mock data from: {MOCK_DATA_PATH}")
         with open(MOCK_DATA_PATH, 'r') as f:
             data = json.load(f)
+            # Debug - check if thumbnail exists in the original data
+            if 'local_results' in data and 'places' in data['local_results'] and data['local_results']['places']:
+                first_place = data['local_results']['places'][0]
+                logger.info(f"First place keys: {first_place.keys()}")
+                logger.info(f"First place has thumbnail: {'thumbnail' in first_place}")
+                if 'thumbnail' in first_place:
+                    logger.info(f"Thumbnail value: {first_place['thumbnail']}")
             logger.info("Mock data loaded successfully")
             return data
     except Exception as e:
@@ -70,6 +77,7 @@ class LocalResult(BaseModel):
     reviews: Optional[int] = None
     phone: Optional[str] = None
     website: Optional[str] = None
+    thumbnail: Optional[str] = None
 
 class KnowledgeGraph(BaseModel):
     title: str
@@ -120,7 +128,8 @@ def normalize_local_results(results: List[Dict[str, Any]]) -> List[LocalResult]:
             rating=result.get("rating", None),
             reviews=result.get("reviews", None),
             phone=result.get("phone", None),
-            website=result.get("website", None)
+            website=result.get("website", None),
+            thumbnail=result.get("thumbnail", None)
         ))
     return normalized
 
@@ -194,11 +203,36 @@ async def search(query: SearchQuery):
 
         logger.info("Successfully loaded results from mock data")
 
+        # Extract and normalize local results directly to keep the thumbnail field
+        local_results_data = []
+        if isinstance(results.get("local_results"), dict) and isinstance(results.get("local_results").get("places"), list):
+            # Debug the original data
+            first_place = results["local_results"]["places"][0] if results["local_results"]["places"] else {}
+            logger.info(f"Original first place data: {first_place}")
+            logger.info(f"First place has thumbnail? {'thumbnail' in first_place}")
+            
+            for place in results["local_results"]["places"]:
+                logger.info(f"Processing place with keys: {place.keys()}")
+                place_data = {
+                    "title": place.get("title", ""),
+                    "address": place.get("address", ""),
+                    "rating": place.get("rating", None),
+                    "reviews": place.get("reviews", None),
+                    "phone": place.get("phone", None),
+                    "website": place.get("website", None),
+                    "thumbnail": place.get("thumbnail", None),
+                }
+                logger.info(f"Mapped place thumbnail: {place_data['thumbnail']}")
+                local_results_data.append(place_data)
+            logger.info(f"Processed {len(local_results_data)} local results with thumbnails")
+        else:
+            logger.warning("No local_results.places found in mock data")
+        
         # Extract and normalize different result types
         response = SearchResponse(
             query=query.query,
             organic_results=normalize_organic_results(results.get("organic_results", [])),
-            local_results=normalize_local_results(results.get("local_results", {}).get("places", []) if isinstance(results.get("local_results"), dict) else []),
+            local_results=local_results_data,  # Use our direct extraction with thumbnails
             knowledge_graph=normalize_knowledge_graph(results.get("knowledge_graph", {})),
             related_questions=[
                 RelatedQuestion(

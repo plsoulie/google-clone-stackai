@@ -24,7 +24,7 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
   const displayUrl = new URL(url).hostname + new URL(url).pathname;
 
   return (
-    <div className="mb-6 max-w-2xl border border-gray-200 rounded-md overflow-hidden p-4">
+    <div className="mb-6 max-w-2xl border border-gray-200 rounded-md overflow-hidden p-4 bg-white">
       <div className="flex items-start">
         <div>
           {breadcrumbs && (

@@ -1,0 +1,19 @@
+<svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon Icon -->
+  <g transform="translate(30, 70)">
+    <!-- First hexagon -->
+    <path d="M 0,20 L 17.32,10 L 17.32,-10 L 0,-20 L -17.32,-10 L -17.32,10 Z" fill="#000000"/>
+    <!-- Second hexagon -->
+    <path d="M 30,20 L 47.32,10 L 47.32,-10 L 30,-20 L 12.68,-10 L 12.68,10 Z" fill="#000000"/>
+    <!-- Third hexagon -->
+    <path d="M 15,45 L 32.32,35 L 32.32,15 L 15,5 L -2.32,15 L -2.32,35 Z" fill="#000000"/>
+  </g>
+
+  <!-- Text "StackAI Search" -->
+  <text x="120" y="100" font-family="Arial, sans-serif" font-weight="bold" font-size="48" fill="#000000">
+    Stack<tspan fill="#000000">AI</tspan>
+  </text>
+  <text x="120" y="150" font-family="Arial, sans-serif" font-weight="bold" font-size="48" fill="#000000">
+    Search
+  </text>
+</svg> 
