@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import { Home, Database, Link2, BarChart2, ChevronDown, Square } from "lucide-react";
 
@@ -70,4 +71,5 @@ const SideBar: React.FC<SideBarProps> = ({
   );
 };
 
-export default SideBar; 
+export default SideBar;
+*/ 

@@ -23,7 +23,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
       setError(null);
       
       try {
-        const response = await axios.post("http://localhost:8001/api/search", {
+        const response = await axios.post("http://localhost:8000/api/search", {
           query,
           num_results: 10
         });
@@ -71,58 +71,22 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
     if (!results?.knowledge_graph) return null;
     
     const kg = results.knowledge_graph;
+    const attributes = kg.attributes || {};
     
-    // Extract images if available
-    const images = kg.header_images 
-      ? kg.header_images.map((img: any) => img.image)
-      : [];
-    
-    // Extract nutrition facts if available
-    const facts = kg.list 
-      ? {
-          title: "Nutrition Facts",
-          items: Object.entries(kg.list).map(([name, value]: [string, any]) => ({
-            name,
-            value: Array.isArray(value) ? value[0] : value
-          }))
-        }
-      : undefined;
-    
-    // Extract sections if available
-    const sections = [];
-    
-    // People also search for
-    if (kg.people_also_search_for) {
-      sections.push({
-        title: "People also search for",
-        items: kg.people_also_search_for.map((item: any) => ({
-          name: item.name,
-          image: item.image
-        })),
-        moreLink: "all"
-      });
-    }
-    
-    // Extract other possible sections
-    if (kg.coffee_books) {
-      sections.push({
-        title: "Books about Coffee",
-        items: kg.coffee_books.map((item: any) => ({
-          name: item.name,
-          image: item.image
-        })),
-        moreLink: "books"
-      });
-    }
-
+    // Map the knowledge_graph data, checking both top level and attributes
     return {
       title: kg.title || "Knowledge Graph",
-      subtitle: kg.type,
+      type: attributes.type || kg.type,
       description: kg.description || "No description available",
-      source: kg.source?.name,
-      images,
-      facts,
-      sections: sections.length > 0 ? sections : undefined
+      header_images: attributes.header_images,
+      source: attributes.source,
+      patron_saint: attributes.patron_saint,
+      patron_saint_links: attributes.patron_saint_links,
+      chicory_coffee: attributes.chicory_coffee,
+      coffee_books: attributes.coffee_books,
+      people_also_search_for: attributes.people_also_search_for,
+      list: attributes.list,
+      see_results_about: attributes.see_results_about
     };
   };
 
@@ -297,7 +261,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
   const localResults = getLocalResults();
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row pb-40">
       <div className="md:w-2/3 pr-0 md:pr-6">
         {/* Create a grid layout for organic results */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -308,18 +272,18 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
 
         {relatedQuestions.length > 0 && (
           <div className="mt-6">
-            <RelatedQuestions 
-              questions={relatedQuestions} 
-              title="People also ask" 
-            />
+          <RelatedQuestions 
+            questions={relatedQuestions} 
+            title="People also ask" 
+          />
           </div>
         )}
 
-        <div className="mt-8 text-center">
+        {/* <div className="mt-8 text-center">
           <button className="bg-white hover:bg-gray-100 text-gray-800 font-medium py-3 px-6 rounded-md transition-colors border border-gray-200">
             See more results
           </button>
-        </div>
+        </div> */}
       </div>
 
       <div className="md:w-1/3 mt-8 md:mt-0">
@@ -338,10 +302,10 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
         )}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-1 text-sm font-medium text-black">Search smarter with StackAI</div>
+      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 pt-0 pb-6 bg-gradient-to-r from-gray-50 to-gray-100 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <div className="container mx-auto px-2">
           <SearchBar onSearch={(newQuery) => window.location.href = `/?q=${encodeURIComponent(newQuery)}`} initialQuery={query} />
+          <div className="text-center mb-3 text-sm font-medium text-black mt-6">Powered by StackAI - Your Intelligent Agent</div>
         </div>
       </div>
     </div>

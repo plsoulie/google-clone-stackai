@@ -3,7 +3,8 @@ import SearchBar from "@/components/SearchBar";
 import SearchFilters from "@/components/SearchFilters";
 import SearchInfo from "@/components/SearchInfo";
 import SearchResults from "@/components/SearchResults";
-import Layout from "@/components/Layout";
+import Header from "@/components/Header";
+// import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Clock, Search, X } from "lucide-react";
 
@@ -12,7 +13,6 @@ const Index = () => {
   const [filter, setFilter] = useState("all");
   const [hasSearched, setHasSearched] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [useDummyResults, setUseDummyResults] = useState(false);
   const [searchHistory, setSearchHistory] = useState<string[]>([
     "artificial intelligence",
     "machine learning",
@@ -27,19 +27,11 @@ const Index = () => {
     }
     setSearchQuery(query);
     setHasSearched(true);
-    setUseDummyResults(false);
-  };
-
-  const showDummyResults = () => {
-    setSearchQuery("artificial intelligence");
-    setHasSearched(true);
-    setUseDummyResults(true);
   };
 
   const handleHistoryClick = (query: string) => {
     setSearchQuery(query);
     setHasSearched(true);
-    setUseDummyResults(false);
   };
 
   const removeFromHistory = (e: React.MouseEvent, query: string) => {
@@ -49,33 +41,9 @@ const Index = () => {
 
   if (!hasSearched) {
     return (
-      <Layout>
+      // <Layout>
         <div className="min-h-screen flex flex-col bg-gray-50">
-          <header className="border-b border-gray-200 py-4 bg-white">
-            <div className="container mx-auto px-4 flex items-center justify-between">
-              <div className="flex items-center">
-                <img src="/stackai-search-logo.png" alt="StackAI Search Logo" className="h-12" />
-              </div>
-              <div className="flex items-center">
-                <Button 
-                  size="sm" 
-                  variant="ghost" 
-                  className="mr-4 text-xs px-2 py-1 h-auto text-gray-500"
-                  onClick={showDummyResults}
-                >
-                  Dummy
-                </Button>
-                <div className="flex items-center space-x-3">
-                  <a href="#" className="py-2 px-4 bg-gray-100 text-center rounded-md text-sm font-medium hover:bg-gray-200 transition-colors">
-                    Log In
-                  </a>
-                  <a href="#" className="py-2 px-4 bg-black text-white text-center rounded-md text-sm font-medium hover:bg-gray-800 transition-colors">
-                    Sign Up
-                  </a>
-                </div>
-              </div>
-            </div>
-          </header>
+          <Header />
 
           <div className="flex-grow flex flex-col items-center justify-center px-4">
             <div className="max-w-2xl text-center mb-8">
@@ -92,36 +60,22 @@ const Index = () => {
 
           <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
             <div className="container mx-auto px-4">
-              <div className="text-center mb-3 text-sm font-medium text-black">Powered by StackAI - Your Intelligent Search Engine</div>
+              <div className="text-center mb-3 text-sm font-medium text-black">Powered by StackAI - Your Intelligent Agent</div>
             </div>
           </footer>
         </div>
-      </Layout>
+      // </Layout>
     );
   }
 
   return (
-    <Layout>
+    // <Layout>
       <div className="min-h-screen flex flex-col bg-gray-50">
-        <header className="border-b border-gray-200 sticky top-0 bg-white z-10">
-          <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="/" className="flex items-center">
-              <img src="/stackai-search-logo.png" alt="StackAI Search Logo" className="h-10" />
-            </a>
-            <Button 
-              size="sm" 
-              variant="ghost" 
-              className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-md transition-colors"
-              onClick={showDummyResults}
-            >
-              Dummy
-            </Button>
-          </div>
-        </header>
+        <Header isSearchPage={true} />
 
         <main className="container mx-auto px-4 py-4 flex-grow">
           <SearchInfo totalResults="2,600,000,000" searchTime="0.64" query={searchQuery} />
-          {useDummyResults ? <DummySearchResults query={searchQuery} /> : <SearchResults query={searchQuery} />}
+          <SearchResults query={searchQuery} />
         </main>
 
         <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] hidden">
@@ -130,7 +84,7 @@ const Index = () => {
           </div>
         </footer>
       </div>
-    </Layout>
+    // </Layout>
   );
 };
 

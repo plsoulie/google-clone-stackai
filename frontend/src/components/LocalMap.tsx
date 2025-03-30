@@ -119,7 +119,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
         ))}
 
         <div className="p-3 flex justify-center">
-          <button className="text-blue-600 text-sm flex items-center">
+          <button className="text-black-600 text-sm flex items-center">
             View all
             <svg className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 4L14 10L8 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

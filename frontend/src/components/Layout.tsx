@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import SideBar from "./SideBar";
 
@@ -16,4 +17,5 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 };
 
-export default Layout; 
+export default Layout;
+*/ 
