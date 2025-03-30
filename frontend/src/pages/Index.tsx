@@ -64,30 +64,34 @@ const Index = () => {
                 Dummy
               </Button>
               <div className="flex items-center space-x-3">
-                <a href="#" className="text-gray-600 hover:text-gray-900">Log in</a>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">Sign up</Button>
+                <a href="#" className="py-2 px-4 bg-gray-100 text-center rounded-md text-sm font-medium hover:bg-gray-200 transition-colors">
+                  Log In
+                </a>
+                <a href="#" className="py-2 px-4 bg-black text-white text-center rounded-md text-sm font-medium hover:bg-gray-800 transition-colors">
+                  Sign Up
+                </a>
               </div>
             </div>
           </div>
         </header>
 
         <div className="flex-grow flex flex-col items-center justify-center px-4">
-          <div className="max-w-2xl text-center mb-12">
-            <h1 className="text-5xl font-bold mb-6">Stack<span className="text-blue-600">AI</span> Search</h1>
+          <div className="max-w-2xl text-center mb-8">
+            <h1 className="text-5xl font-bold mb-6">Stack<span className="text-black">AI</span> Search</h1>
             <p className="text-xl text-gray-600 mb-8">
               Discover the power of AI-enhanced search. Get smarter results powered by StackAI's advanced machine learning algorithms.
             </p>
-            <div className="flex gap-4 justify-center">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">Advanced Search</Button>
-              <Button variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">Search Filters</Button>
+            <SearchBar onSearch={handleSearch} initialQuery="" />
+            <div className="flex gap-4 justify-center mt-8">
+              <Button className="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-md">Advanced Search</Button>
+              <Button variant="outline" className="bg-gray-100 text-gray-800 border-0 hover:bg-gray-200 px-6 py-2 rounded-md">Search Filters</Button>
             </div>
           </div>
         </div>
 
-        <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-blue-50 to-indigo-50 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-3 text-sm font-medium text-blue-700">Powered by StackAI - Your Intelligent Search Engine</div>
-            <SearchBar onSearch={handleSearch} initialQuery="" />
+            <div className="text-center mb-3 text-sm font-medium text-black">Powered by StackAI - Your Intelligent Search Engine</div>
           </div>
         </footer>
       </div>
@@ -105,7 +109,7 @@ const Index = () => {
           <Button 
             size="sm" 
             variant="ghost" 
-            className="text-xs px-2 py-1 h-auto text-gray-500"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-md transition-colors"
             onClick={showDummyResults}
           >
             Dummy
@@ -118,10 +122,9 @@ const Index = () => {
         {useDummyResults ? <DummySearchResults query={searchQuery} /> : <SearchResults query={searchQuery} />}
       </main>
 
-      <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-blue-50 to-indigo-50 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+      <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-3 text-sm font-medium text-blue-700">Search smarter with StackAI</div>
-          <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
+          <div className="text-center mb-3 text-sm font-medium text-black">Search smarter with StackAI</div>
         </div>
       </footer>
     </div>
@@ -134,13 +137,13 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
     <div className="flex flex-col md:flex-row">
       <div className="md:w-2/3 pr-0 md:pr-6">
         {/* Organic Results */}
-        <div className="mb-6 max-w-2xl">
+        <div className="mb-6 max-w-2xl border border-gray-200 rounded-lg overflow-hidden p-4">
           <div className="flex items-start">
             <div>
               <div className="flex text-sm text-gray-500 items-center mb-1">
                 <span>en.wikipedia.org</span><span className="mx-1">›</span><span>wiki</span><span className="mx-1">›</span><span>Artificial_intelligence</span>
               </div>
-              <h3 className="text-xl text-blue-800 font-medium hover:underline">
+              <h3 className="text-xl text-gray-800 font-medium hover:underline">
                 <a href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank" rel="noopener noreferrer">
                   Artificial intelligence - Wikipedia
                 </a>
@@ -164,7 +167,7 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
         <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden">
           <div className="flex justify-between items-center p-3 border-b border-gray-200">
             <h3 className="text-lg font-medium">People also ask</h3>
-            <button className="text-gray-500">
+            <button className="text-gray-500 bg-gray-100 p-1 rounded-md hover:bg-gray-200 transition-colors">
               <svg className="h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.5"/>
                 <path d="M10 6.5V10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -180,9 +183,9 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
               { id: "q3", question: "What is AI in simple words?", answer: "AI or artificial intelligence is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction." }
             ].map((q) => (
               <div key={q.id} className="border-b border-gray-100 last:border-b-0">
-                <button className="w-full p-4 flex justify-between items-start text-left">
+                <button className="w-full p-4 flex justify-between items-start text-left hover:bg-gray-50 transition-colors">
                   <span className="text-base text-gray-800">{q.question}</span>
-                  <svg className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-5 w-5 text-gray-500 bg-gray-100 p-1 rounded-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -192,7 +195,7 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
         </div>
 
         <div className="mt-8 text-center">
-          <button className="bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-3 px-6 rounded-md">
+          <button className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-md transition-colors">
             See more results
           </button>
         </div>
@@ -229,7 +232,7 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
             <div className="border-t border-gray-200 pt-3 mb-2">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-medium">Types of AI</h3>
-                <a href="#" className="text-xs text-blue-600 flex items-center">
+                <a href="#" className="text-xs text-black flex items-center bg-gray-100 px-2 py-1 rounded-md hover:bg-gray-200 transition-colors">
                   View all <svg className="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -245,6 +248,13 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-3 text-sm font-medium text-black">Search smarter with StackAI</div>
+          <SearchBar onSearch={(newQuery) => window.location.href = `/?q=${encodeURIComponent(newQuery)}`} initialQuery={query} />
         </div>
       </div>
     </div>

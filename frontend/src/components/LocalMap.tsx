@@ -1,4 +1,3 @@
-
 import React from "react";
 import { MapPin } from "lucide-react";
 
@@ -33,7 +32,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
           Map View
         </div>
         
-        <div className="absolute bottom-2 right-2 bg-white rounded-sm px-2 py-1 text-xs text-gray-600">
+        <div className="absolute bottom-2 right-2 bg-white rounded px-2 py-1 text-xs text-gray-600">
           Map data ©2023 Google
         </div>
       </div>
@@ -80,7 +79,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
             </div>
             {place.image && (
               <div className="ml-3">
-                <div className="h-16 w-16 bg-gray-200 rounded-sm overflow-hidden">
+                <div className="h-16 w-16 bg-gray-200 rounded overflow-hidden">
                   <img
                     src={place.image}
                     alt={place.name}

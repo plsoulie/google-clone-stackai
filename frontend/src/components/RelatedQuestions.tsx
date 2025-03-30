@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -25,7 +24,7 @@ const RelatedQuestions: React.FC<RelatedQuestionsProps> = ({ questions, title })
   };
 
   return (
-    <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden">
+    <div className="mb-6 border border-gray-200 rounded-md overflow-hidden">
       <div className="flex justify-between items-center p-3 border-b border-gray-200">
         <h3 className="text-lg font-medium">{title}</h3>
         <button className="text-gray-500">

@@ -54,9 +54,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch, comp
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search on StackAI..."
-            className={`w-full bg-white border border-neutral-200 rounded-lg ${
+            className={`w-full bg-white border border-neutral-200 rounded-md ${
               compact ? 'py-2 pl-10 pr-16' : 'py-3 pl-12 pr-20'
-            } focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm`}
+            } focus:outline-none focus:ring-2 focus:ring-black shadow-sm`}
           />
           <div className={`absolute right-3 flex items-center space-x-2`}>
             {query.trim() && (
@@ -84,7 +84,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch, comp
               type="submit" 
               variant="ghost" 
               size="sm" 
-              className={`rounded-full ${compact ? 'h-6 w-6' : 'h-8 w-8'} p-0 text-blue-500 hover:bg-blue-50`}
+              className={`rounded-full ${compact ? 'h-6 w-6' : 'h-8 w-8'} p-0 text-black hover:bg-gray-100`}
               disabled={!query.trim() || isSearching}
             >
               <Send size={compact ? 14 : 18} />

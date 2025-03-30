@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ExternalLink } from "lucide-react";
 
@@ -25,7 +24,7 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
   const displayUrl = new URL(url).hostname + new URL(url).pathname;
 
   return (
-    <div className="mb-6 max-w-2xl">
+    <div className="mb-6 max-w-2xl border border-gray-200 rounded-md overflow-hidden p-4">
       <div className="flex items-start">
         <div>
           {breadcrumbs && (
@@ -38,7 +37,7 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
               ))}
             </div>
           )}
-          <h3 className="text-xl text-blue-800 font-medium hover:underline">
+          <h3 className="text-xl text-gray-800 font-medium hover:underline">
             <a href={url} target="_blank" rel="noopener noreferrer">
               {title}
             </a>

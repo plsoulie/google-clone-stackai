@@ -6,6 +6,8 @@ import os
 from dotenv import load_dotenv
 from typing import List, Optional, Dict, Any
 import logging
+import json
+from pathlib import Path
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -24,6 +26,24 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Path to mock data
+MOCK_DATA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../mockSerpData.json"))
+
+# Load mock data
+def load_mock_data():
+    try:
+        logger.info(f"Trying to load mock data from: {MOCK_DATA_PATH}")
+        with open(MOCK_DATA_PATH, 'r') as f:
+            data = json.load(f)
+            logger.info("Mock data loaded successfully")
+            return data
+    except Exception as e:
+        logger.error(f"Error loading mock data: {str(e)}")
+        return None
+
+# Load mock data at startup
+mock_data = load_mock_data()
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
@@ -132,6 +152,18 @@ async def health_check():
 async def search(query: SearchQuery):
     try:
         logger.info(f"Search query received: {query.query}")
+        
+        # Use mock data instead of making a SerpAPI call
+        logger.info("Using mock data instead of calling SerpAPI")
+        
+        if not mock_data:
+            logger.error("Mock data not available")
+            raise HTTPException(status_code=500, detail="Mock data not available")
+        
+        results = mock_data
+        
+        # Comment out the SerpAPI code
+        """
         # Get SerpAPI key from environment variables
         serpapi_key = os.getenv("SERPAPI_KEY")
         if not serpapi_key:
@@ -154,18 +186,19 @@ async def search(query: SearchQuery):
         # Perform the search
         search = GoogleSearch(params)
         results = search.get_dict()
+        """
         
         if not isinstance(results, dict):
-            logger.error(f"Unexpected response type from SerpAPI: {type(results)}")
-            raise HTTPException(status_code=500, detail="Invalid response from SerpAPI")
+            logger.error(f"Unexpected response type from mock data: {type(results)}")
+            raise HTTPException(status_code=500, detail="Invalid mock data format")
 
-        logger.info("Successfully received results from SerpAPI")
+        logger.info("Successfully loaded results from mock data")
 
         # Extract and normalize different result types
         response = SearchResponse(
             query=query.query,
             organic_results=normalize_organic_results(results.get("organic_results", [])),
-            local_results=normalize_local_results(results.get("local_results", [])),
+            local_results=normalize_local_results(results.get("local_results", {}).get("places", []) if isinstance(results.get("local_results"), dict) else []),
             knowledge_graph=normalize_knowledge_graph(results.get("knowledge_graph", {})),
             related_questions=[
                 RelatedQuestion(

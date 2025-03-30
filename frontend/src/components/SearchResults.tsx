@@ -4,6 +4,7 @@ import KnowledgePanel from "./KnowledgePanel";
 import OrganicResult from "./OrganicResult";
 import RelatedQuestions from "./RelatedQuestions";
 import LocalMap from "./LocalMap";
+import SearchBar from "./SearchBar";
 
 interface SearchResultsProps {
   query: string;
@@ -182,7 +183,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
         )}
 
         <div className="mt-8 text-center">
-          <button className="bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-3 px-6 rounded-md">
+          <button className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-md transition-colors">
             See more results
           </button>
         </div>
@@ -192,10 +193,17 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
         {knowledgePanelData ? (
           <KnowledgePanel {...knowledgePanelData} />
         ) : (
-          <div className="border border-gray-200 rounded-lg p-4">
+          <div className="border border-gray-200 rounded-md p-4">
             <p className="text-gray-500">No knowledge panel data available for this query.</p>
           </div>
         )}
+      </div>
+
+      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-3 text-sm font-medium text-black">Search smarter with StackAI</div>
+          <SearchBar onSearch={(newQuery) => window.location.href = `/?q=${encodeURIComponent(newQuery)}`} initialQuery={query} />
+        </div>
       </div>
     </div>
   );

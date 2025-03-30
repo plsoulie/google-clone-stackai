@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ChevronRight, Share2 } from "lucide-react";
 
@@ -43,7 +42,7 @@ const KnowledgePanel: React.FC<KnowledgePanelProps> = ({
   sections,
 }) => {
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden">
+    <div className="border border-gray-200 rounded-md overflow-hidden">
       <div className="p-4">
         <div className="flex justify-between">
           <h2 className="text-2xl font-medium mb-1">{title}</h2>
@@ -105,7 +104,7 @@ const KnowledgePanel: React.FC<KnowledgePanelProps> = ({
             <div className="grid grid-cols-4 gap-2">
               {section.items.slice(0, 4).map((item, j) => (
                 <div key={j} className="text-center">
-                  <div className="bg-gray-100 h-14 w-14 mx-auto rounded-lg overflow-hidden mb-1">
+                  <div className="bg-gray-100 h-14 w-14 mx-auto rounded-md overflow-hidden mb-1">
                     {item.image && (
                       <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
                     )}
