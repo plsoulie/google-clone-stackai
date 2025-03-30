@@ -299,19 +299,20 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
   return (
     <div className="flex flex-col md:flex-row">
       <div className="md:w-2/3 pr-0 md:pr-6">
-        {organicResults.length > 0 && organicResults.slice(0, 1).map((result: any, index: number) => (
-          <OrganicResult key={`top-result-${index}`} {...result} />
-        ))}
-
-        {organicResults.length > 1 && organicResults.slice(1).map((result: any, index: number) => (
-          <OrganicResult key={`result-${index + 1}`} {...result} />
-        ))}
+        {/* Create a grid layout for organic results */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {organicResults.map((result: any, index: number) => (
+            <OrganicResult key={`result-${index}`} {...result} />
+          ))}
+        </div>
 
         {relatedQuestions.length > 0 && (
-          <RelatedQuestions 
-            questions={relatedQuestions} 
-            title="People also ask" 
-          />
+          <div className="mt-6">
+            <RelatedQuestions 
+              questions={relatedQuestions} 
+              title="People also ask" 
+            />
+          </div>
         )}
 
         <div className="mt-8 text-center">

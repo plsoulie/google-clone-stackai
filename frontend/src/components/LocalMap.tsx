@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MapPin } from "lucide-react";
 
 interface Place {
@@ -18,6 +18,7 @@ interface LocalMapProps {
 }
 
 const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
+  /* Image-related state and functions - commented out for now
   const [failedImages, setFailedImages] = useState<{[key: string]: boolean}>({});
   
   const handleImageError = (id: string, name: string, url: string) => {
@@ -37,6 +38,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
     }
     return "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png";
   };
+  */
 
   return (
     <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden bg-white">
@@ -97,6 +99,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
                 {place.features.join(" · ")}
               </div>
             </div>
+            {/* Image rendering section - commented out for now
             <div className="ml-3">
               {(() => { 
                 console.log("Rendering image section for", place.name, ":", place.image, "failed:", failedImages[place.id]); 
@@ -111,6 +114,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
                 />
               </div>
             </div>
+            */}
           </div>
         ))}
 
