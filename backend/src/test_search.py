@@ -6,13 +6,34 @@ from rich.panel import Panel
 from rich.table import Table
 from rich import print as rprint
 import time
+import sys
+from dotenv import load_dotenv
+import os
 
 console = Console()
 
+load_dotenv()  # Load environment variables from .env file
+
+serpapi_key = os.getenv('SERPAPI_KEY')
+
 def format_results(response: Dict[str, Any]) -> None:
     """Format and display search results in a readable way."""
-    # Display query
+    # Display query 
     console.print(Panel(f"[bold blue]Search Query:[/bold blue] {response['query']}", title="Search Results"))
+    
+    # Check for error in response
+    if response.get("error"):
+        console.print(Panel(f"[bold red]Error:[/bold red] {response['error']}", title="Error"))
+        return
+
+    # Display search metadata if available
+    if response.get("search_metadata"):
+        metadata = response["search_metadata"]
+        console.print(Panel(
+            f"[bold]Status:[/bold] {metadata.get('status', 'N/A')}\n"
+            f"[bold]Total Time:[/bold] {metadata.get('total_time_taken', 'N/A')} seconds",
+            title="Search Metadata"
+        ))
 
     # Display organic results
     if response.get("organic_results"):
@@ -24,77 +45,128 @@ def format_results(response: Dict[str, Any]) -> None:
 
         for result in response["organic_results"]:
             table.add_row(
-                str(result["position"]),
-                result["title"],
-                result["link"],
-                result["snippet"]
+                str(result.get("position", "N/A")),
+                result.get("title", "No title"),
+                result.get("link", "No link"),
+                result.get("snippet", "No snippet")
             )
         console.print(table)
 
     # Display knowledge graph if available
     if response.get("knowledge_graph"):
-        kg = response["knowledge_graph"]
-        console.print(Panel(
-            f"[bold green]Knowledge Graph:[/bold green]\n"
-            f"Title: {kg['title']}\n"
-            f"Description: {kg['description']}\n"
-            f"Attributes: {json.dumps(kg['attributes'], indent=2)}",
-            title="Knowledge Graph"
-        ))
+        try:
+            kg = response["knowledge_graph"]
+            
+            # Extract title and description if available
+            title = kg.get("title", "No title")
+            description = kg.get("description", "No description available")
+            
+            # Display basic info
+            kg_panel = f"[bold green]Knowledge Graph:[/bold green]\n"
+            kg_panel += f"Title: {title}\n"
+            kg_panel += f"Description: {description}\n"
+            
+            # Display attributes if available
+            if kg.get("list"):
+                kg_panel += "Attributes:\n"
+                for k, v in kg.get("list", {}).items():
+                    kg_panel += f"  {k}: {v}\n"
+            
+            console.print(Panel(kg_panel, title="Knowledge Graph"))
+            
+        except Exception as e:
+            console.print(f"[red]Error displaying knowledge graph: {str(e)}[/red]")
+            console.print(f"[dim]Knowledge graph data: {kg}[/dim]")
 
     # Display local results if available
-    if response.get("local_results"):
+    if response.get("local_results") and response["local_results"].get("places"):
         table = Table(title="Local Results", show_header=True, header_style="bold yellow")
         table.add_column("Title", style="bold")
         table.add_column("Address", style="white")
         table.add_column("Rating", style="green")
         table.add_column("Reviews", style="cyan")
-        table.add_column("Phone", style="magenta")
-        table.add_column("Website", style="blue")
+        table.add_column("Type", style="magenta")
 
-        for result in response["local_results"]:
+        for result in response["local_results"]["places"]:
             table.add_row(
-                result["title"],
-                result["address"],
+                result.get("title", "No title"),
+                result.get("address", "No address"),
                 str(result.get("rating", "N/A")),
                 str(result.get("reviews", "N/A")),
-                result.get("phone", "N/A"),
-                result.get("website", "N/A")
+                result.get("type", "N/A")
+            )
+        console.print(table)
+
+    # Display recipes if available
+    if response.get("recipes_results"):
+        table = Table(title="Recipe Results", show_header=True, header_style="bold green")
+        table.add_column("Title", style="bold")
+        table.add_column("Source", style="white")
+        table.add_column("Time", style="green")
+        table.add_column("Ingredients", style="cyan")
+
+        for result in response["recipes_results"]:
+            ingredients = ", ".join(result.get("ingredients", [])) if result.get("ingredients") else "N/A"
+            table.add_row(
+                result.get("title", "No title"),
+                result.get("source", "Unknown source"),
+                result.get("total_time", "N/A"),
+                ingredients
             )
         console.print(table)
 
     # Display related questions if available
     if response.get("related_questions"):
-        console.print(Panel(
-            "\n".join([
-                f"[bold]Q:[/bold] {q['question']}\n"
+        try:
+            questions_text = "\n".join([
+                f"[bold]Q:[/bold] {q.get('question', 'No question')}\n"
                 f"[italic]A:[/italic] {q.get('snippet', 'No answer available')}\n"
                 for q in response["related_questions"]
-            ]),
-            title="Related Questions"
-        ))
+            ])
+            console.print(Panel(questions_text, title="Related Questions"))
+        except Exception as e:
+            console.print(f"[red]Error displaying related questions: {str(e)}[/red]")
 
     # Display related searches if available
     if response.get("related_searches"):
-        console.print(Panel(
-            "\n".join(response["related_searches"]),
-            title="Related Searches"
-        ))
+        try:
+            # Check if related_searches is a list of strings or a list of objects
+            if isinstance(response["related_searches"], list):
+                if response["related_searches"] and isinstance(response["related_searches"][0], dict):
+                    # It's a list of objects with query field
+                    search_text = "\n".join([
+                        f"• {item.get('query', 'Unknown')}" 
+                        for item in response["related_searches"]
+                    ])
+                else:
+                    # It's a list of strings
+                    search_text = "\n".join([f"• {item}" for item in response["related_searches"]])
+                    
+                console.print(Panel(search_text, title="Related Searches"))
+        except Exception as e:
+            console.print(f"[red]Error displaying related searches: {str(e)}[/red]")
 
     # Display answer box if available
     if response.get("answer_box"):
-        console.print(Panel(
-            f"[bold]Type:[/bold] {response['answer_box'].get('type', 'N/A')}\n"
-            f"[bold]Answer:[/bold] {response['answer_box'].get('answer', 'N/A')}",
-            title="Answer Box"
-        ))
-
-    # Display AI response if available
-    if response.get("ai_response"):
-        console.print(Panel(
-            response["ai_response"],
-            title="AI Response"
-        ))
+        try:
+            answer_box = response["answer_box"]
+            content = ""
+            
+            if answer_box.get("type"):
+                content += f"[bold]Type:[/bold] {answer_box.get('type')}\n"
+            
+            if answer_box.get("answer"):
+                content += f"[bold]Answer:[/bold] {answer_box.get('answer')}\n"
+            
+            if answer_box.get("title"):
+                content += f"[bold]Title:[/bold] {answer_box.get('title')}\n"
+                
+            if answer_box.get("snippet"):
+                content += f"[bold]Snippet:[/bold] {answer_box.get('snippet')}\n"
+                
+            console.print(Panel(content, title="Answer Box"))
+        except Exception as e:
+            console.print(f"[red]Error displaying answer box: {str(e)}[/red]")
 
 async def test_search(query: str, num_results: int = 10) -> None:
     """Test the search API with a given query."""
@@ -138,4 +210,5 @@ async def main():
 
 if __name__ == "__main__":
     import asyncio
+    print(sys.executable)
     asyncio.run(main()) 

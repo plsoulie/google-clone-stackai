@@ -1,174 +1,50 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "@/components/SearchBar";
 import SearchFilters from "@/components/SearchFilters";
 import SearchInfo from "@/components/SearchInfo";
-import OrganicResult from "@/components/OrganicResult";
-import LocalMap from "@/components/LocalMap";
-import RelatedQuestions from "@/components/RelatedQuestions";
-import KnowledgePanel from "@/components/KnowledgePanel";
+import SearchResults from "@/components/SearchResults";
 import { Button } from "@/components/ui/button";
+import { Clock, Search, X } from "lucide-react";
 
 const Index = () => {
-  const [searchQuery, setSearchQuery] = useState("Coffee");
+  const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("all");
-  const [hasSearched, setHasSearched] = useState(true); // Set to true for initial display
+  const [hasSearched, setHasSearched] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+  const [useDummyResults, setUseDummyResults] = useState(false);
+  const [searchHistory, setSearchHistory] = useState<string[]>([
+    "artificial intelligence",
+    "machine learning",
+    "neural networks",
+    "natural language processing",
+    "stack ai github"
+  ]);
 
   const handleSearch = (query: string) => {
+    if (query.trim() && !searchHistory.includes(query)) {
+      setSearchHistory(prev => [query, ...prev.slice(0, 9)]);
+    }
     setSearchQuery(query);
     setHasSearched(true);
+    setUseDummyResults(false);
   };
 
-  const mockCoffeeImages = ["/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png", "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png"];
-  const organicResults = [{
-    title: "Coffee - Wikipedia",
-    url: "https://en.wikipedia.org/wiki/Coffee",
-    description: "Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffea species. From the coffee fruit, the seeds are ...",
-    breadcrumbs: ["https://en.wikipedia.org", "wiki", "Coffee"],
-    tags: ["Coffee bean", "History", "Coffee production", "Coffee preparation"],
-    metadata: {
-      region: "Horn of Africa and South Arabia",
-      color: "Black, dark brown, light brown, beige",
-      introduced: "15th century"
-    }
-  }, {
-    title: "21 Excellent Coffee Shops in Austin",
-    url: "https://austin.eater.com/maps/best-coffee-austin-cafes",
-    description: "3 days ago — 21 Excellent Coffee Shops in Austin · 1. Barner's Coffee · 2. Epoch Coffee · 3. Sa-Ten Coffee & Eats · 4. Houndstooth Coffee · 5. Civil Goat Coffee...",
-    breadcrumbs: ["https://austin.eater.com", "maps", "best-coffee-austin-cafes"]
-  }, {
-    title: "Home | The Coffee Bean & Tea Leaf",
-    url: "https://www.coffeebean.com/",
-    description: "Icon of a bag of coffee being shipped to you. Subscriptions. Never run out of your favorite coffees, teas and powders again with our auto-delivery subscription.",
-    breadcrumbs: ["https://www.coffeebean.com"],
-    tags: ["Store Locator", "Coffee", "Cafe Menu", "Flavored Coffee"]
-  }, {
-    title: "coffee - Amazon.com",
-    url: "https://www.amazon.com/coffee/s?k=coffee",
-    description: "Results 1 - 48 of 29000+ — ... Peet Good Coffee Company · Whole Bean Coffee · Donut Shop",
-    breadcrumbs: ["https://www.amazon.com", "coffee", "s?k=coffee"]
-  }];
-  const localPlaces = [{
-    id: "1",
-    name: "Houndstooth Coffee",
-    rating: 4.5,
-    reviews: 744,
-    type: "Coffee shop",
-    address: "401 Congress Ave #100c · In Frost Bank Tower",
-    features: ["Dine-in", "Takeout", "No delivery"],
-    image: "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png"
-  }, {
-    id: "2",
-    name: "Starbucks",
-    rating: 4.2,
-    reviews: 909,
-    type: "Coffee shop",
-    address: "600 Congress Ave",
-    features: ["Dine-in", "Takeout", "Delivery"],
-    image: "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png"
-  }, {
-    id: "3",
-    name: "The Hideout Coffee House",
-    rating: 4.4,
-    reviews: 274,
-    type: "Coffee shop",
-    address: "617 Congress Ave",
-    features: ["Dine-in", "Takeout", "No-contact delivery"],
-    image: "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png"
-  }];
-  const relatedQuestions = [{
-    id: "q1",
-    question: "Is it healthy to drink coffee everyday?",
-    answer: "Moderate coffee consumption (1-3 cups per day) is generally considered safe and may even have health benefits like improved alertness, energy levels, and potentially lower risk of certain diseases."
-  }, {
-    id: "q2",
-    question: "Is coffee made from poop?",
-    answer: "Regular coffee is not made from poop. However, there is a specialty coffee called Kopi Luwak which involves coffee cherries that have been eaten and defecated by the Asian palm civet. This is a rare and expensive specialty product."
-  }, {
-    id: "q3",
-    question: "What coffee does to your body?",
-    answer: "Coffee contains caffeine which can increase alertness, boost metabolism, improve physical performance, and potentially protect against certain diseases. However, it can also cause jitteriness, anxiety, and sleep disruption in some people."
-  }, {
-    id: "q4",
-    question: "Is coffee good for you or bad for you?",
-    answer: "Coffee can be both good and bad depending on consumption levels and individual factors. Moderate consumption may offer benefits such as improved cognitive function and lower risk of certain diseases, while excessive consumption can lead to anxiety, insomnia, and digestive issues."
-  }];
-  const nutritionFacts = {
-    title: "Nutrition Facts",
-    items: [{
-      name: "Amount Per 1 cup (8 fl oz) (237 g)",
-      value: ""
-    }, {
-      name: "Calories",
-      value: "1"
-    }, {
-      name: "Total Fat",
-      value: "0 g",
-      dailyValue: "0%"
-    }, {
-      name: "Saturated fat",
-      value: "0 g",
-      dailyValue: "0%"
-    }, {
-      name: "Trans fat regulation",
-      value: "0 g"
-    }, {
-      name: "Cholesterol",
-      value: "0 mg",
-      dailyValue: "0%"
-    }, {
-      name: "Sodium",
-      value: "5 mg",
-      dailyValue: "0%"
-    }, {
-      name: "Potassium",
-      value: "116 mg",
-      dailyValue: "3%"
-    }, {
-      name: "Total Carbohydrate",
-      value: "0 g",
-      dailyValue: "0%"
-    }, {
-      name: "Dietary fiber",
-      value: "0 g",
-      dailyValue: "0%"
-    }, {
-      name: "Sugar",
-      value: "0 g"
-    }, {
-      name: "Protein",
-      value: "0.3 g",
-      dailyValue: "0%"
-    }, {
-      name: "Caffeine",
-      value: "95 mg"
-    }]
+  const showDummyResults = () => {
+    setSearchQuery("artificial intelligence");
+    setHasSearched(true);
+    setUseDummyResults(true);
   };
-  const coffeeSections = [{
-    title: "Species of coffee",
-    moreLink: "5+ more",
-    items: [{
-      name: "Coffea arabica"
-    }, {
-      name: "Robusta"
-    }, {
-      name: "Coffea liberica"
-    }, {
-      name: "Helmarica yastaliva"
-    }]
-  }, {
-    title: "Coffee books",
-    moreLink: "4+ more",
-    items: [{
-      name: "The World Atlas of Coffee"
-    }, {
-      name: "Craft Coffee: A Manual"
-    }, {
-      name: "The Professional Barista's"
-    }, {
-      name: "The Curious Barista's"
-    }]
-  }];
+
+  const handleHistoryClick = (query: string) => {
+    setSearchQuery(query);
+    setHasSearched(true);
+    setUseDummyResults(false);
+  };
+
+  const removeFromHistory = (e: React.MouseEvent, query: string) => {
+    e.stopPropagation();
+    setSearchHistory(prev => prev.filter(item => item !== query));
+  };
 
   if (!hasSearched) {
     return (
@@ -179,6 +55,14 @@ const Index = () => {
               <img src="/lovable-uploads/2bacea9e-1086-4721-b6ed-a3ea64b4bd15.png" alt="StackAI Logo" className="h-12" />
             </div>
             <div className="flex items-center">
+              <Button 
+                size="sm" 
+                variant="ghost" 
+                className="mr-4 text-xs px-2 py-1 h-auto text-gray-500"
+                onClick={showDummyResults}
+              >
+                Dummy
+              </Button>
               <div className="flex items-center space-x-3">
                 <a href="#" className="text-gray-600 hover:text-gray-900">Log in</a>
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">Sign up</Button>
@@ -189,19 +73,20 @@ const Index = () => {
 
         <div className="flex-grow flex flex-col items-center justify-center px-4">
           <div className="max-w-2xl text-center mb-12">
-            <h1 className="text-5xl font-bold mb-6">AI Agents for the Enterprise</h1>
+            <h1 className="text-5xl font-bold mb-6">Stack<span className="text-blue-600">AI</span> Search</h1>
             <p className="text-xl text-gray-600 mb-8">
-              Augment your workforce with AI Agents. Outsource back office processes to LLMs. Make your organization smarter.
+              Discover the power of AI-enhanced search. Get smarter results powered by StackAI's advanced machine learning algorithms.
             </p>
             <div className="flex gap-4 justify-center">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">Get a Demo</Button>
-              <Button variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">Start for free</Button>
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">Advanced Search</Button>
+              <Button variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">Search Filters</Button>
             </div>
           </div>
         </div>
 
-        <footer className="border-t border-gray-200 py-4 bg-white sticky bottom-0 w-full z-10">
+        <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-blue-50 to-indigo-50 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
           <div className="container mx-auto px-4">
+            <div className="text-center mb-3 text-sm font-medium text-blue-700">Powered by StackAI - Your Intelligent Search Engine</div>
             <SearchBar onSearch={handleSearch} initialQuery="" />
           </div>
         </footer>
@@ -210,50 +95,158 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col w-full">
+    <div className="min-h-screen flex flex-col">
       <header className="border-b border-gray-200 sticky top-0 bg-white z-10">
-        <div className="container mx-auto px-4 py-3 flex items-center">
-          <a href="/" className="mr-auto">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <a href="/" className="flex items-center">
             <img src="/lovable-uploads/2bacea9e-1086-4721-b6ed-a3ea64b4bd15.png" alt="StackAI Logo" className="h-10" />
+            <span className="ml-3 text-xl font-medium">Search</span>
           </a>
-        </div>
-        <div className="container mx-auto px-4">
-          <SearchFilters activeFilter={filter} onFilterChange={setFilter} />
+          <Button 
+            size="sm" 
+            variant="ghost" 
+            className="text-xs px-2 py-1 h-auto text-gray-500"
+            onClick={showDummyResults}
+          >
+            Dummy
+          </Button>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-4 flex-grow">
         <SearchInfo totalResults="2,600,000,000" searchTime="0.64" query={searchQuery} />
-
-        <div className="flex flex-col md:flex-row">
-          <div className="md:w-2/3 pr-0 md:pr-6">
-            {organicResults.slice(0, 1).map((result, index) => <OrganicResult key={index} {...result} />)}
-
-            <LocalMap title="Coffee Shops" places={localPlaces} />
-
-            {organicResults.slice(1).map((result, index) => <OrganicResult key={index + 1} {...result} />)}
-
-            <RelatedQuestions title="People also ask" questions={relatedQuestions} />
-
-            <div className="mt-8 text-center">
-              <button className="bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-3 px-6 rounded-md">
-                See more results
-              </button>
-            </div>
-          </div>
-
-          <div className="md:w-1/3 mt-8 md:mt-0">
-            <KnowledgePanel title="Coffee" subtitle="Drink" description="Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffea species. From the coffee fruit, the seeds are separated to produce a stable, raw product: unroasted green coffee." source="Wikipedia" images={mockCoffeeImages} facts={nutritionFacts} sections={coffeeSections} />
-          </div>
-        </div>
+        {useDummyResults ? <DummySearchResults query={searchQuery} /> : <SearchResults query={searchQuery} />}
       </main>
 
       <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-blue-50 to-indigo-50 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-3 text-sm font-medium text-blue-700">Ask anything or search the web</div>
+          <div className="text-center mb-3 text-sm font-medium text-blue-700">Search smarter with StackAI</div>
           <SearchBar onSearch={handleSearch} initialQuery={searchQuery} />
         </div>
       </footer>
+    </div>
+  );
+};
+
+// Dummy search results component
+const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
+  return (
+    <div className="flex flex-col md:flex-row">
+      <div className="md:w-2/3 pr-0 md:pr-6">
+        {/* Organic Results */}
+        <div className="mb-6 max-w-2xl">
+          <div className="flex items-start">
+            <div>
+              <div className="flex text-sm text-gray-500 items-center mb-1">
+                <span>en.wikipedia.org</span><span className="mx-1">›</span><span>wiki</span><span className="mx-1">›</span><span>Artificial_intelligence</span>
+              </div>
+              <h3 className="text-xl text-blue-800 font-medium hover:underline">
+                <a href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank" rel="noopener noreferrer">
+                  Artificial intelligence - Wikipedia
+                </a>
+              </h3>
+              <div className="flex items-center text-green-700 text-sm">
+                <span>en.wikipedia.org/wiki/Artificial_intelligence</span>
+              </div>
+              <p className="mt-1 text-sm text-gray-700">
+                Artificial intelligence (AI) is the intelligence of machines or software, as opposed to the intelligence of humans or animals. AI applications include advanced web ...
+              </p>
+              <div className="mt-1 flex flex-wrap gap-2">
+                <span className="text-xs text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">History</span>
+                <span className="text-xs text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">Applications</span>
+                <span className="text-xs text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">Machine learning</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Related Questions */}
+        <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden">
+          <div className="flex justify-between items-center p-3 border-b border-gray-200">
+            <h3 className="text-lg font-medium">People also ask</h3>
+            <button className="text-gray-500">
+              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M10 6.5V10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <circle cx="10" cy="13.5" r="0.5" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+
+          <div>
+            {[
+              { id: "q1", question: "What exactly is artificial intelligence?", answer: "Artificial intelligence (AI) is intelligence demonstrated by machines, as opposed to natural intelligence displayed by animals including humans. AI research has been defined as the field of study of intelligent agents." },
+              { id: "q2", question: "What are the 4 types of AI?", answer: "The four types of artificial intelligence are reactive machines, limited memory, theory of mind, and self-awareness." },
+              { id: "q3", question: "What is AI in simple words?", answer: "AI or artificial intelligence is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction." }
+            ].map((q) => (
+              <div key={q.id} className="border-b border-gray-100 last:border-b-0">
+                <button className="w-full p-4 flex justify-between items-start text-left">
+                  <span className="text-base text-gray-800">{q.question}</span>
+                  <svg className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 text-center">
+          <button className="bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-3 px-6 rounded-md">
+            See more results
+          </button>
+        </div>
+      </div>
+
+      <div className="md:w-1/3 mt-8 md:mt-0">
+        {/* Knowledge Panel */}
+        <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <div className="p-4">
+            <div className="flex justify-between">
+              <h2 className="text-2xl font-medium mb-1">Artificial intelligence</h2>
+              <svg className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+            </div>
+            <p className="text-gray-500 mb-2">Technology</p>
+
+            <div className="grid grid-cols-2 gap-1 mb-4">
+              <div className="bg-gray-100 h-20 md:h-32 rounded overflow-hidden">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Artificial_intelligence_prompt_engineering.jpg/220px-Artificial_intelligence_prompt_engineering.jpg" alt="AI 1" className="w-full h-full object-cover" />
+              </div>
+              <div className="bg-gray-100 h-20 md:h-32 rounded overflow-hidden">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Artificial_Intelligence_%26_AI_%26_Machine_Learning.jpg/220px-Artificial_Intelligence_%26_AI_%26_Machine_Learning.jpg" alt="AI 2" className="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            <p className="text-sm text-gray-700 mb-3">
+              Artificial intelligence (AI) is intelligence demonstrated by machines, as opposed to natural intelligence displayed by humans and animals. AI applications include advanced web search engines, recommendation systems, voice assistants, and self-driving cars.
+            </p>
+            <p className="text-xs text-gray-500 mb-4">
+              <span className="font-medium">Source:</span> Wikipedia
+            </p>
+
+            <div className="border-t border-gray-200 pt-3 mb-2">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-medium">Types of AI</h3>
+                <a href="#" className="text-xs text-blue-600 flex items-center">
+                  View all <svg className="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+              <div className="grid grid-cols-4 gap-2">
+                {["Narrow AI", "General AI", "Machine Learning", "Deep Learning"].map((item, i) => (
+                  <div key={i} className="text-center">
+                    <div className="bg-gray-100 h-14 w-14 mx-auto rounded-lg overflow-hidden mb-1"></div>
+                    <p className="text-xs">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

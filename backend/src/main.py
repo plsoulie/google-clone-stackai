@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from serpapi import GoogleSearch
@@ -24,6 +24,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    logger.info(f"Incoming request: {request.method} {request.url}")
+    response = await call_next(request)
+    logger.info(f"Response status: {response.status_code}")
+    return response
 
 class SearchQuery(BaseModel):
     query: str
@@ -124,6 +131,7 @@ async def health_check():
 @app.post("/api/search", response_model=SearchResponse)
 async def search(query: SearchQuery):
     try:
+        logger.info(f"Search query received: {query.query}")
         # Get SerpAPI key from environment variables
         serpapi_key = os.getenv("SERPAPI_KEY")
         if not serpapi_key:
@@ -178,6 +186,12 @@ async def search(query: SearchQuery):
     except Exception as e:
         logger.error(f"Error during search: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/test_search", response_model=SearchResponse)
+async def test_search_endpoint(query: SearchQuery):
+    # Logic from test_search.py to perform the search
+    # Return the formatted results
+    return await search(query)
 
 if __name__ == "__main__":
     import uvicorn
