@@ -10,6 +10,8 @@ interface OrganicResultProps {
     [key: string]: string;
   };
   tags?: string[];
+  position?: number;
+  displayed_link?: string;
 }
 
 const OrganicResult: React.FC<OrganicResultProps> = ({
@@ -19,17 +21,39 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
   breadcrumbs,
   metadata,
   tags,
+  position,
+  displayed_link,
 }) => {
   // Format display URL
-  const displayUrl = new URL(url).hostname + new URL(url).pathname;
+  let displayUrl = displayed_link;
+  
+  if (!displayUrl) {
+    try {
+      const urlObj = new URL(url);
+      displayUrl = urlObj.hostname + urlObj.pathname;
+    } catch (e) {
+      displayUrl = url;
+    }
+  }
   
   // Generate favicon URL
-  const hostname = new URL(url).hostname;
+  let hostname = "";
+  try {
+    hostname = new URL(url).hostname;
+  } catch {
+    hostname = url.split('/')[0];
+  }
   const faviconUrl = `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
 
   const handleClick = (e: React.MouseEvent) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
+
+  // Extract tags from description or title if none provided
+  const derivedTags = tags || [];
+  
+  // Generate a result ranking if position is provided
+  const ranking = position ? `#${position}` : '';
 
   return (
     <div 
@@ -37,7 +61,11 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
       onClick={handleClick}
     >
       <div className="flex-1">
-        {breadcrumbs && (
+        {ranking && (
+          <div className="float-right text-xs text-gray-400 ml-2">{ranking}</div>
+        )}
+      
+        {breadcrumbs && breadcrumbs.length > 0 && (
           <div className="flex text-sm text-gray-500 items-center mb-1">
             {breadcrumbs.map((crumb, index) => (
               <React.Fragment key={index}>
@@ -65,25 +93,23 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
 
         <div className="flex items-center text-green-700 text-sm mb-2">
           <span className="truncate max-w-[90%]">{displayUrl}</span>
-          {metadata?.type === "info" && (
-            <button 
-              className="ml-1 text-gray-500"
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open(url, '_blank', 'noopener,noreferrer');
-              }}
-            >
-              <ExternalLink className="h-3 w-3" />
-            </button>
-          )}
+          <button 
+            className="ml-1 text-gray-500"
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }}
+          >
+            <ExternalLink className="h-3 w-3" />
+          </button>
         </div>
 
         <p className="text-sm text-gray-700 line-clamp-3">{description}</p>
       </div>
 
-      {tags && tags.length > 0 && (
+      {(derivedTags.length > 0) && (
         <div className="mt-2 flex flex-wrap gap-1">
-          {tags.map((tag, index) => (
+          {derivedTags.map((tag, index) => (
             <span
               key={index}
               className="text-xs text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full"

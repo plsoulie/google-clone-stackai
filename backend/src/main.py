@@ -162,23 +162,13 @@ async def search(query: SearchQuery):
     try:
         logger.info(f"Search query received: {query.query}")
         
-        # Use mock data instead of making a SerpAPI call
-        logger.info("Using mock data instead of calling SerpAPI")
-        
-        if not mock_data:
-            logger.error("Mock data not available")
-            raise HTTPException(status_code=500, detail="Mock data not available")
-        
-        results = mock_data
-        
-        # Comment out the SerpAPI code
-        """
         # Get SerpAPI key from environment variables
         serpapi_key = os.getenv("SERPAPI_KEY")
         if not serpapi_key:
             logger.error("SERPAPI_KEY not found in environment variables")
             raise HTTPException(status_code=500, detail="SERPAPI_KEY not configured")
-
+        
+        logger.info(f"Using SerpAPI key starting with: {serpapi_key[:5]}...")
         logger.info(f"Making search request for query: {query.query}")
         
         # Create search parameters
@@ -191,17 +181,57 @@ async def search(query: SearchQuery):
             "hl": "en"   # Set to English for consistent results
         }
 
-        logger.info("Calling SerpAPI...")
-        # Perform the search
-        search = GoogleSearch(params)
-        results = search.get_dict()
-        """
+        logger.info(f"SerpAPI params (excluding API key): {params}")
+        logger.info(f"API key validity check: {'valid' if serpapi_key and len(serpapi_key) > 10 else 'invalid'}")
+        
+        # Flag to track if we're using live data or mock data
+        using_mock_data = False
+        
+        try:
+            logger.info("Calling SerpAPI...")
+            # Perform the search
+            search = GoogleSearch(params)
+            results = search.get_dict()
+            
+            # Check if results are valid
+            if not results:
+                logger.error("SerpAPI returned empty results")
+                using_mock_data = True
+            elif "error" in results:
+                logger.error(f"SerpAPI returned an error: {results.get('error')}")
+                using_mock_data = True
+            else:
+                logger.info(f"SerpAPI response received - keys: {list(results.keys() if results else [])}")
+                logger.info(f"Query '{query.query}' returned {len(results.get('organic_results', []))} organic results")
+                logger.info(f"Response valid: {'organic_results' in results}")
+            
+            # Save the SerpAPI response for debugging
+            try:
+                with open("response.json", "w") as f:
+                    json.dump(results, f)
+                logger.info("SerpAPI response saved to response.json")
+            except Exception as e:
+                logger.error(f"Failed to save SerpAPI response: {e}")
+            
+        except Exception as e:
+            logger.error(f"Error calling SerpAPI: {e}")
+            using_mock_data = True
+        
+        # Fallback to mock data if needed
+        if using_mock_data:
+            logger.warning("Falling back to mock data")
+            if not mock_data:
+                logger.error("Mock data not available")
+                raise HTTPException(status_code=500, detail="No valid search results available")
+            
+            results = mock_data
+            logger.info("Using mock data fallback")
+        else:
+            logger.info(f"Successfully using live data from SerpAPI for query: {query.query}")
         
         if not isinstance(results, dict):
-            logger.error(f"Unexpected response type from mock data: {type(results)}")
-            raise HTTPException(status_code=500, detail="Invalid mock data format")
-
-        logger.info("Successfully loaded results from mock data")
+            logger.error(f"Unexpected response type: {type(results)}")
+            raise HTTPException(status_code=500, detail="Invalid response format")
 
         # Extract and normalize local results directly to keep the thumbnail field
         local_results_data = []
@@ -226,7 +256,7 @@ async def search(query: SearchQuery):
                 local_results_data.append(place_data)
             logger.info(f"Processed {len(local_results_data)} local results with thumbnails")
         else:
-            logger.warning("No local_results.places found in mock data")
+            logger.warning("No local_results.places found in search results")
         
         # Extract and normalize different result types
         response = SearchResponse(

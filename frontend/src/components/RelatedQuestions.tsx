@@ -31,6 +31,9 @@ interface RelatedQuestionsProps {
 const RelatedQuestions: React.FC<RelatedQuestionsProps> = ({ questions, title }) => {
   const [expandedQuestions, setExpandedQuestions] = useState<string[]>([]);
 
+  // Filter out questions with no available answers
+  const filteredQuestions = questions.filter(q => q.answer && q.answer !== "No answer available");
+
   const toggleQuestion = (id: string) => {
     if (expandedQuestions.includes(id)) {
       setExpandedQuestions(expandedQuestions.filter((qId) => qId !== id));
@@ -38,6 +41,11 @@ const RelatedQuestions: React.FC<RelatedQuestionsProps> = ({ questions, title })
       setExpandedQuestions([...expandedQuestions, id]);
     }
   };
+
+  // If no questions with answers are available, don't render the component
+  if (filteredQuestions.length === 0) {
+    return null;
+  }
 
   return (
     <div className="mb-6 border border-gray-200 rounded-md overflow-hidden bg-white">
@@ -56,7 +64,7 @@ const RelatedQuestions: React.FC<RelatedQuestionsProps> = ({ questions, title })
       </div>
 
       <div>
-        {questions.map((q) => (
+        {filteredQuestions.map((q) => (
           <div key={q.id} className="border-b border-gray-100 last:border-b-0">
             <button
               className={`w-full p-4 flex justify-between items-start text-left transition-all duration-200 ease-in-out ${expandedQuestions.includes(q.id) ? 'bg-gray-50' : ''} hover:bg-gray-50 hover:pl-5 hover:shadow-inner group`}

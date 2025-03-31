@@ -22,12 +22,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch, comp
         console.log('Initiating search for query:', query);
         
         // Update the URL to point to our backend server
+        console.log('Sending request to backend API...');
         const response = await axios.post('http://localhost:8000/api/search', { 
           query, 
           num_results: 10 
         });
         
-        console.log('Search results:', response.data);
+        console.log('Search results received:', response.data);
+        console.log('Response has these keys:', Object.keys(response.data));
+        if (response.data.organic_results) {
+          console.log('Found', response.data.organic_results.length, 'organic results');
+        }
         onSearch(query);
       } catch (error) {
         console.error('Error performing search:', error);
@@ -94,7 +99,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch, comp
       </form>
       {isSearching && (
         <div className="text-center mt-4 text-sm text-gray-600">
-          Searching... Check the terminal for results.
+          Searching with SerpAPI... Please wait.
         </div>
       )}
     </div>

@@ -194,11 +194,12 @@ async def test_search(query: str, num_results: int = 10) -> None:
 async def main():
     # Test queries for different types of results
     test_queries = [
-        # "What is the capital of France?",  # Knowledge graph and answer box
+        "What is the capital of France?",  # Knowledge graph and answer box
         "restaurants in New York",  # Local results
-        # "Python programming",  # Organic results and related questions
-        # "latest news",  # News results
-        # "weather in London",  # Weather results
+        "Python programming",  # Organic results and related questions
+        "latest news",  # News results
+        "weather in London",  # Weather results
+        "Fast food open near me",  # Recipes results
     ]
 
     for query in test_queries:

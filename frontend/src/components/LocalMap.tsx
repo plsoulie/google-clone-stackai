@@ -1,14 +1,14 @@
-import React from "react";
-import { MapPin, ExternalLink } from "lucide-react";
+import React, { useState } from "react";
+import { MapPin, ExternalLink, Star } from "lucide-react";
 
 interface Place {
   id: string;
   name: string;
   address: string;
-  rating: number;
-  reviews: number;
-  type: string;
-  features: string[];
+  rating?: number;
+  reviews?: number;
+  type?: string;
+  features?: string[];
   image?: string;
   website?: string;
 }
@@ -19,7 +19,6 @@ interface LocalMapProps {
 }
 
 const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
-  /* Image-related state and functions - commented out for now
   const [failedImages, setFailedImages] = useState<{[key: string]: boolean}>({});
   
   const handleImageError = (id: string, name: string, url: string) => {
@@ -36,15 +35,52 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
       return "https://images.squarespace-cdn.com/content/v1/5b69adef7106992a45ce2bfb/1604615229582-YI4V6T80V33DHPZPPVHH/houndstoothlogo.png";
     } else if (normalizedName.includes('lucky') && normalizedName.includes('lab')) {
       return "https://luckylabcoffee.com/wp-content/uploads/2020/03/luckydog.png";
+    } else if (normalizedName.includes('mcdonald')) {
+      return "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png";
+    } else if (normalizedName.includes('burger king') || normalizedName.includes('bk')) {
+      return "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png";
+    } else if (normalizedName.includes('wendy')) {
+      return "https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Wendy%27s_full_logo_2012.svg/640px-Wendy%27s_full_logo_2012.svg.png";
+    } else if (normalizedName.includes('taco bell')) {
+      return "https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Taco_Bell_2016.svg/1200px-Taco_Bell_2016.svg.png";
+    } else if (normalizedName.includes('kfc') || normalizedName.includes('kentucky fried')) {
+      return "https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png";
     }
     return "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png";
   };
-  */
 
   const handlePlaceClick = (place: Place) => {
     // Open a Google Maps search for this business
     const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
     window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
+  };
+
+  // Format the rating as stars
+  const renderRating = (rating?: number) => {
+    if (!rating) return null;
+    
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+    return (
+      <div className="flex text-amber-500">
+        {[...Array(fullStars)].map((_, i) => (
+          <Star key={`full-${i}`} className="h-3.5 w-3.5 fill-amber-500" />
+        ))}
+        {hasHalfStar && (
+          <span className="relative inline-block h-3.5 w-3.5">
+            <Star className="absolute h-3.5 w-3.5 text-gray-300" />
+            <div className="absolute overflow-hidden w-1/2 h-full">
+              <Star className="h-3.5 w-3.5 fill-amber-500" />
+            </div>
+          </span>
+        )}
+        {[...Array(emptyStars)].map((_, i) => (
+          <Star key={`empty-${i}`} className="h-3.5 w-3.5 text-gray-300" />
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -97,30 +133,34 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
             <div className="flex-grow">
               <h4 className="font-medium group-hover:text-black transition-colors duration-200">{place.name}</h4>
               <div className="flex items-center text-sm mb-1">
-                <div className="flex text-amber-500">
-                  {"★".repeat(Math.floor(place.rating))}
-                  {"☆".repeat(5 - Math.floor(place.rating))}
-                </div>
-                <span className="text-gray-500 ml-1">({place.reviews})</span>
-                <span className="mx-1">·</span>
-                <span className="text-gray-500">{place.type}</span>
+                {place.rating ? (
+                  <>
+                    {renderRating(place.rating)}
+                    {place.reviews && <span className="text-gray-500 ml-1">({place.reviews})</span>}
+                  </>
+                ) : (
+                  <div className="text-gray-400 text-xs">No ratings</div>
+                )}
+                {place.type && (
+                  <>
+                    <span className="mx-1">·</span>
+                    <span className="text-gray-500">{place.type}</span>
+                  </>
+                )}
               </div>
               <p className="text-sm text-gray-600">{place.address}</p>
-              <div className="text-sm text-gray-600 mt-1">
-                {place.features.join(" · ")}
-              </div>
+              {place.features && place.features.length > 0 && (
+                <div className="text-sm text-gray-600 mt-1">
+                  {place.features.join(" · ")}
+                </div>
+              )}
             </div>
 
             <div className="opacity-0 group-hover:opacity-100 absolute right-3 top-3 transition-opacity duration-200">
               <ExternalLink className="h-4 w-4 text-gray-600" />
             </div>
             
-            {/* Image rendering section - commented out for now
             <div className="ml-3">
-              {(() => { 
-                console.log("Rendering image section for", place.name, ":", place.image, "failed:", failedImages[place.id]); 
-                return null; 
-              })()}
               <div className="h-16 w-16 bg-gray-200 rounded overflow-hidden">
                 <img
                   src={failedImages[place.id] ? getDefaultImage(place.name) : (place.image || getDefaultImage(place.name))}
@@ -130,7 +170,6 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
                 />
               </div>
             </div>
-            */}
           </div>
         ))}
 

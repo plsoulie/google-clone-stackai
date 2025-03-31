@@ -23,40 +23,50 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
       setError(null);
       
       try {
+        console.log('SearchResults: Fetching results for query:', query);
         const response = await axios.post("http://localhost:8000/api/search", {
           query,
           num_results: 10
         });
         
         setResults(response.data);
-        console.log("Search results:", response.data);
-        console.log("Local results structure:", response.data.local_results);
+        console.log("SearchResults: Raw response data:", response.data);
+        console.log("SearchResults: Response data keys:", Object.keys(response.data));
+        
+        // Check for organic results
+        if (Array.isArray(response.data.organic_results)) {
+          console.log("SearchResults: Organic results length:", response.data.organic_results.length);
+          console.log("SearchResults: First organic result:", response.data.organic_results[0]);
+        } else {
+          console.log("SearchResults: No valid organic_results array found");
+        }
         
         // Detailed logging for local_results
+        console.log("SearchResults: Local results structure:", response.data.local_results);
         if (Array.isArray(response.data.local_results)) {
-          console.log("Local results is an array with length:", response.data.local_results.length);
+          console.log("SearchResults: Local results is an array with length:", response.data.local_results.length);
           if (response.data.local_results.length > 0) {
-            console.log("First local result:", response.data.local_results[0]);
-            console.log("First local result keys:", Object.keys(response.data.local_results[0]));
-            console.log("First local result thumbnail:", response.data.local_results[0].thumbnail);
+            console.log("SearchResults: First local result:", response.data.local_results[0]);
+            console.log("SearchResults: First local result keys:", Object.keys(response.data.local_results[0]));
+            console.log("SearchResults: First local result thumbnail:", response.data.local_results[0].thumbnail);
           }
         } else if (response.data.local_results && typeof response.data.local_results === 'object') {
-          console.log("Local results is an object with keys:", Object.keys(response.data.local_results));
+          console.log("SearchResults: Local results is an object with keys:", Object.keys(response.data.local_results));
           if (response.data.local_results.places && Array.isArray(response.data.local_results.places)) {
-            console.log("Local results places array length:", response.data.local_results.places.length);
+            console.log("SearchResults: Local results places array length:", response.data.local_results.places.length);
             if (response.data.local_results.places.length > 0) {
-              console.log("First place:", response.data.local_results.places[0]);
-              console.log("First place keys:", Object.keys(response.data.local_results.places[0]));
-              console.log("First place thumbnail:", response.data.local_results.places[0].thumbnail);
+              console.log("SearchResults: First place:", response.data.local_results.places[0]);
+              console.log("SearchResults: First place keys:", Object.keys(response.data.local_results.places[0]));
+              console.log("SearchResults: First place thumbnail:", response.data.local_results.places[0].thumbnail);
             }
           }
         }
         
         // Compare the structure with mockSerpData.json
-        console.log("Expected local_results structure from mockSerpData.json:", 
+        console.log("SearchResults: Expected local_results structure from mockSerpData.json:", 
           "{ places: [ { position, title, place_id, reviews, price, type, address, thumbnail, ... } ] }");
       } catch (err) {
-        console.error("Error fetching search results:", err);
+        console.error("SearchResults: Error fetching search results:", err);
         setError("Failed to fetch search results. Please try again.");
       } finally {
         setLoading(false);
@@ -73,20 +83,40 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
     const kg = results.knowledge_graph;
     const attributes = kg.attributes || {};
     
-    // Map the knowledge_graph data, checking both top level and attributes
+    // Deep copy approach to avoid mutating the original data
+    const processedAttributes = { ...attributes };
+    
+    // Log the knowledge graph data
+    console.log("Knowledge Graph Data:", kg);
+    console.log("Knowledge Graph Attributes:", attributes);
+    
+    // Process nested links in attributes
+    Object.keys(processedAttributes).forEach(key => {
+      // Check for _links fields and merge them with main data
+      if (key.endsWith('_links') && Array.isArray(processedAttributes[key])) {
+        const baseKey = key.replace('_links', '');
+        // Only process if the base property exists
+        if (processedAttributes[baseKey]) {
+          console.log(`Processing links for ${baseKey}`);
+        }
+      }
+    });
+    
     return {
       title: kg.title || "Knowledge Graph",
       type: attributes.type || kg.type,
       description: kg.description || "No description available",
-      header_images: attributes.header_images,
-      source: attributes.source,
-      patron_saint: attributes.patron_saint,
-      patron_saint_links: attributes.patron_saint_links,
-      chicory_coffee: attributes.chicory_coffee,
-      coffee_books: attributes.coffee_books,
-      people_also_search_for: attributes.people_also_search_for,
-      list: attributes.list,
-      see_results_about: attributes.see_results_about
+      header_images: attributes.header_images || kg.header_images,
+      source: attributes.source || kg.source,
+      patron_saint: attributes.patron_saint || kg.patron_saint,
+      patron_saint_links: attributes.patron_saint_links || kg.patron_saint_links,
+      chicory_coffee: attributes.chicory_coffee || kg.chicory_coffee,
+      coffee_books: attributes.coffee_books || kg.coffee_books,
+      people_also_search_for: attributes.people_also_search_for || kg.people_also_search_for,
+      list: attributes.list || kg.list,
+      see_results_about: attributes.see_results_about || kg.see_results_about,
+      // Pass all attributes from the knowledge graph
+      attributes: processedAttributes
     };
   };
 
@@ -99,75 +129,48 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
       url: result.link,
       description: result.snippet || "No description available",
       breadcrumbs: result.displayed_link ? [result.displayed_link] : undefined,
+      position: result.position,
+      displayed_link: result.displayed_link,
+      // Extract any additional metadata from the result
+      metadata: Object.keys(result)
+        .filter(key => !["title", "link", "snippet", "displayed_link", "position", "thumbnail"].includes(key))
+        .reduce((obj: any, key) => {
+          obj[key] = result[key];
+          return obj;
+        }, {}),
+      // Generate tags from result properties like date or domain
+      tags: [
+        result.source,
+        result.date
+      ].filter(Boolean)
     }));
   };
 
   // Helper function to get local results if available
   const getLocalResults = () => {
-    console.log("Local results raw data:", results?.local_results);
+    console.log("SearchResults: Processing local results:", results?.local_results);
     
     // Check if results.local_results exists
     if (!results?.local_results) {
-      console.log("No local_results found in API response");
+      console.log("SearchResults: No local_results found in API response");
       return null;
     }
     
-    // Since we're getting inconsistent data formats from the backend,
-    // let's try multiple approaches to find the places data
+    // Since we're getting results directly from SerpAPI now, we may need to handle different formats
     let placesData;
     
-    if (Array.isArray(results.local_results)) {
-      // Case 1: local_results is directly an array of places
+    if (Array.isArray(results.local_results) && results.local_results.length > 0) {
+      // Case 1: local_results is directly an array of places from our backend transformation
       placesData = results.local_results;
-      console.log("Case 1: local_results is an array");
-    } else if (results.local_results.places && Array.isArray(results.local_results.places)) {
-      // Case 2: local_results has a 'places' property that is an array
+      console.log("SearchResults: Case 1: local_results is an array with data");
+    } else if (results.local_results.places && Array.isArray(results.local_results.places) && results.local_results.places.length > 0) {
+      // Case 2: local_results has a 'places' property that is an array (from mockSerpData.json format)
       placesData = results.local_results.places;
-      console.log("Case 2: local_results has a places array");
+      console.log("SearchResults: Case 2: local_results has a places array with data");
     } else {
-      // Case 3: Let's try direct access to the raw mockSerpData.json structure
-      // This is a last resort attempt
-      try {
-        // Fetch the mockSerpData.json directly from the backend
-        fetch('/api/mock-data')
-          .then(response => response.json())
-          .then(data => {
-            console.log("Fetched mockSerpData.json:", data.local_results.places);
-          })
-          .catch(err => console.error("Error fetching mock data:", err));
-      } catch (e) {
-        console.error("Error accessing mock data:", e);
-      }
-      
-      console.log("No valid places data found in local_results");
-      
-      // Hardcoded fallback data as a last resort
-      placesData = [
-        {
-          title: "Starbucks",
-          address: "600 Congress Ave",
-          rating: 4.2,
-          reviews: 506,
-          type: "Coffee shop",
-          thumbnail: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
-        },
-        {
-          title: "Houndstooth Coffee",
-          address: "401 Congress Ave #100c · In Frost Bank Tower",
-          rating: 4.5,
-          reviews: 740,
-          type: "Coffee shop",
-          thumbnail: "https://images.squarespace-cdn.com/content/v1/5b69adef7106992a45ce2bfb/1604615229582-YI4V6T80V33DHPZPPVHH/houndstoothlogo.png"
-        },
-        {
-          title: "Lucky Lab Coffee",
-          address: "515 Congress Ave · In the Bank of America Financial Center",
-          rating: 4.0,
-          reviews: 2,
-          type: "Cafe",
-          thumbnail: "https://luckylabcoffee.com/wp-content/uploads/2020/03/luckydog.png"
-        }
-      ];
+      console.log("SearchResults: No valid places data found in local_results");
+      // Return null instead of using hardcoded fallback data
+      return null;
     }
     
     console.log("Places data to map:", placesData);
@@ -236,11 +239,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
   const getRelatedQuestions = () => {
     if (!results?.related_questions) return [];
     
-    return results.related_questions.map((question: any, index: number) => ({
-      id: `question-${index}`,
-      question: question.question,
-      answer: question.snippet || "No answer available",
-    }));
+    // Filter and map the questions to ensure we only get questions with good answers
+    return results.related_questions
+      .filter((question: any) => question.snippet && question.snippet.trim() && question.snippet !== "No answer available")
+      .map((question: any, index: number) => ({
+        id: `question-${index}`,
+        question: question.question,
+        answer: question.snippet || "",
+      }));
   };
 
   if (loading) {
@@ -265,7 +271,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
       
       <div className="md:w-2/3 pr-0 md:pr-6">
 
-      {localResults && (
+      {localResults && localResults.places && localResults.places.length > 0 && (
           <div className="">
             <LocalMap title={localResults.title} places={localResults.places} />
           </div>

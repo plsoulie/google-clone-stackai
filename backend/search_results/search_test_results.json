@@ -1,0 +1,5122 @@
+{
+  "What is the capital of France?": {
+    "query": "What is the capital of France?",
+    "organic_results": [
+      {
+        "title": "Paris",
+        "link": "https://en.wikipedia.org/wiki/Paris",
+        "snippet": "Paris is the capital and largest city of France. With an estimated population of 2,048,472 residents in January 2025 in an area of more than 105 km2 (41 sq ...",
+        "position": 1,
+        "thumbnail": null
+      },
+      {
+        "title": "List of capitals of France",
+        "link": "https://en.wikipedia.org/wiki/List_of_capitals_of_France",
+        "snippet": "The capital of France has been Paris since its liberation in 1944.",
+        "position": 2,
+        "thumbnail": null
+      },
+      {
+        "title": "Paris | Definition, Map, Population, Facts, & History",
+        "link": "https://www.britannica.com/place/Paris",
+        "snippet": "Paris, city and capital of France, located along the Seine River, in the north-central part of the country. Paris is one of the world's most ...",
+        "position": 3,
+        "thumbnail": null
+      },
+      {
+        "title": "Paris, France - Intercultural City",
+        "link": "https://www.coe.int/en/web/interculturalcities/paris",
+        "snippet": "Paris is the capital and most populous city of France. Situated on the Seine River, in the north of the country, it is in the centre of the \u00cele-de-France ...",
+        "position": 4,
+        "thumbnail": null
+      },
+      {
+        "title": "France | History, Maps, Flag, Population, Cities, Capital, & ...",
+        "link": "https://www.britannica.com/place/France",
+        "snippet": "The capital and by far the most important city of France is Paris, one of the world's preeminent cultural and commercial centres.",
+        "position": 5,
+        "thumbnail": null
+      },
+      {
+        "title": "Discover the city of Paris | Paris the capital city of France",
+        "link": "https://www.cia-france.com/french-kids-teenage-courses/paris-school/visit-paris",
+        "snippet": "Paris is the city of romance par excellence, the fashion capital and the best example of French art de vivre. Exploring Paris is an essential rite of passage ...",
+        "position": 6,
+        "thumbnail": null
+      },
+      {
+        "title": "Paris, the world capital for modern art",
+        "link": "https://www.britannica.com/video/video-production-overview-city-Paris-Encyclopaedia-Britannica-1994/-68351",
+        "snippet": "NARRATOR: The Eiffel Tower is the best-known symbol of Paris, the capital of France. Paris is an important center for business and culture. With its wide ...",
+        "position": 7,
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEsEnMi2HXLedJDoOT0a_u-UViyFDb16PzNgn9_dmaJJC9&s"
+      },
+      {
+        "title": "What is France\u2019s capital? \ud83e\udd2f",
+        "link": "https://www.youtube.com/watch?v=ZgkYlQTBBlw",
+        "snippet": "If she is asking for Paris she would say what is the capital of France but she is asking what is Frances capital.",
+        "position": 8,
+        "thumbnail": "https://i.ytimg.com/vi/ZgkYlQTBBlw/mqdefault.jpg?sqp=-oaymwEFCJQBEFM&rs=AMzJL3nVbg4MuWLHCo4beO_ascE7VNmiag"
+      }
+    ],
+    "local_results": [],
+    "knowledge_graph": {
+      "title": "Paris",
+      "description": "Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honor\u00e9. \u2015 Google",
+      "attributes": {
+        "type": "Capital of France",
+        "entity_type": "related_questions",
+        "kgmid": "/m/05qtj",
+        "knowledge_graph_search_link": "https://www.google.com/search?kgmid=/m/05qtj&hl=en-US&q=Paris",
+        "serpapi_knowledge_graph_search_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=us&google_domain=google.com&hl=en-US&kgmid=%2Fm%2F05qtj&num=10&q=Paris",
+        "population": "2.103 million (2023)",
+        "mayor": "Anne Hidalgo",
+        "mayor_links": [
+          {
+            "text": "Anne Hidalgo",
+            "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=Anne+Hidalgo&si=APYL9btKi1TLoawpxIKkhA47KIc3RH36yjJAdk2TmwBtOZld-q1GvU1cJcknqZjNlxo03_L9rg6PAq5AqAis0muTYDt1si79dLJ13csPNS7fxhchru-0YioyxhJmnGDiMchv2ONrYd-G0itRXG9LspxHCWn5ZoyjGhnIHAfTSM-mUFm-_eLVzpaew-_ceV4sa8nvjr7oi1mT&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQmxMoAHoECDIQAg"
+          }
+        ],
+        "area": "40.7 mi\u00b2",
+        "elevation": "115\u2032",
+        "neighborhoods": "Arsenal, Europe, Le Marais, Notre Dame",
+        "neighborhoods_links": [
+          {
+            "text": "Arsenal",
+            "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=Quartier+de+l%27Arsenal&si=APYL9btZkf4kdGhzReFKIi4_F4HlfAbNt65clXF8w4EPLuE33r6ZYcywY1K4-obfYA4kAsBPwPnPA_ch1Bm_NIr_UFVgDFfQ9GFmbvpzLyet_WDnd75aw6CStkygmhwm6Umrx73uGSDW3bdlaNGXf_Uw8LcjallBhgVi0HSGmWagCjDO-rVujpOXZlR5n-p_4MACP-kLtXd0eJR8hWj1QHgzSdf9Hrw6g5iXRJlyv0SqrpRKge3dIdUQwYH5LvwGi1ss9REKnJxKIJWZRd0TXIreXdDFC4ruFTFJ7FtDzP0y9b9sDcGrFEA%3D&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQmxMoAHoECDUQAg"
+          },
+          {
+            "text": "Europe",
+            "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=Quartier+de+l%27Europe&si=APYL9btZkf4kdGhzReFKIi4_F4HlfAbNt65clXF8w4EPLuE33vnOLyK6-n9wg_nL6Ok4_IEkitnUrjYtzyXY23IbGwTqXSTgIobiZZ3xQYEdNvlHXmxOx1jxdRQVMPvfMnqrw9fkhKsioFtheS0Wpr84I7lpptBTbG1aPAnGNOZjC_8DcMGDbzMIjjvqXffmyfo54n0QylyCj4Qs9BQF2lOB7TgU_Ue_xEyD3urat-aIw8ihulCJIXpXTzaK7P4g2ULHo7_FB73qXTFZf07pbOy8CXZgLCUzDlkrHpddRtzhvBcxU3X3KK0%3D&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQmxMoAXoECDUQAw"
+          },
+          {
+            "text": "Le Marais",
+            "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=Le+Marais&si=APYL9btMsmZl0P9CyeA1NmMZFYv4xkDb-_Q4WCJadY9pxozSRR5OQ6RjQSROMYMwtFjjPW9ExUqxDbGZnNlFQoqcl9KXiPEXQf6atubgmO4HArqQhBfiowbYWXex-91NF12uL1Zs74kl6uLJzEn5PjHoKzGe8dP7kFfxsk2_wsp_33Hi-fb0gKDSckaimGcCb_ddeuI0RWF5TK_WGw3QDNoXjJe7wqydhXlv90D8A8WkSbCiOU24sCPFrL46oS6Z7dHmczwYFx32A4TfJA2apvhTETqb0YxRWw%3D%3D&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQmxMoAnoECDUQBA"
+          },
+          {
+            "text": "Notre Dame",
+            "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=notre+dam&si=APYL9btZkf4kdGhzReFKIi4_F4HlfAbNt65clXF8w4EPLuE33nm5K5OjKnf4PA4_9Kz0t_5hwyw2pxIWnpagcG04AiIk_-y4HD5W9T4SF-msaz3mJAZTfOer1z2LEu_JlrFyGcaVK8DttYjZhT0CfbvzwzoQbAV0ZRjM4LFqDBwfXI01zXucr9RB7U-uBZ3-qb_PNqrJj6DPbE_2Slc4SVzu5_TMpAokDXeGnL6E6Cy1_W-90dw1CYCbRdLX4nPVWYrBSOATiqwxyDwSLBwsJCzDELT9h7rUzA%3D%3D&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQmxMoA3oECDUQBQ"
+          },
+          {
+            "text": "See more",
+            "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=paris+neighborhoods&stick=H4sIAAAAAAAAAOPgE-LQz9U3MC0sydJSyE620s_JT04syczP0y_ISUxOtcpLzUzPSMovysjPTylexCpckFiUWayAIgoAXmTCXUQAAAA&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQ44YBKAR6BAg1EAY"
+          }
+        ],
+        "nickname": "City of Lights hello-mesa.com",
+        "nickname_links": [
+          {
+            "text": "hello-mesa.com",
+            "link": "https://hello-mesa.com/blogs/news/the-many-faces-of-paris-unraveling-the-citys-nicknames"
+          }
+        ],
+        "area1": "105.4 km2 (40.7 sq mi)"
+      }
+    },
+    "related_questions": [
+      {
+        "question": "What is the 2 capital of France?",
+        "snippet": "France has only one official capital, which is Paris, which is The official capital of France, it is the country's political, cultural, and economic center."
+      },
+      {
+        "question": "What is the capital in France?",
+        "snippet": "Paris is the capital of France, the largest country of Europe with 550 000 km2 (65 millions inhabitants)."
+      },
+      {
+        "question": "What is the old capital of France?",
+        "snippet": "However, Paris has not been the only capital in the country's long existence. Other cities that served as the capital were: Troyes, Tours, Bourges, Versailles, Bordeaux, Clermont-Ferrand, Vichy, Brazzaville, Algiers and Bayeux."
+      },
+      {
+        "question": "What is the nickname of Paris?",
+        "snippet": null
+      }
+    ],
+    "related_searches": [
+      "What is the capital of france map",
+      "Is France a country",
+      "What is the population of france",
+      "France currency",
+      "Where is Paris in which country",
+      "Capital of France before Paris",
+      "France language",
+      "France flag"
+    ],
+    "inline_images": [
+      {
+        "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/266c7a19590c28f5f76b82e06b44f4d5fdd25adbbe9ff047eb64fb516fd5157a.jpeg"
+      },
+      {
+        "source": "https://home.adelphi.edu/~ca19535/page%204.html",
+        "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/266c7a19590c28f57172add6232f6aa98e6a9ce39d6d2c8e7ee8c114a6206c74.jpeg"
+      },
+      {
+        "source": "https://www.youtube.com/watch?v=3IZss5o3ECQ",
+        "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/266c7a19590c28f59b42c496e0b9c7b72d804b9b549cb7d8bd19ad2398b35374.jpeg"
+      },
+      {
+        "source": "https://www.geeksforgeeks.org/what-is-the-capital-of-france/",
+        "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/266c7a19590c28f57c64493622c3ce8fa24e0dff4454c0a7be384aa5ca50a3c6.jpeg"
+      }
+    ],
+    "answer_box": {
+      "type": "organic_result",
+      "title": "Paris facts: the capital of France in history",
+      "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=France&stick=H4sIAAAAAAAAAONgFuLUz9U3SLPIsUxWQjAfMZpwC7z8cU9YSnvSmpPXGFW5uIIz8std80oySyqFxLnYoCxeKW4uhC6eRaxsbkWJecmpAA7Sl8BYAAAA&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQ_coHKAB6BAg3EAI",
+      "displayed_link": "https://home.adelphi.edu \u203a ...",
+      "snippet": "Paris is the capital of France, the largest country of Europe with 550 000 km2 (65 millions inhabitants). Paris has 2.234 million inhabitants end 2011. She is the core of Ile de France region (12 million people).",
+      "snippet_highlighted_words": [
+        "Paris"
+      ],
+      "answer": "Paris",
+      "source": "Adelphi University",
+      "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/3516ed1dedda6c9b9b08a783382cdafb01dcfbee52c2c3f6.jpeg",
+      "webfacts": [
+        {
+          "title": "Germany",
+          "snippet": "Berlin",
+          "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=germany+capital&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQqtEKKAB6BAg3EDM",
+          "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/3516ed1dedda6c9b9bf5ed3421350d0632cd108930230ef39b28e9c930adda91.png"
+        },
+        {
+          "title": "Italy",
+          "snippet": "Rome",
+          "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=italy+capital&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQqtEKKAF6BAg3EDU",
+          "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/3516ed1dedda6c9b9bf5ed3421350d06ba6d9d7d98f611591b865d09b430c72e.png"
+        },
+        {
+          "title": "Spain",
+          "snippet": "Madrid",
+          "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=spain+capital&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQqtEKKAJ6BAg3EDc",
+          "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/3516ed1dedda6c9b9bf5ed3421350d065cf27ded4ea5185b57026c33e7b7c2bf.png"
+        },
+        {
+          "title": "Russia",
+          "snippet": "Moscow",
+          "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=russia+capital&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQqtEKKAN6BAg3EDk",
+          "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/3516ed1dedda6c9b9bf5ed3421350d066948cbc11a98b4fdbea69ee7225dd8f3.png"
+        },
+        {
+          "title": "United Kingdom",
+          "snippet": "London",
+          "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=united+kingdom+capital&sa=X&ved=2ahUKEwidq83thrOMAxWwa_EDHQSWDKoQqtEKKAR6BAg3EDs",
+          "thumbnail": "https://serpapi.com/searches/67e9e0795b76d9881f48441f/images/3516ed1dedda6c9b9bf5ed3421350d068e7ced4504da917f04e55befd442f48c.png"
+        }
+      ]
+    },
+    "ai_response": null
+  },
+  "restaurants in New York": {
+    "query": "restaurants in New York",
+    "organic_results": [
+      {
+        "title": "The 50 best restaurants in NYC right now",
+        "link": "https://www.timeout.com/newyork/restaurants/100-best-new-york-restaurants",
+        "snippet": "Best restaurants in NYC \u00b7 1. Tatiana by Kwame Onwuachi \u00b7 2. Gage & Tollner \u00b7 3. Gramercy Tavern \u00b7 4. Rezd\u00f4ra \u00b7 5. Sushi Nakazawa \u00b7 6. Via Carota.",
+        "position": 1,
+        "thumbnail": "https://serpapi.com/searches/67e9e20afc844453425967d3/images/0acb96ce0c201bba3a090b9a96af863e2c3943e608d9ab245321b5638c599076.jpeg"
+      },
+      {
+        "title": "THE 10 BEST Restaurants in New York City ...",
+        "link": "https://www.tripadvisor.com/Restaurants-g60763-New_York_City_New_York.html",
+        "snippet": "Restaurants in New York City \u00b7 1. La Grande Boucherie. 4.8. (2,776). Open now \u00b7 2. Carmine's - Time Square. 4.4. (13,284). Closed now \u00b7 3. Manhatta. 4.5. (438).",
+        "position": 2,
+        "thumbnail": "https://serpapi.com/searches/67e9e20afc844453425967d3/images/0acb96ce0c201bba3a090b9a96af863eeeb3145193a5562f9e98858e8f810427.jpeg"
+      },
+      {
+        "title": "New York City MICHELIN Restaurants",
+        "link": "https://guide.michelin.com/us/en/new-york-state/new-york/restaurants",
+        "snippet": "New York City and surroundings: 1-20 of 351 restaurants \u00b7 Icca \u00b7 Chambers \u00b7 Ito \u00b7 Atera \u00b7 Farra \u00b7 Shion 69 Leonard Street \u00b7 Manhatta \u00b7 Jungsik New York.",
+        "position": 3,
+        "thumbnail": null
+      },
+      {
+        "title": "Eater NY",
+        "link": "https://ny.eater.com/",
+        "snippet": "The 38 Essential Restaurants in NY Heatmap, Exciting New Restaurants Open in Manhattan Right Now, Email (required)",
+        "position": 4,
+        "thumbnail": null
+      },
+      {
+        "title": "The 100 Best Restaurants in New York City in 2024",
+        "link": "https://www.nytimes.com/interactive/2024/dining/best-nyc-restaurants.html",
+        "snippet": "The 100 Best Restaurants in New York City in 2024. Our critic, Pete Wells, drops his annual ranking. See what's new, what moved and what left the list.",
+        "position": 5,
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHNgYTMAxFdnLzIEXQqjBb-TdZcpQXCAX0rZLs2_y5id56A6s_zgxD&usqp=CAE&s"
+      },
+      {
+        "title": "Where to Eat in New York City Right Now - Alex Reichek",
+        "link": "https://alexreichek.com/top-nyc-restaurants/",
+        "snippet": "Where to Eat in New York City Right Now \u00b7 1. Theodora \u00b7 3. Zou Zou \u00b7 4. Thai Diner (LES) \u2013 \u00b7 5. Lilia (BK) \u2013 \u00b7 6. Russ & Daughters (LES) \u2013 \u00b7 7. Leo (BK) \u2013 \u00b7 8. Fra Dei ...",
+        "position": 6,
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT9FK9v4d9rDS_j6Wo2iRbDge-03g2-4frQsTc6cPKDfvoUTgnHZMY&usqp=CAE&s"
+      },
+      {
+        "title": "The Best New Restaurants in New York City of 2025 (So Far)",
+        "link": "https://www.cntraveler.com/gallery/best-new-restaurants-nyc",
+        "snippet": "The Best New Restaurants in New York City of 2025 (So Far) \u00b7 How we choose the best new restaurants in New York City \u00b7 Acru \u00b7 Pitt's \u00b7 Passerine.",
+        "position": 7,
+        "thumbnail": null
+      },
+      {
+        "title": "The 38 Best Restaurants in New York City",
+        "link": "https://ny.eater.com/maps/best-new-york-restaurants-38-map",
+        "snippet": "The best dining guide to the best food and places to eat in New York City, spanning all cuisines, boroughs, and prices.",
+        "position": 8,
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4SR3Z-ZCg2eoiBEknXGFNtnfpiazRUR4zI6wtZ83cPFQosCuWtTBx&usqp=CAE&s"
+      }
+    ],
+    "local_results": [
+      {
+        "title": "Gramercy Tavern",
+        "address": "42 E 20th St",
+        "rating": 4.6,
+        "reviews": 4300,
+        "phone": null,
+        "website": null,
+        "thumbnail": "https://serpapi.com/searches/67e9e20afc844453425967d3/images/d486c8cfa7e4635dd0e919399fd376a101211901b5613c16ba8fe9a697c63b6ee994bdb1a00032b5.jpeg"
+      },
+      {
+        "title": "Upland",
+        "address": "345 Park Ave S",
+        "rating": 4.5,
+        "reviews": 2200,
+        "phone": null,
+        "website": null,
+        "thumbnail": "https://serpapi.com/searches/67e9e20afc844453425967d3/images/d486c8cfa7e4635dd0e919399fd376a1a050e3e8675e9fa09f492d1a57fae5d5b44c8d305dcbd633.jpeg"
+      },
+      {
+        "title": "COTE Korean Steakhouse",
+        "address": "16 W 22nd St",
+        "rating": 4.6,
+        "reviews": 3600,
+        "phone": null,
+        "website": null,
+        "thumbnail": "https://serpapi.com/searches/67e9e20afc844453425967d3/images/d486c8cfa7e4635dd0e919399fd376a113d59f984134eefbb0b466268e8a0931c40f9184f3d02bee.jpeg"
+      }
+    ],
+    "knowledge_graph": {
+      "title": "",
+      "description": null,
+      "attributes": {
+        "entity_type": "related_questions"
+      }
+    },
+    "related_questions": [
+      {
+        "question": "What is a must to eat in New York?",
+        "snippet": null
+      },
+      {
+        "question": "What is the most iconic restaurant in New York City?",
+        "snippet": null
+      },
+      {
+        "question": "Where do celebrities go for dinner in New York?",
+        "snippet": null
+      },
+      {
+        "question": "How much money do you need to eat in NYC?",
+        "snippet": "How much should I budget for food in New York City? Food in New York City can range from $8 for a quick meal at a street cart or fast food restaurant to over $100 for a luxury dining experience. A typical budget for meals is about $50 per day if you mix affordable and mid-range options."
+      }
+    ],
+    "related_searches": [
+      "Best restaurants in new york",
+      "Best trendy restaurants NYC",
+      "Top 10 places to eat in New York",
+      "Restaurants in new york downtown",
+      "Best restaurants in New York for first time visitors",
+      "restaurants in new york-new york las vegas",
+      "Top 5 restaurants in NYC",
+      "Restaurants in Manhattan"
+    ],
+    "inline_images": [],
+    "answer_box": null,
+    "ai_response": null
+  },
+  "Python programming": {
+    "query": "Python programming",
+    "organic_results": [
+      {
+        "title": "Welcome to Python.org",
+        "link": "https://www.python.org/",
+        "snippet": "Python is a programming language that lets you work quickly and integrate systems more effectively. Learn More",
+        "position": 1,
+        "thumbnail": null
+      },
+      {
+        "title": "Python For Beginners",
+        "link": "https://www.python.org/about/gettingstarted/",
+        "snippet": "An experienced programmer in any programming language (whatever it may be) can pick up Python very quickly. It's also easy for beginners to use and learn.",
+        "position": 2,
+        "thumbnail": null
+      },
+      {
+        "title": "Introduction to Python",
+        "link": "https://www.w3schools.com/python/python_intro.asp",
+        "snippet": "Python is a popular programming language. It was created by Guido van Rossum, and released in 1991. It is used for:",
+        "position": 3,
+        "thumbnail": null
+      },
+      {
+        "title": "Python (programming language)",
+        "link": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+        "snippet": "Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.",
+        "position": 4,
+        "thumbnail": null
+      },
+      {
+        "title": "Python Tutorial | Learn Python Programming Language",
+        "link": "https://www.geeksforgeeks.org/python-programming-language-tutorial/",
+        "snippet": "In this section, we'll cover the basics of Python programming, including installing Python, writing first program, understanding comments and working with ...",
+        "position": 5,
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPuQ5CqX063PsvLlTmua7akS-fWT2pxs-OhuTc6umattaUvFeUaf5t&usqp=CAE&s"
+      },
+      {
+        "title": "Python programming and Algorithms : r/learnpython",
+        "link": "https://www.reddit.com/r/learnpython/comments/1jhxbwp/python_programming_and_algorithms/",
+        "snippet": "Would it be a good idea to learn algorithms side by side with python in order to facilitate my thought process when facing with any kind of ...",
+        "position": 6,
+        "thumbnail": null
+      },
+      {
+        "title": "The Python Tutorial \u2014 Python 3.13.2 documentation",
+        "link": "https://docs.python.org/3/tutorial/index.html",
+        "snippet": "Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented ...",
+        "position": 7,
+        "thumbnail": null
+      },
+      {
+        "title": "Programming for Everybody (Getting Started with Python)",
+        "link": "https://www.coursera.org/learn/python",
+        "snippet": "Install Python and write your first program. Describe the basics of the Python programming language. Use variables to store, retrieve and calculate information.",
+        "position": 8,
+        "thumbnail": null
+      }
+    ],
+    "local_results": [],
+    "knowledge_graph": {
+      "title": "Python",
+      "description": "Python is a versatile, high-level programming language known for its readability and ease of use, widely used in web development, data science, and machine learning.",
+      "attributes": {
+        "type": "High-level programming language",
+        "entity_type": "related_questions",
+        "kgmid": "/m/05z1_",
+        "knowledge_graph_search_link": "https://www.google.com/search?kgmid=/m/05z1_&hl=en-US&q=Python",
+        "serpapi_knowledge_graph_search_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=us&google_domain=google.com&hl=en-US&kgmid=%2Fm%2F05z1_&num=10&q=Python",
+        "designed_by": "Guido van Rossum",
+        "designed_by_links": [
+          {
+            "text": "Guido van Rossum",
+            "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=Guido+van+Rossum&stick=H4sIAAAAAAAAAONgVuLUz9U3MMwwME1exCrgXpqZkq9QlpinEJRfXFyaCwDpnKYPIAAAAA&sa=X&ved=2ahUKEwj61rWsiLOMAxXGk4kEHVldMqwQmxMoAHoECEcQAg"
+          }
+        ],
+        "developer": "Python Software Foundation",
+        "first_appeared": "20 February 1991; 34 years ago",
+        "paradigm": "Multi-paradigm - object-oriented, procedural (imperative), functional, structured, reflective",
+        "stable_release": "3.13.2 / 4 February 2025; 54 days ago",
+        "typing_discipline": "duck, dynamic, strong; optional type annotations (since 3.5, but those hints are ignored, except with unofficial tools)",
+        "typing_discipline_links": [
+          {
+            "text": "strong",
+            "link": "https://www.google.com/search?sca_esv=2cc81759b8fb65c4&hl=en&gl=us&q=strong&stick=H4sIAAAAAAAAAONgVuLWT9c3NDLIqEoqq1jEylZcUpSflw4An0l11RgAAAA&sa=X&ved=2ahUKEwj61rWsiLOMAxXGk4kEHVldMqwQmxMoAHoECEkQAg"
+          }
+        ],
+        "web_results": [
+          {
+            "title": "MoreLess",
+            "link": "https://en.wikipedia.org/wiki/Python_(programming_language)"
+          }
+        ]
+      }
+    },
+    "related_questions": [
+      {
+        "question": "What is Python programming used for?",
+        "snippet": null
+      },
+      {
+        "question": "Is Python difficult to learn?",
+        "snippet": null
+      },
+      {
+        "question": "Can I learn, Python in 7 days?",
+        "snippet": "In 7 days, you can get started with Python. But, you cannot learn it. To learn the basics of Python, you will need from 2 to 6 months. The exact time will depend on your skills, devotion, and available time."
+      },
+      {
+        "question": "Is Python easy or C++?",
+        "snippet": "Python is generally considered easier to learn than C++ for several reasons: Syntax: Python has a simpler and more readable syntax. It uses indentation to define code blocks, which makes it easier to understand and write. C++, on the other hand, has a more complex syntax with semicolons and curly braces."
+      }
+    ],
+    "related_searches": [
+      "Python Programming book",
+      "Python programming examples",
+      "Python programming PDF",
+      "Python programming for beginners",
+      "Python download",
+      "Python programming online",
+      "Python Programiz",
+      "Python programming for beginners PDF"
+    ],
+    "inline_images": [],
+    "answer_box": null,
+    "ai_response": null
+  },
+  "latest news": {
+    "query": "latest news",
+    "organic_results": [
+      {
+        "title": "CNN: Breaking News, Latest News and Videos",
+        "link": "https://www.cnn.com/",
+        "snippet": "US News \u00b7 Gunman who killed 23 in racist attack at Texas Walmart offered plea deal to avoid death penalty \u00b7 Reports: Man and 2 children found alive on frozen ...",
+        "position": 1,
+        "thumbnail": null
+      },
+      {
+        "title": "Fox News - Breaking News Updates | Latest News Headlines ...",
+        "link": "https://www.foxnews.com/",
+        "snippet": "Latest Breaking News Today from Fox News \u00b7 Prince Harry allegedly asked for Meghan Markle to be defended by charity head - Fox News \u00b7 Dem senator scorches party ...",
+        "position": 2,
+        "thumbnail": null
+      },
+      {
+        "title": "NBC News - Breaking News & Top Stories - Latest World, US ...",
+        "link": "https://www.nbcnews.com/",
+        "snippet": "Go to NBCNews.com for breaking news, videos, and the latest top stories in world news, business, politics, health and pop culture.",
+        "position": 3,
+        "thumbnail": null
+      },
+      {
+        "title": "Google News",
+        "link": "https://news.google.com/",
+        "snippet": "Wisconsin AG appeals to state's high court to stop Musk from paying voters \u00b7 Protests held in Green Bay outside of Elon Musk's town hall ahead of state Supreme ...",
+        "position": 4,
+        "thumbnail": null
+      },
+      {
+        "title": "Associated Press News: Breaking News, Latest Headlines ...",
+        "link": "https://apnews.com/",
+        "snippet": "Read the latest headlines, breaking news, and videos at APNews.com, the definitive source for independent journalism from every corner of the globe.",
+        "position": 5,
+        "thumbnail": null
+      },
+      {
+        "title": "Yahoo News: Latest and Breaking News, Headlines, Live ...",
+        "link": "https://news.yahoo.com/",
+        "snippet": "The latest news and headlines from Yahoo News. Get breaking news stories and in-depth coverage with videos and photos.",
+        "position": 6,
+        "thumbnail": null
+      },
+      {
+        "title": "CBS News | Breaking news, top stories & today's latest ...",
+        "link": "https://www.cbsnews.com/",
+        "snippet": "More Top Stories \u00b7 Damage from Myanmar earthquake assessed as death toll rises to 1,662 \u00b7 Rocket carrying European orbital vehicle crashes after seconds after ...",
+        "position": 7,
+        "thumbnail": null
+      },
+      {
+        "title": "MSNBC News - Breaking News and News Today | Latest News",
+        "link": "https://www.msnbc.com/",
+        "snippet": "Elon Musk to rally with Wisconsin conservative candidate ahead of state Supreme Court race \u00b7 Sen. Blumenthal calls on Pentagon to investigate the Signal chat ...",
+        "position": 8,
+        "thumbnail": null
+      }
+    ],
+    "local_results": [],
+    "knowledge_graph": {
+      "title": "",
+      "description": null,
+      "attributes": {
+        "entity_type": "related_questions"
+      }
+    },
+    "related_questions": [
+      {
+        "question": "What are the top 5 news headlines of today?",
+        "snippet": null
+      },
+      {
+        "question": "What is the most talked about news today?",
+        "snippet": null
+      },
+      {
+        "question": "What is the hottest topic in the news today?",
+        "snippet": null
+      },
+      {
+        "question": "What is breaking news in usa?",
+        "snippet": null
+      }
+    ],
+    "related_searches": [
+      "Local news",
+      "Breaking news Trump",
+      "News today in the world",
+      "Fox News",
+      "World News",
+      "MSNBC news",
+      "Cnn news",
+      "CNN breaking news"
+    ],
+    "inline_images": [],
+    "answer_box": null,
+    "ai_response": null
+  },
+  "weather in London": {
+    "query": "weather in London",
+    "organic_results": [
+      {
+        "title": "10 Day Weather-London, England, United Kingdom",
+        "link": "https://weather.com/weather/tenday/l/London+England+United+Kingdom?canonicalCityId=ffd92542da4b5e64d021e579afb563e9",
+        "snippet": "Clear skies. Low 38F. Winds light and variable. undefined. Heads-up. Severe Weather Threat For 100+ Million People. Humidity79%. UV Index0 of ...",
+        "position": 1,
+        "thumbnail": null
+      },
+      {
+        "title": "London - BBC Weather",
+        "link": "https://www.bbc.com/weather/2643743",
+        "snippet": "14-day weather forecast for London.",
+        "position": 2,
+        "thumbnail": null
+      },
+      {
+        "title": "London, London, United Kingdom Weather Forecast",
+        "link": "https://www.accuweather.com/en/gb/london/ec4a-2/weather-forecast/328328",
+        "snippet": "London, London, United Kingdom Weather Forecast, with current conditions, wind, air quality, and what to expect for the next 3 days.",
+        "position": 3,
+        "thumbnail": null
+      },
+      {
+        "title": "10 Day Weather-London, England, United Kingdom",
+        "link": "https://weather.com/weather/tenday/l/aac619af0e4a1f0ffbab44e0cd35501d61e2c5d4337767432f5cbac90957d7a1",
+        "snippet": "Cloudy skies. Low 49F. Winds WSW at 10 to 15 mph. undefined. Heads-up. Washington, DC, Cherry Blossoms Reach Peak Bloom. Humidity77%.",
+        "position": 4,
+        "thumbnail": null
+      },
+      {
+        "title": "10 Day Weather-London, England, United Kingdom",
+        "link": "https://weather.com/weather/tenday/l/London+England+United+Kingdom?canonicalCityId=805c6df1c2518951d4dffa28cf6e483358644c3131109dff6c9a8a2c265fbc67",
+        "snippet": "Partly cloudy skies this evening. A few snow showers developing late. Low 34F. Winds N at 5 to 10 mph. Chance of snow 30%.",
+        "position": 5,
+        "thumbnail": null
+      },
+      {
+        "title": "London, United Kingdom 10-Day Weather Forecast",
+        "link": "https://www.wunderground.com/forecast/gb/london",
+        "snippet": "London Weather Forecasts. Weather Underground provides local & long-range weather forecasts, weatherreports, maps & tropical weather conditions for the ...",
+        "position": 6,
+        "thumbnail": null
+      },
+      {
+        "title": "10 Day Weather-London, England, United Kingdom",
+        "link": "https://weather.com/weather/tenday/l/ae8230efd4bc57fdf721a02c7eb2b88c56aa6e71d73666328e33af3ea2039032132e24ae91b6a07862c5091a9d95a4b8",
+        "snippet": "Mostly cloudy skies during the evening. Areas of fog developing after midnight. Low 47F. Winds light and variable. Humidity92%. UV Index0 of 11.",
+        "position": 7,
+        "thumbnail": null
+      },
+      {
+        "title": "London (Greater London) weather",
+        "link": "https://weather.metoffice.gov.uk/forecast/gcpvj0v07",
+        "snippet": "Forecast days \u00b7 Today. 17\u00b0 Maximum daytime temperature: 17\u00b0 Celsius; 6\u00b0 Minimum nighttime temperature: 6\u00b0 Celsius; \u00b7 Mon 31 Mar. 18\u00b0 Maximum daytime temperature ...",
+        "position": 8,
+        "thumbnail": null
+      },
+      {
+        "title": "10 Day Weather-London, England, United Kingdom",
+        "link": "https://weather.com/weather/tenday/l/7517a52d4d1815e639ae1001edb8c5fda2264ea579095b0f28f55c059599e074",
+        "snippet": "Wed 19 | Day ... A mix of clouds and sun during the morning will give way to cloudy skies this afternoon. High 61F. Winds SSE at 5 to 10 mph.",
+        "position": 9,
+        "thumbnail": null
+      }
+    ],
+    "local_results": [],
+    "knowledge_graph": {
+      "title": "",
+      "description": null,
+      "attributes": {
+        "entity_type": "weather_onebox"
+      }
+    },
+    "related_questions": [
+      {
+        "question": "What is the best weather month in London?",
+        "snippet": "The months between March and May is the best time to visit London owing to the perfect weather to go sight-seeing. When is it High Season in London? Summers from June to August and the winters in December and January is high season in London."
+      },
+      {
+        "question": "Is it hot or cold in London now?",
+        "snippet": "Upcoming 5 hours"
+      },
+      {
+        "question": "What is the coldest month in London?",
+        "snippet": null
+      },
+      {
+        "question": "What is the rainiest month in London, England?",
+        "snippet": "Rainfall in London Overall rainfall is highest in November and August (64mm and 59mm respectively) and is lowest in March and April (37mm each). On wet days, why not visit one of London's top museums and art galleries or entertain the kids with one of these family outings for rainy days."
+      }
+    ],
+    "related_searches": [
+      "Weather in London 10 days",
+      "Weather in London tomorrow",
+      "London weather 30 days",
+      "Weather London 14 days",
+      "London weather 15 days",
+      "Bbc weather 14 days London",
+      "21 day weather forecast London",
+      "BBC weather London"
+    ],
+    "inline_images": [],
+    "answer_box": {
+      "type": "weather_result",
+      "temperature": "47",
+      "unit": "Fahrenheit",
+      "precipitation": "0%",
+      "humidity": "69%",
+      "wind": "6 mph",
+      "location": "London, UK",
+      "date": "Monday 1:00 AM",
+      "weather": "Clear",
+      "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd9228a34655598f9f696e05de2bb5b419.png",
+      "forecast": [
+        {
+          "day": "Monday",
+          "temperature": {
+            "high": "62",
+            "low": "39"
+          },
+          "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd890f43a83b4c2c3ff669c7f85b1d6e9afb52600f9ffc7f9d.png",
+          "weather": "Partly cloudy",
+          "humidity": "46%",
+          "precipitation": "10%",
+          "wind": "7 mph"
+        },
+        {
+          "day": "Tuesday",
+          "temperature": {
+            "high": "58",
+            "low": "43"
+          },
+          "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd890f43a83b4c2c3f9849250a71c27b660c7af83a784627f3.png",
+          "weather": "Sunny",
+          "humidity": "47%",
+          "precipitation": "5%",
+          "wind": "11 mph"
+        },
+        {
+          "day": "Wednesday",
+          "temperature": {
+            "high": "58",
+            "low": "45"
+          },
+          "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd890f43a83b4c2c3f1c8f3583a170cc3e9d982a91dfb37602.png",
+          "weather": "Sunny",
+          "humidity": "47%",
+          "precipitation": "0%",
+          "wind": "13 mph"
+        },
+        {
+          "day": "Thursday",
+          "temperature": {
+            "high": "64",
+            "low": "43"
+          },
+          "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd890f43a83b4c2c3f6dddcb4d813c7fa6bc2183b189646340.png",
+          "weather": "Sunny",
+          "humidity": "47%",
+          "precipitation": "0%",
+          "wind": "10 mph"
+        },
+        {
+          "day": "Friday",
+          "temperature": {
+            "high": "65",
+            "low": "39"
+          },
+          "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd890f43a83b4c2c3f7301fe0baa18d98b2defef201933fa5a.png",
+          "weather": "Mostly sunny",
+          "humidity": "46%",
+          "precipitation": "0%",
+          "wind": "9 mph"
+        },
+        {
+          "day": "Saturday",
+          "temperature": {
+            "high": "55",
+            "low": "38"
+          },
+          "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd890f43a83b4c2c3fc15faa5aa10f936fecc443fd00b72bdb.png",
+          "weather": "Mostly cloudy",
+          "humidity": "49%",
+          "precipitation": "10%",
+          "wind": "10 mph"
+        },
+        {
+          "day": "Sunday",
+          "temperature": {
+            "high": "57",
+            "low": "38"
+          },
+          "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd890f43a83b4c2c3f67737596d9ded740d307e250c9817da1.png",
+          "weather": "Partly cloudy",
+          "humidity": "45%",
+          "precipitation": "5%",
+          "wind": "9 mph"
+        },
+        {
+          "day": "Monday",
+          "temperature": {
+            "high": "57",
+            "low": "39"
+          },
+          "thumbnail": "https://serpapi.com/searches/67e9e20f5c0c8b6244a38f77/images/8c6d8b6ac661accd890f43a83b4c2c3fee9fa2bf7807d24ea2da3772959aecd1.png",
+          "weather": "Mostly cloudy",
+          "humidity": "48%",
+          "precipitation": "20%",
+          "wind": "9 mph"
+        }
+      ],
+      "hourly_forecast": [
+        {
+          "time": "Monday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "47",
+          "precipitation": "0%",
+          "humidity": "69%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Monday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "46",
+          "precipitation": "0%",
+          "humidity": "70%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "44",
+          "precipitation": "0%",
+          "humidity": "75%",
+          "wind": "4 mph"
+        },
+        {
+          "time": "Monday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "76%",
+          "wind": "2 mph"
+        },
+        {
+          "time": "Monday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "41",
+          "precipitation": "0%",
+          "humidity": "83%",
+          "wind": "1 mph"
+        },
+        {
+          "time": "Monday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "41",
+          "precipitation": "0%",
+          "humidity": "87%",
+          "wind": "1 mph"
+        },
+        {
+          "time": "Monday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "40",
+          "precipitation": "0%",
+          "humidity": "88%",
+          "wind": "2 mph"
+        },
+        {
+          "time": "Monday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "41",
+          "precipitation": "0%",
+          "humidity": "85%",
+          "wind": "2 mph"
+        },
+        {
+          "time": "Monday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "45",
+          "precipitation": "0%",
+          "humidity": "77%",
+          "wind": "2 mph"
+        },
+        {
+          "time": "Monday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "49",
+          "precipitation": "5%",
+          "humidity": "65%",
+          "wind": "2 mph"
+        },
+        {
+          "time": "Monday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "53",
+          "precipitation": "0%",
+          "humidity": "53%",
+          "wind": "2 mph"
+        },
+        {
+          "time": "Monday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "56",
+          "precipitation": "0%",
+          "humidity": "43%",
+          "wind": "2 mph"
+        },
+        {
+          "time": "Monday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "59",
+          "precipitation": "5%",
+          "humidity": "38%",
+          "wind": "2 mph"
+        },
+        {
+          "time": "Monday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "61",
+          "precipitation": "5%",
+          "humidity": "36%",
+          "wind": "3 mph"
+        },
+        {
+          "time": "Monday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "62",
+          "precipitation": "5%",
+          "humidity": "35%",
+          "wind": "3 mph"
+        },
+        {
+          "time": "Monday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "62",
+          "precipitation": "10%",
+          "humidity": "35%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "61",
+          "precipitation": "10%",
+          "humidity": "37%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "60",
+          "precipitation": "10%",
+          "humidity": "40%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Monday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "57",
+          "precipitation": "5%",
+          "humidity": "44%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Monday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "53",
+          "precipitation": "0%",
+          "humidity": "47%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Monday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
+          "weather": "Clear with periodic clouds",
+          "temperature": "51",
+          "precipitation": "0%",
+          "humidity": "49%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Monday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "49",
+          "precipitation": "0%",
+          "humidity": "56%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Monday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "47",
+          "precipitation": "0%",
+          "humidity": "66%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "45",
+          "precipitation": "0%",
+          "humidity": "74%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "44",
+          "precipitation": "0%",
+          "humidity": "80%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "84%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
+          "weather": "Clear with periodic clouds",
+          "temperature": "41",
+          "precipitation": "0%",
+          "humidity": "89%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
+          "weather": "Clear with periodic clouds",
+          "temperature": "40",
+          "precipitation": "0%",
+          "humidity": "90%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "39",
+          "precipitation": "0%",
+          "humidity": "92%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "39",
+          "precipitation": "5%",
+          "humidity": "92%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "39",
+          "precipitation": "10%",
+          "humidity": "91%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Tuesday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "87%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "45",
+          "precipitation": "5%",
+          "humidity": "76%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Tuesday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "49",
+          "precipitation": "0%",
+          "humidity": "65%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "53",
+          "precipitation": "0%",
+          "humidity": "53%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "55",
+          "precipitation": "0%",
+          "humidity": "44%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "57",
+          "precipitation": "0%",
+          "humidity": "42%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Tuesday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "58",
+          "precipitation": "0%",
+          "humidity": "39%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Tuesday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "58",
+          "precipitation": "0%",
+          "humidity": "35%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Tuesday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "58",
+          "precipitation": "0%",
+          "humidity": "31%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Tuesday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "57",
+          "precipitation": "0%",
+          "humidity": "35%",
+          "wind": "11 mph"
+        },
+        {
+          "time": "Tuesday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "56",
+          "precipitation": "0%",
+          "humidity": "40%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Tuesday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "54",
+          "precipitation": "0%",
+          "humidity": "44%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Tuesday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "51",
+          "precipitation": "0%",
+          "humidity": "51%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Tuesday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "49",
+          "precipitation": "0%",
+          "humidity": "56%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Tuesday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "48",
+          "precipitation": "0%",
+          "humidity": "63%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Tuesday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "48",
+          "precipitation": "0%",
+          "humidity": "67%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "47",
+          "precipitation": "0%",
+          "humidity": "70%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "47",
+          "precipitation": "0%",
+          "humidity": "72%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "46",
+          "precipitation": "0%",
+          "humidity": "72%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "45",
+          "precipitation": "0%",
+          "humidity": "73%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "44",
+          "precipitation": "0%",
+          "humidity": "75%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "79%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "80%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "79%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "46",
+          "precipitation": "0%",
+          "humidity": "72%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "48",
+          "precipitation": "0%",
+          "humidity": "66%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "51",
+          "precipitation": "0%",
+          "humidity": "60%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Wednesday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "54",
+          "precipitation": "0%",
+          "humidity": "52%",
+          "wind": "11 mph"
+        },
+        {
+          "time": "Wednesday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "55",
+          "precipitation": "0%",
+          "humidity": "46%",
+          "wind": "12 mph"
+        },
+        {
+          "time": "Wednesday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "57",
+          "precipitation": "0%",
+          "humidity": "42%",
+          "wind": "13 mph"
+        },
+        {
+          "time": "Wednesday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "57",
+          "precipitation": "0%",
+          "humidity": "40%",
+          "wind": "13 mph"
+        },
+        {
+          "time": "Wednesday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "58",
+          "precipitation": "0%",
+          "humidity": "39%",
+          "wind": "12 mph"
+        },
+        {
+          "time": "Wednesday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "58",
+          "precipitation": "0%",
+          "humidity": "39%",
+          "wind": "12 mph"
+        },
+        {
+          "time": "Wednesday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "58",
+          "precipitation": "0%",
+          "humidity": "40%",
+          "wind": "12 mph"
+        },
+        {
+          "time": "Wednesday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "56",
+          "precipitation": "0%",
+          "humidity": "43%",
+          "wind": "11 mph"
+        },
+        {
+          "time": "Wednesday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "55",
+          "precipitation": "0%",
+          "humidity": "46%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Wednesday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "53",
+          "precipitation": "0%",
+          "humidity": "51%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Wednesday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "52",
+          "precipitation": "0%",
+          "humidity": "57%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "50",
+          "precipitation": "0%",
+          "humidity": "63%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "50",
+          "precipitation": "0%",
+          "humidity": "65%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Thursday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "49",
+          "precipitation": "0%",
+          "humidity": "67%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "49",
+          "precipitation": "0%",
+          "humidity": "70%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "48",
+          "precipitation": "0%",
+          "humidity": "72%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "47",
+          "precipitation": "0%",
+          "humidity": "75%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "46",
+          "precipitation": "0%",
+          "humidity": "78%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "45",
+          "precipitation": "0%",
+          "humidity": "80%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "45",
+          "precipitation": "0%",
+          "humidity": "82%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "46",
+          "precipitation": "0%",
+          "humidity": "81%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "48",
+          "precipitation": "0%",
+          "humidity": "76%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "51",
+          "precipitation": "0%",
+          "humidity": "70%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "54",
+          "precipitation": "0%",
+          "humidity": "63%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "57",
+          "precipitation": "0%",
+          "humidity": "54%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "60",
+          "precipitation": "0%",
+          "humidity": "47%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Thursday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "62",
+          "precipitation": "0%",
+          "humidity": "42%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Thursday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "63",
+          "precipitation": "0%",
+          "humidity": "39%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Thursday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "64",
+          "precipitation": "0%",
+          "humidity": "37%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Thursday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "64",
+          "precipitation": "0%",
+          "humidity": "36%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Thursday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "63",
+          "precipitation": "0%",
+          "humidity": "38%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Thursday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "62",
+          "precipitation": "0%",
+          "humidity": "41%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Thursday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "60",
+          "precipitation": "0%",
+          "humidity": "44%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "57",
+          "precipitation": "0%",
+          "humidity": "50%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Thursday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "55",
+          "precipitation": "0%",
+          "humidity": "56%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Thursday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "52",
+          "precipitation": "0%",
+          "humidity": "63%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Thursday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "51",
+          "precipitation": "0%",
+          "humidity": "67%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "49",
+          "precipitation": "0%",
+          "humidity": "70%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "48",
+          "precipitation": "0%",
+          "humidity": "73%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "47",
+          "precipitation": "0%",
+          "humidity": "76%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "46",
+          "precipitation": "0%",
+          "humidity": "79%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "45",
+          "precipitation": "0%",
+          "humidity": "84%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "44",
+          "precipitation": "0%",
+          "humidity": "87%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Clear",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "88%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "86%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "46",
+          "precipitation": "0%",
+          "humidity": "80%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+          "weather": "Sunny",
+          "temperature": "49",
+          "precipitation": "0%",
+          "humidity": "72%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "53",
+          "precipitation": "0%",
+          "humidity": "64%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "58",
+          "precipitation": "0%",
+          "humidity": "54%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Friday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "61",
+          "precipitation": "0%",
+          "humidity": "48%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Friday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "64",
+          "precipitation": "0%",
+          "humidity": "43%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Friday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "65",
+          "precipitation": "0%",
+          "humidity": "39%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Friday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "64",
+          "precipitation": "0%",
+          "humidity": "37%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Friday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly sunny",
+          "temperature": "64",
+          "precipitation": "0%",
+          "humidity": "35%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Friday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "63",
+          "precipitation": "0%",
+          "humidity": "37%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Friday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "62",
+          "precipitation": "0%",
+          "humidity": "39%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Friday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "60",
+          "precipitation": "0%",
+          "humidity": "42%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Friday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "57",
+          "precipitation": "0%",
+          "humidity": "46%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Friday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "53",
+          "precipitation": "0%",
+          "humidity": "51%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Friday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "50",
+          "precipitation": "0%",
+          "humidity": "57%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Friday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "47",
+          "precipitation": "0%",
+          "humidity": "62%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Saturday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
+          "weather": "Clear with periodic clouds",
+          "temperature": "46",
+          "precipitation": "0%",
+          "humidity": "65%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Saturday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
+          "weather": "Clear with periodic clouds",
+          "temperature": "44",
+          "precipitation": "0%",
+          "humidity": "68%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Saturday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "72%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Saturday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "42",
+          "precipitation": "0%",
+          "humidity": "75%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Saturday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "79%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Saturday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "40",
+          "precipitation": "5%",
+          "humidity": "82%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Saturday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "39",
+          "precipitation": "5%",
+          "humidity": "82%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Saturday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "40",
+          "precipitation": "5%",
+          "humidity": "80%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Saturday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "42",
+          "precipitation": "5%",
+          "humidity": "75%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Saturday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "45",
+          "precipitation": "10%",
+          "humidity": "68%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Saturday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "48",
+          "precipitation": "10%",
+          "humidity": "61%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "51",
+          "precipitation": "10%",
+          "humidity": "54%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "53",
+          "precipitation": "10%",
+          "humidity": "49%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "54",
+          "precipitation": "10%",
+          "humidity": "45%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "55",
+          "precipitation": "10%",
+          "humidity": "43%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "55",
+          "precipitation": "10%",
+          "humidity": "43%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "55",
+          "precipitation": "10%",
+          "humidity": "43%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "55",
+          "precipitation": "10%",
+          "humidity": "43%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "54",
+          "precipitation": "10%",
+          "humidity": "44%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "53",
+          "precipitation": "10%",
+          "humidity": "45%",
+          "wind": "10 mph"
+        },
+        {
+          "time": "Saturday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "51",
+          "precipitation": "5%",
+          "humidity": "50%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Saturday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "49",
+          "precipitation": "5%",
+          "humidity": "54%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Saturday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "47",
+          "precipitation": "5%",
+          "humidity": "60%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Saturday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "46",
+          "precipitation": "5%",
+          "humidity": "63%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "44",
+          "precipitation": "5%",
+          "humidity": "66%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "43",
+          "precipitation": "0%",
+          "humidity": "70%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "42",
+          "precipitation": "0%",
+          "humidity": "72%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "76%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "39",
+          "precipitation": "5%",
+          "humidity": "79%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "38",
+          "precipitation": "5%",
+          "humidity": "83%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "38",
+          "precipitation": "5%",
+          "humidity": "84%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "38",
+          "precipitation": "5%",
+          "humidity": "82%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "76%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "44",
+          "precipitation": "5%",
+          "humidity": "69%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "47",
+          "precipitation": "5%",
+          "humidity": "62%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "50",
+          "precipitation": "5%",
+          "humidity": "53%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "52",
+          "precipitation": "5%",
+          "humidity": "47%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Sunday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "54",
+          "precipitation": "5%",
+          "humidity": "42%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Sunday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "56",
+          "precipitation": "5%",
+          "humidity": "39%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Sunday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "57",
+          "precipitation": "5%",
+          "humidity": "36%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "57",
+          "precipitation": "5%",
+          "humidity": "35%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "57",
+          "precipitation": "5%",
+          "humidity": "35%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "55",
+          "precipitation": "5%",
+          "humidity": "37%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "53",
+          "precipitation": "5%",
+          "humidity": "40%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Sunday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "51",
+          "precipitation": "5%",
+          "humidity": "44%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "49",
+          "precipitation": "5%",
+          "humidity": "50%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Sunday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "47",
+          "precipitation": "5%",
+          "humidity": "55%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Sunday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "45",
+          "precipitation": "5%",
+          "humidity": "60%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Monday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "44",
+          "precipitation": "5%",
+          "humidity": "63%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "43",
+          "precipitation": "5%",
+          "humidity": "67%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "42",
+          "precipitation": "5%",
+          "humidity": "69%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "72%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "40",
+          "precipitation": "5%",
+          "humidity": "75%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "39",
+          "precipitation": "5%",
+          "humidity": "79%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "38",
+          "precipitation": "5%",
+          "humidity": "81%",
+          "wind": "4 mph"
+        },
+        {
+          "time": "Monday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "39",
+          "precipitation": "15%",
+          "humidity": "80%",
+          "wind": "4 mph"
+        },
+        {
+          "time": "Monday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "41",
+          "precipitation": "15%",
+          "humidity": "75%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "44",
+          "precipitation": "15%",
+          "humidity": "68%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Monday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "47",
+          "precipitation": "15%",
+          "humidity": "62%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Monday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "50",
+          "precipitation": "15%",
+          "humidity": "54%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Monday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "52",
+          "precipitation": "20%",
+          "humidity": "48%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Monday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "54",
+          "precipitation": "20%",
+          "humidity": "43%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Monday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "56",
+          "precipitation": "20%",
+          "humidity": "41%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Monday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "57",
+          "precipitation": "20%",
+          "humidity": "39%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Monday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "57",
+          "precipitation": "20%",
+          "humidity": "39%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Monday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "56",
+          "precipitation": "15%",
+          "humidity": "40%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Monday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "55",
+          "precipitation": "15%",
+          "humidity": "43%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Monday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "54",
+          "precipitation": "15%",
+          "humidity": "46%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Monday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "52",
+          "precipitation": "15%",
+          "humidity": "50%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Monday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "50",
+          "precipitation": "5%",
+          "humidity": "55%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Monday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "48",
+          "precipitation": "5%",
+          "humidity": "59%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Monday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "47",
+          "precipitation": "5%",
+          "humidity": "63%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "46",
+          "precipitation": "5%",
+          "humidity": "65%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "45",
+          "precipitation": "5%",
+          "humidity": "68%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "44",
+          "precipitation": "5%",
+          "humidity": "70%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "42",
+          "precipitation": "5%",
+          "humidity": "74%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "77%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "40",
+          "precipitation": "5%",
+          "humidity": "80%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "39",
+          "precipitation": "5%",
+          "humidity": "82%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "40",
+          "precipitation": "5%",
+          "humidity": "81%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "42",
+          "precipitation": "15%",
+          "humidity": "76%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Tuesday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "45",
+          "precipitation": "20%",
+          "humidity": "70%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "48",
+          "precipitation": "20%",
+          "humidity": "63%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "51",
+          "precipitation": "20%",
+          "humidity": "54%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Tuesday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "54",
+          "precipitation": "20%",
+          "humidity": "48%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Tuesday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "56",
+          "precipitation": "20%",
+          "humidity": "43%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Tuesday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "57",
+          "precipitation": "20%",
+          "humidity": "41%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Tuesday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "58",
+          "precipitation": "20%",
+          "humidity": "40%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "58",
+          "precipitation": "20%",
+          "humidity": "40%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "58",
+          "precipitation": "20%",
+          "humidity": "41%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "57",
+          "precipitation": "20%",
+          "humidity": "42%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "55",
+          "precipitation": "20%",
+          "humidity": "45%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "53",
+          "precipitation": "10%",
+          "humidity": "49%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Tuesday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "51",
+          "precipitation": "5%",
+          "humidity": "55%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Tuesday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "49",
+          "precipitation": "5%",
+          "humidity": "61%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Tuesday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "47",
+          "precipitation": "5%",
+          "humidity": "66%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Wednesday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "45",
+          "precipitation": "5%",
+          "humidity": "70%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Wednesday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "44",
+          "precipitation": "5%",
+          "humidity": "74%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Wednesday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "43",
+          "precipitation": "5%",
+          "humidity": "76%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Wednesday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "42",
+          "precipitation": "5%",
+          "humidity": "80%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Wednesday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "81%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Wednesday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "40",
+          "precipitation": "5%",
+          "humidity": "85%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Wednesday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "40",
+          "precipitation": "5%",
+          "humidity": "86%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Wednesday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "40",
+          "precipitation": "20%",
+          "humidity": "84%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Wednesday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "42",
+          "precipitation": "20%",
+          "humidity": "80%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Wednesday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "45",
+          "precipitation": "20%",
+          "humidity": "73%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "48",
+          "precipitation": "20%",
+          "humidity": "66%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "51",
+          "precipitation": "20%",
+          "humidity": "58%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "54",
+          "precipitation": "20%",
+          "humidity": "51%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "56",
+          "precipitation": "20%",
+          "humidity": "47%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+          "weather": "Light rain",
+          "temperature": "57",
+          "precipitation": "20%",
+          "humidity": "45%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "58",
+          "precipitation": "10%",
+          "humidity": "44%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "59",
+          "precipitation": "10%",
+          "humidity": "43%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "58",
+          "precipitation": "10%",
+          "humidity": "44%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "57",
+          "precipitation": "10%",
+          "humidity": "45%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "56",
+          "precipitation": "10%",
+          "humidity": "47%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "54",
+          "precipitation": "10%",
+          "humidity": "51%",
+          "wind": "9 mph"
+        },
+        {
+          "time": "Wednesday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "52",
+          "precipitation": "10%",
+          "humidity": "57%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "49",
+          "precipitation": "10%",
+          "humidity": "62%",
+          "wind": "8 mph"
+        },
+        {
+          "time": "Wednesday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "48",
+          "precipitation": "10%",
+          "humidity": "67%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Thursday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "46",
+          "precipitation": "10%",
+          "humidity": "70%",
+          "wind": "7 mph"
+        },
+        {
+          "time": "Thursday 1:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "45",
+          "precipitation": "10%",
+          "humidity": "73%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 2:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "44",
+          "precipitation": "5%",
+          "humidity": "76%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 3:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "43",
+          "precipitation": "5%",
+          "humidity": "79%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 4:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "42",
+          "precipitation": "5%",
+          "humidity": "81%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 5:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "84%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 6:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "41",
+          "precipitation": "5%",
+          "humidity": "84%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 7:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "42",
+          "precipitation": "5%",
+          "humidity": "82%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 8:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "44",
+          "precipitation": "5%",
+          "humidity": "77%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 9:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "46",
+          "precipitation": "10%",
+          "humidity": "71%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 10:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "50",
+          "precipitation": "10%",
+          "humidity": "65%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 11:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "53",
+          "precipitation": "10%",
+          "humidity": "56%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 12:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "55",
+          "precipitation": "10%",
+          "humidity": "49%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 1:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "58",
+          "precipitation": "10%",
+          "humidity": "44%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 2:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "60",
+          "precipitation": "10%",
+          "humidity": "41%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 3:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "61",
+          "precipitation": "10%",
+          "humidity": "39%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 4:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "62",
+          "precipitation": "10%",
+          "humidity": "38%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 5:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Mostly cloudy",
+          "temperature": "62",
+          "precipitation": "5%",
+          "humidity": "38%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 6:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "60",
+          "precipitation": "5%",
+          "humidity": "40%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 7:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "59",
+          "precipitation": "5%",
+          "humidity": "42%",
+          "wind": "6 mph"
+        },
+        {
+          "time": "Thursday 8:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "57",
+          "precipitation": "5%",
+          "humidity": "47%",
+          "wind": "5 mph"
+        },
+        {
+          "time": "Thursday 9:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "54",
+          "precipitation": "5%",
+          "humidity": "53%",
+          "wind": "4 mph"
+        },
+        {
+          "time": "Thursday 10:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "52",
+          "precipitation": "5%",
+          "humidity": "58%",
+          "wind": "3 mph"
+        },
+        {
+          "time": "Thursday 11:00\u202fPM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "49",
+          "precipitation": "5%",
+          "humidity": "64%",
+          "wind": "3 mph"
+        },
+        {
+          "time": "Friday 12:00\u202fAM",
+          "thumbnail": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+          "weather": "Partly cloudy",
+          "temperature": "48",
+          "precipitation": "5%",
+          "humidity": "68%",
+          "wind": "3 mph"
+        }
+      ],
+      "precipitation_forecast": [
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Monday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Monday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Monday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Monday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Tuesday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Tuesday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Wednesday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Thursday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Friday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Saturday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Saturday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Saturday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Saturday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Saturday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Saturday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Sunday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "0%",
+          "day": "Sunday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Sunday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Monday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Monday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Monday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Monday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Monday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Monday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Monday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "15%",
+          "day": "Tuesday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Tuesday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Tuesday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Tuesday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Wednesday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Wednesday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Wednesday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Wednesday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Wednesday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Wednesday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Wednesday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Wednesday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Wednesday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Wednesday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Wednesday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Wednesday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Wednesday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Wednesday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "20%",
+          "day": "Wednesday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Wednesday",
+          "time": "11:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "12:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "1:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "2:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "3:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "4:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "5:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "6:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "7:00 AM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "8:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "9:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "10:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "11:00 AM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "12:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "1:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "2:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "3:00 PM"
+        },
+        {
+          "precipitation": "10%",
+          "day": "Thursday",
+          "time": "4:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "5:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "6:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "7:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "8:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "9:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "10:00 PM"
+        },
+        {
+          "precipitation": "5%",
+          "day": "Thursday",
+          "time": "11:00 PM"
+        }
+      ],
+      "wind_forecast": [
+        {
+          "angle": 285,
+          "direction": "From north",
+          "speed": "5 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 360,
+          "direction": "From west",
+          "speed": "1 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 245,
+          "direction": "From northeast",
+          "speed": "2 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "2 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 200,
+          "direction": "From east",
+          "speed": "3 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "5 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 170,
+          "direction": "From east",
+          "speed": "7 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 180,
+          "direction": "From east",
+          "speed": "6 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 190,
+          "direction": "From east",
+          "speed": "6 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 190,
+          "direction": "From east",
+          "speed": "6 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 190,
+          "direction": "From east",
+          "speed": "8 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 180,
+          "direction": "From east",
+          "speed": "8 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 185,
+          "direction": "From east",
+          "speed": "9 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "11 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 200,
+          "direction": "From east",
+          "speed": "10 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "8 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "8 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "9 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 185,
+          "direction": "From east",
+          "speed": "11 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "13 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 200,
+          "direction": "From east",
+          "speed": "12 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "10 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 210,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "8 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "9 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "9 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 200,
+          "direction": "From east",
+          "speed": "8 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 210,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 220,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 215,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 195,
+          "direction": "From east",
+          "speed": "9 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 215,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 220,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 230,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 230,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "10 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "10 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "10 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 220,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 215,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 215,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 220,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 230,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 240,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 255,
+          "direction": "From north",
+          "speed": "5 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 270,
+          "direction": "From north",
+          "speed": "5 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 270,
+          "direction": "From north",
+          "speed": "5 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 240,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 230,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 240,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 240,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 245,
+          "direction": "From northeast",
+          "speed": "5 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 255,
+          "direction": "From north",
+          "speed": "5 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 255,
+          "direction": "From north",
+          "speed": "5 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 240,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 230,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 245,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 245,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 250,
+          "direction": "From north",
+          "speed": "7 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 250,
+          "direction": "From north",
+          "speed": "6 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 250,
+          "direction": "From north",
+          "speed": "6 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 250,
+          "direction": "From north",
+          "speed": "7 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "8 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 230,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 220,
+          "direction": "From northeast",
+          "speed": "9 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "7 mph",
+          "time": "11 PM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "2 AM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "5 AM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "8 AM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "11 AM"
+        },
+        {
+          "angle": 225,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "2 PM"
+        },
+        {
+          "angle": 235,
+          "direction": "From northeast",
+          "speed": "6 mph",
+          "time": "5 PM"
+        },
+        {
+          "angle": 245,
+          "direction": "From northeast",
+          "speed": "5 mph",
+          "time": "8 PM"
+        },
+        {
+          "angle": 205,
+          "direction": "From northeast",
+          "speed": "3 mph",
+          "time": "11 PM"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Google Weather",
+          "link": "https://support.google.com/websearch/answer/13687874"
+        }
+      ]
+    },
+    "ai_response": null
+  },
+  "Fast food open near me": {
+    "query": "Fast food open near me",
+    "organic_results": [
+      {
+        "title": "TOP 10 BEST Fast Food Open Now near Cornelia, GA",
+        "link": "https://m.yelp.com/search?find_desc=Fast+Food+Open+Now&find_loc=Cornelia%2C+GA",
+        "snippet": "Best Fast Food Open Now near Cornelia, GA \u00b7 1. Taco Bell. 1.6 (34 reviews). 1.1 mi. 121 Furniture Plaza, Cornelia, GA 30531 \u00b7 2. Zaxbys. 2.1 (22 reviews). 1.9 mi.",
+        "position": 1,
+        "thumbnail": null
+      },
+      {
+        "title": "THE 10 BEST CORNELIA Food Delivery of 2025",
+        "link": "https://www.ubereats.com/city/cornelia-ga?srsltid=AfmBOorr9iJn9YaLCj-RMEyg3cw2XEaD58FpS7n2km1zOIS_xwvV5E3v",
+        "snippet": "Uber Eats makes it easy to discover new and nearby places to eat in Cornelia. Browse tons of food delivery options, place your order, and track it by the ...",
+        "position": 2,
+        "thumbnail": null
+      },
+      {
+        "title": "THE 10 BEST Restaurants in Cornelia (Updated March 2025)",
+        "link": "https://www.tripadvisor.com/Restaurants-g34868-Cornelia_Georgia.html",
+        "snippet": "1. Community Brew & Tap. 4.9. (56). Closed today \u00b7 2. Fenders Diner. 4.4. (393). Open now \u00b7 3. Ruen Thai. 4.4. (118). Open now \u00b7 4. Farmacia ...",
+        "position": 3,
+        "thumbnail": null
+      },
+      {
+        "title": "McDonald's - 1585 441 Byp, Cornelia, Georgia",
+        "link": "https://www.yelp.com/biz/mcdonalds-cornelia-4",
+        "snippet": "1.5 (13 reviews) $Inexpensive Coffee & Tea, Burgers, Fast Food Open \u2022 5:00 am - 12:00 am Add Review Call Directions Website",
+        "position": 4,
+        "thumbnail": null
+      },
+      {
+        "title": "Taco Bell\u00ae in Cornelia, GA - 121 Furniture Plaza",
+        "link": "https://locations.tacobell.com/ga/cornelia/121-furniture-plaza.html",
+        "snippet": "OpenOpen til 2:30AM. Taco Bell. 121 Furniture Plaza. Cornelia, GA 30531 ... Get fast food from Taco Bell near you \u00b7 All Locations: GA: Cornelia: Taco Bell ...",
+        "position": 5,
+        "thumbnail": null
+      },
+      {
+        "title": "Fast Food in Cornelia, GA at 1585 Us Hwy 441",
+        "link": "https://www.mcdonalds.com/us/en-us/location/ga/cornelia/1585-us-hwy-441/6550.html",
+        "snippet": "Looking for Fast food near you? Visit McDonald's in ... 1585 Us Hwy 441. Cornelia, GA 30531. Get Directions (706) 778-7002. We're open now \u2022 Close at 02:00 AM.",
+        "position": 6,
+        "thumbnail": null
+      },
+      {
+        "title": "MCDONALD'S, Cornelia - Menu, Prices & Restaurant ...",
+        "link": "https://www.tripadvisor.com/Restaurant_Review-g34868-d4947450-Reviews-McDonald_s-Cornelia_Georgia.html",
+        "snippet": "McDonald's, Cornelia: See 25 unbiased reviews of McDonald's, rated 2.8 of 5 on Tripadvisor and ranked #37 of 43 restaurants in Cornelia.",
+        "position": 7,
+        "thumbnail": null
+      },
+      {
+        "title": "Midtown Grill",
+        "link": "https://www.1midtowngrill.com/",
+        "snippet": "\u201cMidtown Grill is no ordinary burger restaurant!\u201d Midtown Grill was established by Preston Bowen and Andrew Kelley in August 2013.",
+        "position": 8,
+        "thumbnail": null
+      },
+      {
+        "title": "24 Hour Food Near Me | Best Food Open Now",
+        "link": "https://www.grubhub.com/delivery/cuisine/24_hours",
+        "snippet": "Get 24 Hours delivery, fast. Easy online ordering for takeout and delivery from 24 Hours restaurants near you. Deals and promos available.",
+        "position": 9,
+        "thumbnail": null
+      }
+    ],
+    "local_results": [
+      {
+        "title": "DQ Grill & Chill Restaurant",
+        "address": "1081 N Main St",
+        "rating": 3.9,
+        "reviews": 571,
+        "phone": null,
+        "website": null,
+        "thumbnail": "https://serpapi.com/searches/67e9e21105047743737266b0/images/24b2570ada61f2379c785414db41434b0f4b262e81224ce5e4821de57dfaea0a1a8842b68ecc0932.jpeg"
+      },
+      {
+        "title": "Wendy's",
+        "address": "1082 Level Grove Rd",
+        "rating": 3.6,
+        "reviews": 917,
+        "phone": null,
+        "website": null,
+        "thumbnail": "https://serpapi.com/searches/67e9e21105047743737266b0/images/24b2570ada61f2379c785414db41434bb71c603f07894330762c1dea0d478cd66b150cfccd76d98d.jpeg"
+      },
+      {
+        "title": "Burger King",
+        "address": "1145 US-441",
+        "rating": 3.8,
+        "reviews": 1100,
+        "phone": null,
+        "website": null,
+        "thumbnail": "https://serpapi.com/searches/67e9e21105047743737266b0/images/24b2570ada61f2379c785414db41434b67b4afafc077ff6ace5e24091811924a470680c2618328ab.png"
+      }
+    ],
+    "knowledge_graph": null,
+    "related_questions": [],
+    "related_searches": [
+      "fast food open near habersham county, ga",
+      "Fast food open near me open now",
+      "Fast food open near me delivery",
+      "Best fast food open near me",
+      "best restaurants in cornelia, ga",
+      "Fast Food in Cornelia, GA",
+      "new restaurants in cornelia, ga",
+      "Food near me"
+    ],
+    "inline_images": [],
+    "answer_box": null,
+    "ai_response": null
+  }
+}
