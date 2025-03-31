@@ -192,11 +192,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-<<<<<<< HEAD
-/******/ 		__webpack_require__.h = function() { return "da1b2564aaddfc1e"; }
-=======
-/******/ 		__webpack_require__.h = function() { return "d81e6802bb19e777"; }
->>>>>>> parent of ca68697 (Working - Ready to send)
+/******/ 		__webpack_require__.h = function() { return "50d718c6c409b705"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

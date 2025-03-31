@@ -337,17 +337,30 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
     }
     
     const mappedPlaces = placesData.map((place: any, index: number) => {
+      // Get thumbnail and image URLs directly from SerpAPI
+      let thumbnail = place.thumbnail;
+      
       // Get image URL with multiple fallbacks
-      let imageUrl = place.thumbnail || place.image || place.photo || place.icon;
+      let imageUrl = place.image || place.photo || place.icon;
       
       // Force HTTPS if the URL starts with http://
       if (imageUrl && imageUrl.startsWith('http://')) {
         imageUrl = imageUrl.replace('http://', 'https://');
       }
 
-      // Check if URL appears invalid due to unusual length or broken formatting
-      if (imageUrl && (imageUrl.length > 400 || !imageUrl.match(/\.(jpeg|jpg|gif|png|svg|webp)($|\?)/i))) {
-        imageUrl = null; // Will trigger the fallback logic below
+      if (thumbnail && thumbnail.startsWith('http://')) {
+        thumbnail = thumbnail.replace('http://', 'https://');
+      }
+      
+      // Extract city from address
+      let city = "";
+      if (place.address) {
+        // Split address by commas and get the city part
+        const addressParts = place.address.split(',').map(part => part.trim());
+        if (addressParts.length >= 2) {
+          // City is typically the second-to-last part
+          city = addressParts[addressParts.length - 2];
+        }
       }
       
       // Hardcoded known fallbacks if all else fails
@@ -359,12 +372,9 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
         } else if (place.title === "Lucky Lab Coffee") {
           imageUrl = "https://luckylabcoffee.com/wp-content/uploads/2020/03/luckydog.png";
         } else {
-          imageUrl = "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png";
+          imageUrl = "/placeholder-business.png";
         }
       }
-      
-      // Ensure imageUrl is a string and not null/undefined
-      imageUrl = imageUrl || "";
       
       return {
         id: `place-${index}`,
@@ -374,7 +384,9 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
         type: place.type || "Business",
         address: place.address || "",
         features: place.features || [],
-        image: imageUrl // Ensure this is always set
+        image: imageUrl,
+        thumbnail: thumbnail,
+        city: city
       };
     });
     

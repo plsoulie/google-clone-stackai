@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { MapPin, ExternalLink, Star } from "lucide-react";
 
 interface Place {
@@ -17,6 +18,8 @@ interface Place {
     latitude: number;
     longitude: number;
   };
+  thumbnail?: string;
+  city?: string;
 }
 
 interface LocalMapProps {
@@ -24,212 +27,242 @@ interface LocalMapProps {
   title: string;
 }
 
-declare global {
-  interface Window {
-    google: any;
-    googleMapsLoaded: boolean;
-    googleMapsLoadPromise: Promise<void>;
-  }
-}
+// Map container style
+const containerStyle = {
+  width: '100%',
+  height: '100%'
+};
+
+// Default center coordinates (Berkeley)
+const defaultCenter = {
+  lat: 37.8715,
+  lng: -122.2730
+};
+
+// Map options
+const mapOptions = {
+  disableDefaultUI: false,
+  zoomControl: true,
+  streetViewControl: true,
+  mapTypeControl: true,
+  fullscreenControl: true,
+  styles: [
+    {
+      featureType: "poi",
+      elementType: "labels",
+      stylers: [{ visibility: "off" }]
+    }
+  ],
+};
 
 const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
   const [failedImages, setFailedImages] = useState<{[key: string]: boolean}>({});
+  const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+  const [mapCenter, setMapCenter] = useState(defaultCenter);
+  const [geocodedCoordinates, setGeocodedCoordinates] = useState<{[key: string]: {lat: number, lng: number}}>({});
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<any>(null);
-  const markersRef = useRef<any[]>([]);
+  const [bounds, setBounds] = useState<google.maps.LatLngBounds | null>(null);
   
-  useEffect(() => {
-    const loadGoogleMaps = async () => {
-      // Add debug logging
-      console.log('Places data:', places);
-      
-      // If already loaded, initialize map
-      if (window.googleMapsLoaded && window.google && window.google.maps) {
-        initializeMap();
-        return;
+  // Load the Google Maps API
+  const { isLoaded, loadError } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+    mapIds: process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID ? [process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID] : undefined
+  });
+
+  // Update bounds to include all markers
+  const updateBounds = useCallback(() => {
+    if (!isLoaded || !places.length) return;
+
+    const newBounds = new google.maps.LatLngBounds();
+    let hasValidCoordinates = false;
+
+    places.forEach(place => {
+      let coordinates = place.gps_coordinates 
+        ? { lat: place.gps_coordinates.latitude, lng: place.gps_coordinates.longitude }
+        : geocodedCoordinates[place.id];
+
+      if (coordinates) {
+        newBounds.extend(coordinates);
+        hasValidCoordinates = true;
       }
+    });
 
-      // If already loading, wait for it and initialize
-      if (window.googleMapsLoadPromise) {
-        await window.googleMapsLoadPromise;
-        initializeMap();
-        return;
-      }
-
-      // Create new loading promise
-      window.googleMapsLoadPromise = new Promise((resolve, reject) => {
-        // Check if script is already in the document
-        if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
-          window.googleMapsLoaded = true;
-          resolve();
-          return;
-        }
-
-        // Load Google Maps script
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&v=beta`;
-        script.async = true;
-        script.defer = true;
-
-        script.onload = () => {
-          window.googleMapsLoaded = true;
-          resolve();
-        };
-
-        script.onerror = (error) => {
-          console.error('Error loading Google Maps:', error);
-          reject(error);
-        };
-
-        document.head.appendChild(script);
-      });
-
-      try {
-        await window.googleMapsLoadPromise;
-        initializeMap();
-      } catch (error) {
-        console.error('Failed to load Google Maps:', error);
-        if (mapRef.current) {
-          mapRef.current.innerHTML = `
-            <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-              <div class="text-center">
-                <p>Unable to load Google Maps</p>
-                <p class="text-sm mt-1">Please check your ad blocker settings</p>
-              </div>
-            </div>
-          `;
-        }
-      }
-    };
-
-    const initializeMap = () => {
-      console.log('Initializing map...');
-      console.log('Map ref:', mapRef.current);
-      console.log('Google maps loaded:', window.google?.maps);
-      
-      if (!mapRef.current || !places.length || !window.google?.maps) {
-        console.log('Missing required dependencies for map initialization');
-        return;
-      }
-
-      // Default to Berkeley coordinates if no places have coordinates
-      const defaultCenter = { lat: 37.8715, lng: -122.2730 };
-      
-      let center = defaultCenter;
-      if (places[0]?.gps_coordinates) {
-        center = {
-          lat: places[0].gps_coordinates.latitude,
-          lng: places[0].gps_coordinates.longitude
-        };
-      }
-
-      const mapOptions = {
-        center,
-        zoom: 14,
-        styles: [
-          {
-            featureType: "poi",
-            elementType: "labels",
-            stylers: [{ visibility: "off" }]
-          }
-        ],
-        mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID,
-        disableDefaultUI: false, // Enable default UI for testing
-        zoomControl: true,
-        streetViewControl: true,
-        mapTypeControl: true,
-        fullscreenControl: true
-      };
-
-      try {
-        console.log('Creating map with options:', mapOptions);
-        mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
+    if (hasValidCoordinates) {
+      setBounds(newBounds);
+      if (map) {
+        map.fitBounds(newBounds);
         
-        // Clear existing markers
-        markersRef.current.forEach(marker => marker.setMap(null));
-        markersRef.current = [];
-
-        // Add markers for all places
-        places.forEach(place => {
-          if (place.gps_coordinates) {
-            try {
-              // Try to create an advanced marker first
-              const markerView = new window.google.maps.marker.PinView({
-                background: "#4285F4",
-                borderColor: "#ffffff",
-                glyphColor: "#ffffff",
-                scale: 1.2,
-              });
-
-              const marker = new window.google.maps.marker.AdvancedMarkerElement({
-                map: mapInstanceRef.current,
-                position: { 
-                  lat: place.gps_coordinates.latitude, 
-                  lng: place.gps_coordinates.longitude 
-                },
-                title: place.name,
-                content: markerView.element,
-              });
-
-              marker.addListener('click', () => {
-                const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
-                window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
-              });
-
-              markersRef.current.push(marker);
-            } catch (markerError) {
-              console.warn('Falling back to basic marker:', markerError);
-              // Fallback to basic marker
-              const marker = new window.google.maps.Marker({
-                position: { 
-                  lat: place.gps_coordinates.latitude, 
-                  lng: place.gps_coordinates.longitude 
-                },
-                map: mapInstanceRef.current,
-                title: place.name,
-                animation: window.google.maps.Animation.DROP
-              });
-
-              marker.addListener('click', () => {
-                const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
-                window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
-              });
-
-              markersRef.current.push(marker);
-            }
-          }
+        // Add a small padding to ensure markers aren't right at the edges
+        const listener = google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
+          map.setZoom(Math.min(map.getZoom() || 14, 15));
         });
+        
+        return () => {
+          google.maps.event.removeListener(listener);
+        };
+      }
+    }
+  }, [isLoaded, places, geocodedCoordinates, map]);
+
+  // Effect to update bounds when places or geocoded coordinates change
+  useEffect(() => {
+    updateBounds();
+  }, [updateBounds, places, geocodedCoordinates]);
+
+  // Geocode addresses for places without coordinates
+  const geocodePlaces = useCallback(async () => {
+    if (!isLoaded || !places) return;
+
+    const geocoder = new google.maps.Geocoder();
+    const newGeocodedCoordinates: {[key: string]: {lat: number, lng: number}} = {};
+
+    for (const place of places) {
+      // Skip if place already has coordinates or has been geocoded
+      if (place.gps_coordinates || geocodedCoordinates[place.id]) continue;
+
+      try {
+        // Try geocoding with full address first
+        let result = await geocoder.geocode({ address: place.address });
+        
+        // If full address fails, try with city
+        if (!result.results.length && place.city) {
+          result = await geocoder.geocode({ address: place.city });
+        }
+
+        if (result.results && result.results.length > 0) {
+          const location = result.results[0].geometry.location;
+          newGeocodedCoordinates[place.id] = {
+            lat: location.lat(),
+            lng: location.lng()
+          };
+        }
       } catch (error) {
-        console.error('Error initializing Google Maps:', error);
-        if (mapRef.current) {
-          mapRef.current.innerHTML = `
-            <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-              <div class="text-center">
-                <p>Error loading map</p>
-                <p class="text-sm mt-1">Please try refreshing the page</p>
-              </div>
-            </div>
-          `;
+        console.error(`Error geocoding address for ${place.name}:`, error);
+      }
+    }
+
+    setGeocodedCoordinates(prev => ({...prev, ...newGeocodedCoordinates}));
+  }, [isLoaded, places, geocodedCoordinates]);
+
+  // Effect to geocode places when they change
+  useEffect(() => {
+    if (isLoaded && places.length > 0) {
+      geocodePlaces();
+    }
+  }, [isLoaded, places, geocodePlaces]);
+
+  // Get the center coordinates from the city or first place with GPS coordinates
+  const getMapCenter = useCallback(async () => {
+    // First try to get city from the first place
+    if (places && places.length > 0) {
+      const firstPlace = places[0];
+      
+      // If we have GPS coordinates, use them
+      if (firstPlace.gps_coordinates) {
+        const coords = {
+          lat: firstPlace.gps_coordinates.latitude,
+          lng: firstPlace.gps_coordinates.longitude
+        };
+        setMapCenter(coords);
+        return coords;
+      }
+      
+      // If we have a city, geocode it
+      if (firstPlace.city) {
+        try {
+          const geocoder = new google.maps.Geocoder();
+          const result = await geocoder.geocode({ address: firstPlace.city });
+          
+          if (result.results && result.results.length > 0) {
+            const location = result.results[0].geometry.location;
+            const coords = {
+              lat: location.lat(),
+              lng: location.lng()
+            };
+            setMapCenter(coords);
+            return coords;
+          }
+        } catch (error) {
+          console.error('Error geocoding city:', error);
         }
       }
-    };
-
-    loadGoogleMaps();
-
-    return () => {
-      // Cleanup markers and map instance
-      if (markersRef.current) {
-        markersRef.current.forEach(marker => marker.setMap(null));
-        markersRef.current = [];
+      
+      // If we have an address, try to geocode it
+      if (firstPlace.address) {
+        try {
+          const geocoder = new google.maps.Geocoder();
+          const result = await geocoder.geocode({ address: firstPlace.address });
+          
+          if (result.results && result.results.length > 0) {
+            const location = result.results[0].geometry.location;
+            const coords = {
+              lat: location.lat(),
+              lng: location.lng()
+            };
+            setMapCenter(coords);
+            return coords;
+          }
+        } catch (error) {
+          console.error('Error geocoding address:', error);
+        }
       }
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current = null;
-      }
-    };
+    }
+    
+    return defaultCenter;
   }, [places]);
+
+  // Effect to update map center when places change
+  useEffect(() => {
+    if (isLoaded && places.length > 0) {
+      getMapCenter();
+    }
+  }, [isLoaded, places, getMapCenter]);
+
+  // Callback when the map is loaded
+  const onLoad = useCallback((map: google.maps.Map) => {
+    setMap(map);
+    
+    // If we already have bounds, fit the map to them
+    if (bounds) {
+      map.fitBounds(bounds);
+      // Add a small padding to ensure markers aren't right at the edges
+      google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
+        map.setZoom(Math.min(map.getZoom() || 14, 15));
+      });
+    } else {
+      // Otherwise use the center point
+      getMapCenter().then(center => {
+        map.setCenter(center);
+      });
+    }
+  }, [getMapCenter, bounds]);
+
+  // Callback when the map is unmounted
+  const onUnmount = useCallback(() => {
+    setMap(null);
+  }, []);
+
+  // Handle marker click
+  const handleMarkerClick = (place: Place) => {
+    setSelectedPlace(place);
+  };
+
+  // Handle closing the info window
+  const handleInfoWindowClose = () => {
+    setSelectedPlace(null);
+  };
+
+  // Open place in Google Maps
+  const handlePlaceClick = (place: Place) => {
+    const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
+  };
 
   const handleImageError = (id: string, name: string, url: string) => {
     console.error(`Image load error for ${name}:`, url);
+    console.log(`Using fallback image for ${name}: ${getDefaultImage(name)}`);
     setFailedImages(prev => ({...prev, [id]: true}));
   };
   
@@ -252,14 +285,13 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
       return "https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Taco_Bell_2016.svg/1200px-Taco_Bell_2016.svg.png";
     } else if (normalizedName.includes('kfc') || normalizedName.includes('kentucky fried')) {
       return "https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png";
+    } else if (normalizedName.includes('yoga') || normalizedName.includes('fitness') || 
+              normalizedName.includes('pilates') || normalizedName.includes('brooklyn yoga project') ||
+              normalizedName.includes('yoga house')) {
+      return "https://cdn.pixabay.com/photo/2016/08/01/15/00/silouette-1561170_1280.png";
     }
-    return "/lovable-uploads/726b4c21-c05d-4367-9256-b19912ba327f.png";
-  };
-
-  const handlePlaceClick = (place: Place) => {
-    // Open a Google Maps search for this business
-    const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
-    window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
+    
+    return "/placeholder-business.png";
   };
 
   // Format the rating as stars
@@ -290,23 +322,105 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
     );
   };
 
+  // Render map content based on loading state
+  const renderMap = () => {
+    if (loadError) {
+      return (
+        <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+          <div className="text-center">
+            <p>Error loading Google Maps</p>
+            <p className="text-sm mt-1">Please check your API key or try refreshing</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (!isLoaded) {
+      return (
+        <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+          <div className="text-center">Loading map...</div>
+        </div>
+      );
+    }
+
+    return (
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={mapCenter}
+        zoom={14}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+        options={mapOptions}
+      >
+        {/* Render markers for places with coordinates (either GPS or geocoded) */}
+        {places.map((place) => {
+          // Get coordinates either from GPS or geocoded results
+          let coordinates = place.gps_coordinates 
+            ? { lat: place.gps_coordinates.latitude, lng: place.gps_coordinates.longitude }
+            : geocodedCoordinates[place.id];
+
+          return coordinates && (
+            <Marker
+              key={place.id}
+              position={coordinates}
+              title={place.name}
+              onClick={() => handleMarkerClick(place)}
+              animation={google.maps.Animation.DROP}
+            />
+          );
+        })}
+
+        {/* Info window for selected place */}
+        {selectedPlace && (
+          <InfoWindow
+            position={
+              selectedPlace.gps_coordinates
+                ? {
+                    lat: selectedPlace.gps_coordinates.latitude,
+                    lng: selectedPlace.gps_coordinates.longitude
+                  }
+                : geocodedCoordinates[selectedPlace.id]
+            }
+            onCloseClick={handleInfoWindowClose}
+          >
+            <div className="p-2 max-w-xs">
+              <h3 className="font-medium text-sm">{selectedPlace.name}</h3>
+              <p className="text-xs text-gray-600 mt-1">{selectedPlace.address}</p>
+              {selectedPlace.rating && (
+                <div className="mt-1">{renderRating(selectedPlace.rating)}</div>
+              )}
+              <button
+                className="mt-2 text-xs text-blue-600 hover:text-blue-800 flex items-center"
+                onClick={() => handlePlaceClick(selectedPlace)}
+              >
+                View on Google Maps
+                <ExternalLink className="h-3 w-3 ml-1" />
+              </button>
+            </div>
+          </InfoWindow>
+        )}
+
+        {/* Child components, markers, etc. */}
+        <></>
+      </GoogleMap>
+    );
+  };
+
   return (
     <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden bg-white">
       <div className="flex justify-between items-center p-3 border-b border-gray-200">
         <h3 className="text-lg font-medium">{title}</h3>
-        <button className="text-gray-500">
+        <button 
+          className="text-gray-500 hover:text-gray-700 transition-colors duration-200"
+          onClick={updateBounds}
+          title="Fit all markers in view"
+        >
           <MapPin className="h-5 w-5" />
         </button>
       </div>
 
       <div className="h-96 bg-gray-200 relative">
-        <div ref={mapRef} className="absolute inset-0 w-full h-full">
-          {!window.google && (
-            <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-              Loading map...
-            </div>
-          )}
-        </div>
+        {renderMap()}
         
         <div className="absolute bottom-2 right-2 bg-white rounded px-2 py-1 text-xs text-gray-600 z-10">
           Map data ©2024 Google
@@ -374,10 +488,16 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
             <div className="ml-3">
               <div className="h-16 w-16 bg-gray-200 rounded overflow-hidden">
                 <img
-                  src={failedImages[place.id] ? getDefaultImage(place.name) : (place.image || getDefaultImage(place.name))}
+                  src={failedImages[place.id] 
+                    ? getDefaultImage(place.name) 
+                    : ((place.thumbnail && place.thumbnail.length > 0) 
+                        ? place.thumbnail 
+                        : ((place.image && place.image.length > 0) 
+                            ? place.image 
+                            : getDefaultImage(place.name)))}
                   alt={place.name}
                   className="h-full w-full object-cover"
-                  onError={() => handleImageError(place.id, place.name, place.image || "")}
+                  onError={() => handleImageError(place.id, place.name, place.thumbnail || place.image || "")}
                 />
               </div>
             </div>

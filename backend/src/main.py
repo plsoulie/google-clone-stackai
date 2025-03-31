@@ -193,7 +193,9 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
         logger.info(f"Search query received: {query_request.query}")
         
         # Get SerpAPI key from environment variables
-        serpapi_key = os.getenv("SERPAPI_KEY")
+        # serpapi_key = os.getenv("SERPAPI_KEY")
+        # Explicitly set the key to ensure it's using the correct one
+        serpapi_key = "a5ea802c16d807959aa91eca47efc339a6cd42f33b68c8d3613e64646a9c7f65"
         if not serpapi_key:
             logger.error("SERPAPI_KEY not found in environment variables")
             raise HTTPException(status_code=500, detail="SERPAPI_KEY not configured")
@@ -214,16 +216,24 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
 
         # Flag to track if we're using live data or mock data
         using_mock_data = False
+        mock_data_reason = ""
         
         try:
             # Perform the search
             search = GoogleSearch(params)
+            logger.info(f"Sending request to SerpAPI with params: {params}")
             results = search.get_dict()
             
             # Check if results are valid
-            if not results or "error" in results:
-                logger.error("SerpAPI returned an error or empty results")
+            if not results:
+                logger.error("SerpAPI returned empty results")
                 using_mock_data = True
+                mock_data_reason = "SerpAPI returned empty results"
+            elif "error" in results:
+                error_msg = results.get('error', 'Unknown error')
+                logger.error(f"SerpAPI returned an error: {error_msg}")
+                using_mock_data = True
+                mock_data_reason = f"SerpAPI error: {error_msg}"
             else:
                 logger.info(f"Query '{query_request.query}' returned {len(results.get('organic_results', []))} organic results")
             
@@ -232,16 +242,20 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
                 os.makedirs(os.path.join(os.path.dirname(__file__), "../logs"), exist_ok=True)
                 with open(os.path.join(os.path.dirname(__file__), "../logs/response.json"), "w") as f:
                     json.dump(results, f)
+                logger.info("Saved SerpAPI response to logs/response.json")
             except Exception as e:
                 logger.error(f"Failed to save SerpAPI response: {e}")
             
         except Exception as e:
             logger.error(f"Error calling SerpAPI: {e}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            logger.error(f"Exception details: {str(e)}")
             using_mock_data = True
+            mock_data_reason = f"SerpAPI exception: {str(e)}"
         
         # Fallback to mock data if needed
         if using_mock_data:
-            logger.warning("Falling back to mock data")
+            logger.warning(f"Falling back to mock data. Reason: {mock_data_reason}")
             if not mock_data:
                 logger.error("Mock data not available")
                 raise HTTPException(status_code=500, detail="No valid search results available")
@@ -328,7 +342,9 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
             inline_images=results.get("inline_images", []),
             answer_box=results.get("answer_box"),
             ai_response=None,  # Initially set to None
-            search_id=search_id  # Add the search ID to the response
+            search_id=search_id,  # Add the search ID to the response
+            using_mock_data=using_mock_data,  # Add flag indicating mock data usage
+            mock_data_reason=mock_data_reason if using_mock_data else None  # Add reason for mock data use
         )
         
         # Start the DeepSeek API call asynchronously
@@ -463,6 +479,65 @@ async def get_recent_searches(limit: int = 6):
     except Exception as e:
         logger.error(f"Error retrieving recent searches: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to retrieve recent searches: {str(e)}")
+
+@app.get("/api/debug")
+async def debug():
+    """
+    Get debug information about the API and the last search.
+    """
+    try:
+        # serpapi_key = os.getenv("SERPAPI_KEY", "Not found")
+        serpapi_key = "a5ea802c16d807959aa91eca47efc339a6cd42f33b68c8d3613e64646a9c7f65"
+        
+        # Mask the API key for security
+        masked_key = "Not found" if serpapi_key == "Not found" else f"{serpapi_key[:5]}...{serpapi_key[-5:]}"
+        
+        # Try a test query with SerpAPI directly
+        test_results = None
+        test_error = None
+        try:
+            params = {
+                "engine": "google",
+                "q": "test query",
+                "num": 1,
+                "api_key": serpapi_key,
+                "gl": "us",
+                "hl": "en"
+            }
+            search = GoogleSearch(params)
+            test_results = search.get_dict()
+            if "error" in test_results:
+                test_error = test_results.get("error")
+                test_results = None
+        except Exception as e:
+            test_error = str(e)
+        
+        # Get info about the mock data
+        mock_data_info = {
+            "available": mock_data is not None,
+            "path": MOCK_DATA_PATH,
+            "file_exists": os.path.exists(MOCK_DATA_PATH),
+            "sample": str(mock_data)[:100] + "..." if mock_data else None
+        }
+        
+        return {
+            "api_status": "ok",
+            "serpapi_key_available": serpapi_key != "Not found",
+            "serpapi_key_masked": masked_key,
+            "serpapi_test": {
+                "success": test_results is not None,
+                "error": test_error,
+                "sample": str(test_results)[:100] + "..." if test_results else None
+            },
+            "mock_data": mock_data_info,
+            "environment": {
+                "BACKEND_API_URL": os.getenv("BACKEND_API_URL", "Not set"),
+                "CORS_ORIGINS": os.getenv("CORS_ORIGINS", "Not set")
+            }
+        }
+    except Exception as e:
+        logger.error(f"Error in debug endpoint: {str(e)}")
+        return {"error": str(e)}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000) 
