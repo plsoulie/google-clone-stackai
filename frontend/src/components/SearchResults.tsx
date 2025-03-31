@@ -6,7 +6,7 @@ import OrganicResult from "./OrganicResult";
 import RelatedQuestions from "./RelatedQuestions";
 import LocalMap from "./LocalMap";
 import SearchBar from "./SearchBar";
-import { Search, ChevronDown, X } from "lucide-react";
+import { Search, ChevronDown, X, MessageSquare } from "lucide-react";
 import { performSearch } from "@/api/search";
 
 interface SearchResultsProps {
@@ -26,12 +26,12 @@ interface SearchItem {
 const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) => {
   const [searchHistory, setSearchHistory] = useState<SearchItem[]>([]);
   const [currentQuery, setCurrentQuery] = useState<string>("");
-  const resultsEndRef = useRef<HTMLDivElement>(null);
+  const latestSearchHeaderRef = useRef<HTMLDivElement>(null);
   
-  // Effect to scroll to bottom whenever a new search is added
+  // Effect to scroll to the latest search header whenever a new search is added
   useEffect(() => {
-    if (resultsEndRef.current) {
-      resultsEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (latestSearchHeaderRef.current) {
+      latestSearchHeaderRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [searchHistory.length]);
 
@@ -260,13 +260,17 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
   };
 
   // Render a single search result item
-  const renderSearchItem = (searchItem: SearchItem) => {
+  const renderSearchItem = (searchItem: SearchItem, index: number) => {
     const { id, query, loading, error, results, isExpanded } = searchItem;
+    const isLatestSearch = index === searchHistory.length - 1;
     
     if (loading) {
       return (
         <div key={id} className="mb-8 pb-8 border-b border-gray-200">
-          <div className="flex items-center mb-4">
+          <div 
+            className="flex items-center mb-4 border border-gray-200 shadow-md rounded-lg py-2 px-4"
+            ref={isLatestSearch ? latestSearchHeaderRef : null}
+          >
             <div className="bg-teal-50 p-2 rounded-full mr-2">
               <Search size={18} className="text-teal-600" />
             </div>
@@ -292,7 +296,10 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
     if (error) {
       return (
         <div key={id} className="mb-8 pb-8 border-b border-gray-200">
-          <div className="flex items-center mb-4">
+          <div 
+            className="flex items-center mb-4 border border-gray-200 shadow-md rounded-lg py-2 px-4"
+            ref={isLatestSearch ? latestSearchHeaderRef : null}
+          >
             <div className="bg-teal-50 p-2 rounded-full mr-2">
               <Search size={18} className="text-teal-600" />
             </div>
@@ -330,7 +337,10 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
 
     return (
       <div key={id} className="mb-8 pb-8 border-b border-gray-200">
-        <div className="flex items-center mb-4 sticky top-0 bg-white z-10 py-2 px-4 rounded-lg">
+        <div 
+          className="flex items-center mb-4 sticky top-20 bg-white z-10 py-2 px-4 rounded-lg border border-gray-200 shadow-md"
+          ref={isLatestSearch ? latestSearchHeaderRef : null}
+        >
           <div className="bg-teal-50 p-2 rounded-full mr-2">
             <Search size={18} className="text-teal-600" />
           </div>
@@ -396,7 +406,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
     <div className="pb-40">
       {/* History of search results */}
       <div className="space-y-4">
-        {searchHistory.map(searchItem => renderSearchItem(searchItem))}
+        {searchHistory.map((searchItem, index) => renderSearchItem(searchItem, index))}
       </div>
 
       {/* Input area for new search */}
@@ -404,7 +414,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
         <div className="container mx-auto px-4">
           <div className="flex items-center">
             <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center mr-3">
-              <X size={16} className="text-gray-600" />
+              <MessageSquare size={16} className="text-gray-600" />
             </div>
             <div className="flex-grow">
               <SearchBar 
@@ -419,9 +429,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
           </div>
         </div>
       </div>
-      
-      {/* This invisible div is used to scroll to the end of the results */}
-      <div ref={resultsEndRef} />
     </div>
   );
 };

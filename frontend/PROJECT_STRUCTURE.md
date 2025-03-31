@@ -6,37 +6,60 @@ This document outlines the restructured project organization following Next.js b
 
 ```
 frontend/
+├── .next/                       # Next.js build directory
 ├── src/
-│   ├── app/                      # Next.js App Router
-│   │   ├── (routes)/             # Route groups
-│   │   │   └── search/           # Search page route
-│   │   │       └── page.tsx      # Search results page
-│   │   ├── api/                  # API routes
-│   │   │   └── search/           # Search API endpoint
-│   │   │       └── route.ts      # Handler for search API
-│   │   ├── layout.tsx            # Root layout (replaces _app.tsx)
-│   │   ├── page.tsx              # Homepage (landing page)
-│   │   └── not-found.tsx         # 404 page
-│   ├── components/               # Reusable components
-│   │   ├── ui/                   # UI components (buttons, inputs, etc.)
-│   │   ├── Header.tsx            # Site header
-│   │   ├── KnowledgePanel.tsx    # Knowledge panel for search results
-│   │   ├── LocalMap.tsx          # Local results map component
-│   │   ├── OrganicResult.tsx     # Organic search result component
-│   │   ├── RelatedQuestions.tsx  # Related questions component
-│   │   ├── SearchBar.tsx         # Search input component
-│   │   └── SearchResults.tsx     # Search results container
-│   ├── api/                      # Client-side API utilities
-│   │   └── search.ts             # Search API client
-│   ├── hooks/                    # Custom React hooks
-│   │   ├── index.ts              # Hook exports
-│   │   ├── use-mobile.tsx        # Mobile detection hook
-│   │   ├── use-search.ts         # Search state management hook
-│   │   ├── use-search-params.ts  # URL search params hook
-│   │   └── use-toast.ts          # Toast notification hook
-│   └── lib/                      # Utility functions and helpers
-│       └── utils.ts              # General utilities
+│   ├── app/                     # Next.js App Router
+│   │   ├── (routes)/            # Route groups
+│   │   │   └── search/          # Search page route
+│   │   │       └── page.tsx     # Search results page
+│   │   ├── api/                 # API routes
+│   │   │   └── search/          # Search API endpoint
+│   │   │       └── route.ts     # Handler for search API
+│   │   ├── global.css           # Global styles
+│   │   ├── layout.tsx           # Root layout (replaces _app.tsx)
+│   │   ├── page.tsx             # Homepage (landing page)
+│   │   └── not-found.tsx        # 404 page
+│   ├── components/              # Reusable components
+│   │   ├── ui/                  # UI components (buttons, inputs, etc.)
+│   │   ├── Header.tsx           # Site header
+│   │   ├── KnowledgePanel.tsx   # Knowledge panel for search results
+│   │   ├── LocalMap.tsx         # Local results map component
+│   │   ├── OrganicResult.tsx    # Organic search result component
+│   │   ├── RelatedQuestions.tsx # Related questions component
+│   │   ├── SearchBar.tsx        # Search input component
+│   │   └── SearchResults.tsx    # Search results container
+│   ├── api/                     # Client-side API utilities
+│   │   └── search.ts            # Search API client
+│   ├── hooks/                   # Custom React hooks
+│   │   ├── index.ts             # Hook exports
+│   │   ├── use-mobile.tsx       # Mobile detection hook
+│   │   ├── use-search.ts        # Search state management hook
+│   │   ├── use-search-params.ts # URL search params hook
+│   │   └── use-toast.ts         # Toast notification hook
+│   └── lib/                     # Utility functions and helpers
+│       └── utils.ts             # General utilities
+├── public/                      # Static assets
+├── next.config.js               # Next.js configuration
+├── next-env.d.ts                # Next.js type definitions
+├── tsconfig.json                # TypeScript configuration
+├── tailwind.config.ts           # Tailwind CSS configuration
+├── postcss.config.js            # PostCSS configuration
+└── package.json                 # Project dependencies and scripts
 ```
+
+## Removed Files and Directories
+
+The following files and directories were removed as part of the migration to Next.js:
+
+- `src/App.tsx` - Replaced by app/layout.tsx
+- `src/App.css` - Replaced by app/global.css
+- `src/main.tsx` - Next.js has its own entry point system
+- `src/pages/` - Replaced by the app directory
+- `vite.config.ts` - Replaced by next.config.js
+- `tsconfig.node.json` - Not needed in Next.js
+- `tsconfig.app.json` - Not needed in Next.js
+- `index.html` - Next.js handles HTML generation
+- `src/vite-env.d.ts` - Next.js provides its own environment types
 
 ## Key Changes and Improvements
 

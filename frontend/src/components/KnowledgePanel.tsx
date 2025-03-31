@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import { ChevronRight, Share2, ExternalLink, MapPin, Calendar, Info, User, Building, MountainSnow } from "lucide-react";
 
