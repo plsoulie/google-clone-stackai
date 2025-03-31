@@ -39,26 +39,20 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
   const markersRef = useRef<any[]>([]);
   
   useEffect(() => {
-    let isMounted = true;
-    
     const loadGoogleMaps = async () => {
       // Add debug logging
       console.log('Places data:', places);
       
       // If already loaded, initialize map
       if (window.googleMapsLoaded && window.google && window.google.maps) {
-        if (isMounted) initializeMap();
+        initializeMap();
         return;
       }
 
       // If already loading, wait for it and initialize
       if (window.googleMapsLoadPromise) {
-        try {
-          await window.googleMapsLoadPromise;
-          if (isMounted) initializeMap();
-        } catch (error) {
-          console.error('Error waiting for Google Maps:', error);
-        }
+        await window.googleMapsLoadPromise;
+        initializeMap();
         return;
       }
 
@@ -92,10 +86,10 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
 
       try {
         await window.googleMapsLoadPromise;
-        if (isMounted) initializeMap();
+        initializeMap();
       } catch (error) {
         console.error('Failed to load Google Maps:', error);
-        if (isMounted && mapRef.current) {
+        if (mapRef.current) {
           mapRef.current.innerHTML = `
             <div class="absolute inset-0 flex items-center justify-center text-gray-500">
               <div class="text-center">
@@ -113,7 +107,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
       console.log('Map ref:', mapRef.current);
       console.log('Google maps loaded:', window.google?.maps);
       
-      if (!isMounted || !mapRef.current || !places.length || !window.google?.maps) {
+      if (!mapRef.current || !places.length || !window.google?.maps) {
         console.log('Missing required dependencies for map initialization');
         return;
       }
@@ -132,6 +126,13 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
       const mapOptions = {
         center,
         zoom: 14,
+        styles: [
+          {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [{ visibility: "off" }]
+          }
+        ],
         mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID,
         disableDefaultUI: false, // Enable default UI for testing
         zoomControl: true,
@@ -142,98 +143,65 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
 
       try {
         console.log('Creating map with options:', mapOptions);
-        
-        // Clean up old map if it exists
-        if (mapInstanceRef.current) {
-          // Clear existing markers first
-          if (markersRef.current) {
-            markersRef.current.forEach(marker => {
-              if (marker && typeof marker.setMap === 'function') {
-                marker.setMap(null);
-              }
-            });
-            markersRef.current = [];
-          }
-        }
-        
         mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
         
-        // After map is created, then try to geocode if needed
-        if (!places[0]?.gps_coordinates && places[0]?.address && isMounted) {
-          // If no coordinates but we have an address, use geocoding to center on the city
-          try {
-            const geocoder = new window.google.maps.Geocoder();
-            geocoder.geocode({ address: places[0].address }, (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
-              if (isMounted && status === "OK" && results && results[0]?.geometry?.location && mapInstanceRef.current) {
-                const location = results[0].geometry.location;
-                center = { lat: location.lat(), lng: location.lng() };
-                mapInstanceRef.current.setCenter(center);
-              }
-            });
-          } catch (geocodeError) {
-            console.error('Geocoding error:', geocodeError);
-          }
-        }
+        // Clear existing markers
+        markersRef.current.forEach(marker => marker.setMap(null));
+        markersRef.current = [];
 
         // Add markers for all places
-        if (isMounted) {
-          places.forEach(place => {
-            if (place.gps_coordinates) {
-              try {
-                // Try to create an advanced marker first
-                const markerView = new window.google.maps.marker.PinView({
-                  background: "#4285F4",
-                  borderColor: "#ffffff",
-                  glyphColor: "#ffffff",
-                  scale: 1.2,
-                });
+        places.forEach(place => {
+          if (place.gps_coordinates) {
+            try {
+              // Try to create an advanced marker first
+              const markerView = new window.google.maps.marker.PinView({
+                background: "#4285F4",
+                borderColor: "#ffffff",
+                glyphColor: "#ffffff",
+                scale: 1.2,
+              });
 
-                const marker = new window.google.maps.marker.AdvancedMarkerElement({
-                  map: mapInstanceRef.current,
-                  position: { 
-                    lat: place.gps_coordinates.latitude, 
-                    lng: place.gps_coordinates.longitude 
-                  },
-                  title: place.name,
-                  content: markerView.element,
-                });
+              const marker = new window.google.maps.marker.AdvancedMarkerElement({
+                map: mapInstanceRef.current,
+                position: { 
+                  lat: place.gps_coordinates.latitude, 
+                  lng: place.gps_coordinates.longitude 
+                },
+                title: place.name,
+                content: markerView.element,
+              });
 
-                marker.addListener('click', () => {
-                  const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
-                  window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
-                });
+              marker.addListener('click', () => {
+                const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
+                window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
+              });
 
-                markersRef.current.push(marker);
-              } catch (markerError) {
-                console.warn('Falling back to basic marker:', markerError);
-                // Fallback to basic marker
-                try {
-                  const marker = new window.google.maps.Marker({
-                    position: { 
-                      lat: place.gps_coordinates.latitude, 
-                      lng: place.gps_coordinates.longitude 
-                    },
-                    map: mapInstanceRef.current,
-                    title: place.name,
-                    animation: window.google.maps.Animation.DROP
-                  });
+              markersRef.current.push(marker);
+            } catch (markerError) {
+              console.warn('Falling back to basic marker:', markerError);
+              // Fallback to basic marker
+              const marker = new window.google.maps.Marker({
+                position: { 
+                  lat: place.gps_coordinates.latitude, 
+                  lng: place.gps_coordinates.longitude 
+                },
+                map: mapInstanceRef.current,
+                title: place.name,
+                animation: window.google.maps.Animation.DROP
+              });
 
-                  marker.addListener('click', () => {
-                    const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
-                    window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
-                  });
+              marker.addListener('click', () => {
+                const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
+                window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
+              });
 
-                  markersRef.current.push(marker);
-                } catch (basicMarkerError) {
-                  console.error('Failed to create basic marker:', basicMarkerError);
-                }
-              }
+              markersRef.current.push(marker);
             }
-          });
-        }
+          }
+        });
       } catch (error) {
         console.error('Error initializing Google Maps:', error);
-        if (isMounted && mapRef.current) {
+        if (mapRef.current) {
           mapRef.current.innerHTML = `
             <div class="absolute inset-0 flex items-center justify-center text-gray-500">
               <div class="text-center">
@@ -249,20 +217,14 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
     loadGoogleMaps();
 
     return () => {
-      // Set flag to prevent async operations from continuing after unmount
-      isMounted = false;
-      
       // Cleanup markers and map instance
       if (markersRef.current) {
-        markersRef.current.forEach(marker => {
-          if (marker && typeof marker.setMap === 'function') {
-            marker.setMap(null);
-          }
-        });
+        markersRef.current.forEach(marker => marker.setMap(null));
         markersRef.current = [];
       }
-      
-      mapInstanceRef.current = null;
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current = null;
+      }
     };
   }, [places]);
 

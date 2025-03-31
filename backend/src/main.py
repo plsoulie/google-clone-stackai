@@ -1,17 +1,17 @@
 from fastapi import FastAPI, HTTPException, Request, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from serpapi import GoogleSearch
 import os
 from dotenv import load_dotenv
 from typing import List, Optional, Dict, Any
 import logging
 import json
-from pathlib import Path
 import httpx
-import asyncio
+from datetime import datetime
+import uvicorn
+from fastapi.responses import JSONResponse
+from serpapi import GoogleSearch
 
-from .models import SearchQuery, SearchResult, OrganicResult, LocalResult, KnowledgeGraph, RelatedQuestion
+from .models import SearchQuery, SearchResult, OrganicResult, LocalResult, KnowledgeGraph, RelatedQuestion, AIResponse, SearchResponse, AIResponseResult
 from .db import save_search_result, update_search_with_ai_response, get_search_result, supabase_client, fix_search_record_components
 
 # Configure logging
@@ -42,16 +42,8 @@ MOCK_DATA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../moc
 # Load mock data
 def load_mock_data():
     try:
-        logger.info(f"Trying to load mock data from: {MOCK_DATA_PATH}")
         with open(MOCK_DATA_PATH, 'r') as f:
             data = json.load(f)
-            # Debug - check if thumbnail exists in the original data
-            if 'local_results' in data and 'places' in data['local_results'] and data['local_results']['places']:
-                first_place = data['local_results']['places'][0]
-                logger.info(f"First place keys: {first_place.keys()}")
-                logger.info(f"First place has thumbnail: {'thumbnail' in first_place}")
-                if 'thumbnail' in first_place:
-                    logger.info(f"Thumbnail value: {first_place['thumbnail']}")
             logger.info("Mock data loaded successfully")
             return data
     except Exception as e:
@@ -67,23 +59,6 @@ async def log_requests(request: Request, call_next):
     response = await call_next(request)
     logger.info(f"Response status: {response.status_code}")
     return response
-
-class SearchQuery(BaseModel):
-    query: str
-    num_results: int = 10
-    location: Optional[str] = None
-
-class SearchResponse(BaseModel):
-    query: str
-    organic_results: List[OrganicResult]
-    local_results: Optional[List[LocalResult]] = None
-    knowledge_graph: Optional[KnowledgeGraph] = None
-    related_questions: Optional[List[RelatedQuestion]] = None
-    related_searches: Optional[List[str]] = None
-    inline_images: Optional[List[Dict[str, Any]]] = None
-    answer_box: Optional[Dict[str, Any]] = None
-    ai_response: Optional[str] = None
-    search_id: Optional[str] = None
 
 def normalize_organic_results(results: List[Dict[str, Any]]) -> List[OrganicResult]:
     normalized = []
@@ -178,27 +153,24 @@ async def generate_ai_response(query: str, search_results: List[Dict[str, Any]],
                 if response.status_code == 200:
                     result = response.json()
                     ai_response = result.get("choices", [{}])[0].get("message", {}).get("content", "")
-                    logger.info(f"Generated AI response: {ai_response}")
+                    logger.info(f"Generated AI response for search_id: {search_id}")
                     
                     # Save the AI response to the database
                     success = await update_search_with_ai_response(search_id, ai_response)
-                    if success:
-                        logger.info(f"Successfully saved AI response to database for search_id: {search_id}")
-                    else:
+                    if not success:
                         logger.error(f"Failed to save AI response to database for search_id: {search_id}")
                     
-                    # Also save to a local file for debugging
+                    # Save to logs for debugging
                     try:
                         os.makedirs(os.path.join(os.path.dirname(__file__), "../logs"), exist_ok=True)
                         with open(os.path.join(os.path.dirname(__file__), "../logs/ai_response.json"), "w") as f:
                             json.dump({"query": query, "search_id": search_id, "ai_response": ai_response}, f, indent=2)
-                        logger.info("AI response saved to logs/ai_response.json")
                     except Exception as e:
                         logger.error(f"Failed to save AI response to file: {e}")
                     
                     return ai_response
                 else:
-                    logger.error(f"DeepSeek API error: {response.status_code} - {response.text}")
+                    logger.error(f"DeepSeek API error: {response.status_code}")
                     return None
             except httpx.TimeoutException:
                 logger.error("DeepSeek API request timed out")
@@ -209,7 +181,6 @@ async def generate_ai_response(query: str, search_results: List[Dict[str, Any]],
                 
     except Exception as e:
         logger.error(f"Error generating AI response: {str(e)}")
-        logger.exception("Full exception details:")
         return None
 
 @app.get("/api/health")
@@ -227,9 +198,6 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
             logger.error("SERPAPI_KEY not found in environment variables")
             raise HTTPException(status_code=500, detail="SERPAPI_KEY not configured")
         
-        logger.info(f"Using SerpAPI key starting with: {serpapi_key[:5]}...")
-        logger.info(f"Making search request for query: {query_request.query}")
-        
         # Create search parameters
         params = {
             "engine": "google",
@@ -242,41 +210,28 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
          
         # Only add location if it's provided
         if query_request.location:
-            logger.info(f"Using location: {query_request.location}")
             params["location"] = query_request.location
-        else:
-            logger.info("No location provided, local results may not be relevant")
 
-        logger.info(f"SerpAPI params (excluding API key): {params}")
-        logger.info(f"API key validity check: {'valid' if serpapi_key and len(serpapi_key) > 10 else 'invalid'}")
-        
         # Flag to track if we're using live data or mock data
         using_mock_data = False
         
         try:
-            logger.info("Calling SerpAPI...")
             # Perform the search
             search = GoogleSearch(params)
             results = search.get_dict()
             
             # Check if results are valid
-            if not results:
-                logger.error("SerpAPI returned empty results")
-                using_mock_data = True
-            elif "error" in results:
-                logger.error(f"SerpAPI returned an error: {results.get('error')}")
+            if not results or "error" in results:
+                logger.error("SerpAPI returned an error or empty results")
                 using_mock_data = True
             else:
-                logger.info(f"SerpAPI response received - keys: {list(results.keys() if results else [])}")
                 logger.info(f"Query '{query_request.query}' returned {len(results.get('organic_results', []))} organic results")
-                logger.info(f"Response valid: {'organic_results' in results}")
             
-            # Save the SerpAPI response for debugging - but this should not affect database operations
+            # Save the SerpAPI response for debugging
             try:
                 os.makedirs(os.path.join(os.path.dirname(__file__), "../logs"), exist_ok=True)
                 with open(os.path.join(os.path.dirname(__file__), "../logs/response.json"), "w") as f:
                     json.dump(results, f)
-                logger.info("SerpAPI response saved to logs/response.json")
             except Exception as e:
                 logger.error(f"Failed to save SerpAPI response: {e}")
             
@@ -293,24 +248,15 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
             
             results = mock_data
             logger.info("Using mock data fallback")
-        else:
-            logger.info(f"Successfully using live data from SerpAPI for query: {query_request.query}")
         
         if not isinstance(results, dict):
             logger.error(f"Unexpected response type: {type(results)}")
             raise HTTPException(status_code=500, detail="Invalid response format")
 
-        # Extract and normalize local results directly to keep the thumbnail field
+        # Extract and normalize local results
         local_results_data = []
         if isinstance(results.get("local_results"), dict) and isinstance(results.get("local_results").get("places"), list):
-            # Debug the original data
-            first_place = results["local_results"]["places"][0] if results["local_results"]["places"] else {}
-            logger.info(f"Original first place data: {first_place}")
-            logger.info(f"First place has thumbnail? {'thumbnail' in first_place}")
             local_results_data = results["local_results"]["places"]
-            logger.info(f"Extracted {len(local_results_data)} local results with thumbnails")
-        else:
-            logger.warning("No local_results.places found in search results")
         
         # Create separate components for SearchResult
         organic_results_normalized = normalize_organic_results(results.get("organic_results", []))
@@ -340,24 +286,6 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
         
         # Try to save the search result, but continue if it fails
         try:
-            # Debug log the size of the search result
-            logger.info(f"SearchResult object created with {len(search_result.organic_results)} organic results")
-            logger.info(f"SearchResult has {len(search_result.related_searches) if search_result.related_searches else 0} related searches")
-            
-            # Ensure all JSON fields are valid by converting to dict
-            search_result_dict = search_result.model_dump()
-            logger.info(f"About to save search result with ID: {search_result.id}")
-            logger.info(f"Search result keys: {list(search_result_dict.keys())}")
-            
-            # Save a debug copy of the search result to file
-            try:
-                os.makedirs(os.path.join(os.path.dirname(__file__), "../logs"), exist_ok=True)
-                with open(os.path.join(os.path.dirname(__file__), "../logs/search_result.json"), "w") as f:
-                    json.dump(search_result_dict, f, indent=2, default=str)
-                logger.info("Search result object saved to logs/search_result.json")
-            except Exception as e:
-                logger.error(f"Failed to save search result debug file: {e}")
-                
             # Save to database
             search_id = await save_search_result(search_result)
             logger.info(f"Search result saved with ID: {search_id}")
@@ -365,8 +293,6 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
             # Verify the save was successful
             saved_result = await get_search_result(search_id)
             if saved_result:
-                logger.info(f"Successfully verified search result exists in database with keys: {list(saved_result.keys())}")
-                
                 # If any essential search components are missing, use a direct database update as a failsafe
                 if not saved_result.get("organic_results") or len(saved_result.get("organic_results", [])) == 0:
                     logger.warning("Organic results missing in saved record, applying fallback fix")
@@ -376,24 +302,19 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
                         organic_results_raw = results.get("organic_results", [])[:5] if results else []
                         
                         update_data = {
-                            "organic_results": organic_results_raw if organic_results_raw else search_result_dict["organic_results"],
-                            "knowledge_graph": results.get("knowledge_graph") if results else search_result_dict["knowledge_graph"],
-                            "local_results": local_results_data if local_results_data else search_result_dict["local_results"],
-                            "related_questions": results.get("related_questions", [])[:3] if results else search_result_dict["related_questions"],
-                            "related_searches": extract_related_searches(results.get("related_searches", [])) if results else search_result_dict["related_searches"]
+                            "organic_results": organic_results_raw if organic_results_raw else search_result.model_dump()["organic_results"],
+                            "knowledge_graph": results.get("knowledge_graph") if results else search_result.model_dump()["knowledge_graph"],
+                            "local_results": local_results_data if local_results_data else search_result.model_dump()["local_results"],
+                            "related_questions": results.get("related_questions", [])[:3] if results else search_result.model_dump()["related_questions"],
+                            "related_searches": extract_related_searches(results.get("related_searches", [])) if results else search_result.model_dump()["related_searches"]
                         }
                         
-                        response = supabase_client.table("search_results").update(update_data).eq("id", search_id).execute()
-                        if response.data:
-                            logger.info("Successfully applied fallback fix for missing search components")
-                        else:
-                            logger.error("Failed to apply fallback fix")
+                        supabase_client.table("search_results").update(update_data).eq("id", search_id).execute()
                     except Exception as fallback_error:
                         logger.error(f"Error applying fallback fix: {str(fallback_error)}")
                 
         except Exception as db_error:
             logger.error(f"Error saving search result: {str(db_error)}")
-            logger.exception("Full exception details:")
             search_id = search_result.id
         
         # Prepare the response
@@ -428,12 +349,6 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
 async def get_ai_response(search_id: str):
     """
     Get the AI-generated response for a specific search.
-    
-    Args:
-        search_id: ID of the search to get the AI response for
-        
-    Returns:
-        Dict containing the AI response or a pending status
     """
     try:
         # Try to get the search result from the database
@@ -463,12 +378,6 @@ async def get_ai_response(search_id: str):
 async def fix_search_record(search_id: str):
     """
     Fix a specific search record by adding missing components.
-    
-    Args:
-        search_id: ID of the search record to fix
-        
-    Returns:
-        Dict containing the status of the fix operation
     """
     try:
         # Check if the search record exists
@@ -502,9 +411,58 @@ async def fix_search_record(search_id: str):
         raise
     except Exception as e:
         logger.error(f"Error fixing search record: {str(e)}")
-        logger.exception("Full exception details:")
         raise HTTPException(status_code=500, detail=str(e))
 
+# Add a new endpoint to get recent searches
+@app.get("/api/recent_searches")
+async def get_recent_searches(limit: int = 6):
+    """
+    Retrieve the most recent search queries from the database.
+    """
+    try:
+        logger.info(f"Received request for recent searches with limit={limit}")
+        
+        if not supabase_client:
+            logger.warning("Supabase client not available. Cannot retrieve recent searches.")
+            return {"recent_searches": []}
+            
+        # Query the search_results table, order by timestamp desc, and select only unique queries
+        response = supabase_client.table("search_results") \
+            .select("query, timestamp") \
+            .order("timestamp", desc=True) \
+            .limit(limit * 3) \
+            .execute()  # Get more than needed to filter for unique values
+            
+        data = response.data
+        
+        if not data:
+            logger.info("No recent searches found")
+            return {"recent_searches": []}
+            
+        # Extract unique queries (case-insensitive) while preserving order
+        seen_queries = set()
+        unique_searches = []
+        
+        for item in data:
+            query = item.get("query", "").strip()
+            query_lower = query.lower()
+            
+            if query and query_lower not in seen_queries:
+                seen_queries.add(query_lower)
+                unique_searches.append({
+                    "query": query,
+                    "timestamp": item.get("timestamp")
+                })
+                
+                if len(unique_searches) >= limit:
+                    break
+        
+        logger.info(f"Retrieved {len(unique_searches)} recent searches")
+        return {"recent_searches": unique_searches}
+        
+    except Exception as e:
+        logger.error(f"Error retrieving recent searches: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve recent searches: {str(e)}")
+
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000) 

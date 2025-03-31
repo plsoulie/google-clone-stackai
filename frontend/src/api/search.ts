@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export interface SearchParams {
   query: string;
   num_results?: number;
@@ -26,10 +24,6 @@ export const performSearch = async ({
       num_results: 10,
       ...(location ? { location } : {})
     };
-    
-    // Log the request for debugging
-    console.log('Search request with location:', location);
-    console.log('Full request payload:', requestBody);
 
     const response = await fetch('/api/search', {
       method: 'POST',
@@ -44,7 +38,6 @@ export const performSearch = async ({
     }
 
     const data = await response.json();
-    console.log('Search response received:', data);
     return data;
   } catch (error) {
     console.error('Error performing search:', error);
@@ -57,8 +50,6 @@ export const pollForAIResponse = async (searchId: string, maxAttempts = 10, inte
     let attempts = 0;
     
     while (attempts < maxAttempts) {
-      console.log(`Polling for AI response (attempt ${attempts + 1}/${maxAttempts})...`);
-      
       const response = await fetch(`/api/search/${searchId}/ai_response`);
       
       if (!response.ok) {
@@ -68,7 +59,6 @@ export const pollForAIResponse = async (searchId: string, maxAttempts = 10, inte
       const data: AIResponseResult = await response.json();
       
       if (data.status === 'complete' && data.ai_response) {
-        console.log('AI response received:', data.ai_response);
         return data.ai_response;
       }
       
@@ -77,7 +67,6 @@ export const pollForAIResponse = async (searchId: string, maxAttempts = 10, inte
       attempts++;
     }
     
-    console.warn('Max polling attempts reached without receiving AI response');
     return null;
   } catch (error) {
     console.error('Error polling for AI response:', error);

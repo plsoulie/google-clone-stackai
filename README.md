@@ -1,69 +1,101 @@
-# Welcome to your Lovable project
+# StackAI Google Clone
 
-## Project info
+A search engine clone with AI enhancements, built with Next.js and FastAPI.
 
-**URL**: https://lovable.dev/projects/5ecdc9f4-a5fd-42dc-a627-6a0efd1150b0
+## Project Overview
 
-## How can I edit this code?
+This project implements a Google-like search interface with modern features:
+- Search functionality powered by SerpAPI
+- AI-powered result summaries using DeepSeek AI
+- Knowledge panels for information-rich queries
+- Recent search history tracking
+- Responsive design
 
-There are several ways of editing your application.
+## Project Structure
 
-**Use Lovable**
+```
+├── backend/             # FastAPI backend server
+│   ├── src/             # Source code
+│   │   ├── main.py      # Main API endpoints
+│   │   ├── db.py        # Database interactions
+│   │   └── models.py    # Data models
+│   ├── supabase/        # Database schema and migrations
+│   └── restart.sh       # Utility script to restart the server
+├── frontend/            # Next.js frontend application
+│   ├── src/             # Source code
+│   │   ├── app/         # Next.js app router
+│   │   ├── components/  # React components
+│   │   ├── api/         # API client code
+│   │   └── hooks/       # Custom React hooks
+│   └── public/          # Static assets
+├── tests/               # Test utilities
+├── data/                # Data files for the application
+└── .env                 # Environment variables (add your own)
+```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5ecdc9f4-a5fd-42dc-a627-6a0efd1150b0) and start prompting.
+## Setup and Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
+- Node.js v18+
+- Python 3.10+
+- Supabase account (for database)
+- SerpAPI key
+- DeepSeek API key
 
-**Use your preferred IDE**
+### Backend Setup
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Navigate to backend directory
+cd backend
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-Follow these steps:
+# Install dependencies
+pip install -r requirements.txt
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Set up environment variables
+# Edit .env file with your API keys and database credentials
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Start the server
+./restart.sh  # Or: python -m src.main
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Frontend Setup
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+# Edit .env.local with your API configuration
+
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Usage
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Once both servers are running:
+1. Access the frontend at http://localhost:3000
+2. Use the search bar to perform searches
+3. View search results with AI-enhanced summaries
+4. Explore knowledge panels and related searches
 
-**Use GitHub Codespaces**
+## API Endpoints
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `/api/search` - Perform a search query
+- `/api/search/{search_id}/ai_response` - Get AI-generated response for a search
+- `/api/recent_searches` - Get recent search queries
 
-## What technologies are used for this project?
+## Contributing
 
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/5ecdc9f4-a5fd-42dc-a627-6a0efd1150b0) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request

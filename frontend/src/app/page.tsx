@@ -4,21 +4,17 @@ import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import SearchBar from "@/components/SearchBar";
 import Header from "@/components/Header";
-import { Button } from "@/components/ui/button";
 import { Clock, X } from "lucide-react";
+import { fetchRecentSearches, RecentSearch } from "@/api/recent-searches";
 
 export default function HomePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
-  const [searchHistory, setSearchHistory] = useState<string[]>([
-    "artificial intelligence",
-    "machine learning",
-    "neural networks",
-    "natural language processing",
-    "stack ai github"
-  ]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [recentSearches, setRecentSearches] = useState<RecentSearch[]>([]);
+  const [localSearchHistory, setLocalSearchHistory] = useState<string[]>([]);
 
   // Check if there's a query in the URL on initial load
   useEffect(() => {
@@ -31,12 +27,79 @@ export default function HomePage() {
     }
   }, [searchParams, router]);
 
+  // Fetch recent searches from the database
+  useEffect(() => {
+    const loadRecentSearches = async () => {
+      setIsLoading(true);
+      try {
+        const searches = await fetchRecentSearches(6);
+        
+        if (searches && searches.length > 0) {
+          setRecentSearches(searches);
+          
+          // Also populate local history with these searches for the case where 
+          // we need to add a new search and update the UI immediately
+          setLocalSearchHistory(searches.map(search => search.query));
+        } else {
+          // Set default searches if none returned
+          const fallbackSearches = [
+            "artificial intelligence",
+            "machine learning",
+            "neural networks",
+            "deep learning",
+            "stack ai github",
+            "generative AI"
+          ].map(query => ({
+            query,
+            timestamp: new Date().toISOString()
+          }));
+          
+          setRecentSearches(fallbackSearches);
+          setLocalSearchHistory(fallbackSearches.map(search => search.query));
+        }
+      } catch (error) {
+        // Set default searches on error
+        const fallbackSearches = [
+          "artificial intelligence",
+          "machine learning",
+          "neural networks",
+          "deep learning",
+          "stack ai github",
+          "generative AI"
+        ].map(query => ({
+          query,
+          timestamp: new Date().toISOString()
+        }));
+        
+        setRecentSearches(fallbackSearches);
+        setLocalSearchHistory(fallbackSearches.map(search => search.query));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadRecentSearches();
+  }, []);
+
   const handleSearch = (query: string) => {
-    if (query.trim() && !searchHistory.includes(query)) {
-      setSearchHistory(prev => [query, ...prev.slice(0, 9)]);
+    if (query.trim()) {
+      // Add to local history if it doesn't exist yet
+      if (!localSearchHistory.includes(query)) {
+        setLocalSearchHistory(prev => [query, ...prev.slice(0, 9)]);
+        
+        // Also add to recent searches for immediate UI update
+        // The database will be updated when the search is performed
+        const newSearch: RecentSearch = {
+          query,
+          timestamp: new Date().toISOString()
+        };
+        setRecentSearches(prev => [newSearch, ...prev.filter(s => s.query.toLowerCase() !== query.toLowerCase()).slice(0, 5)]);
+      }
+      
+      // Navigate to search page
+      setSearchQuery(query);
+      router.push(`/search?q=${encodeURIComponent(query)}`);
     }
-    setSearchQuery(query);
-    router.push(`/search?q=${encodeURIComponent(query)}`);
   };
 
   const handleHistoryClick = (query: string) => {
@@ -46,7 +109,27 @@ export default function HomePage() {
 
   const removeFromHistory = (e: React.MouseEvent, query: string) => {
     e.stopPropagation();
-    setSearchHistory(prev => prev.filter(item => item !== query));
+    // Remove from local state only (we can't easily remove from database)
+    setRecentSearches(prev => prev.filter(search => search.query !== query));
+    setLocalSearchHistory(prev => prev.filter(item => item !== query));
+  };
+  
+  // Format timestamp to a more readable format
+  const formatTimestamp = (timestamp: string) => {
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffInMs = now.getTime() - date.getTime();
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+    
+    if (diffInMinutes < 60) {
+      return `${diffInMinutes} min${diffInMinutes !== 1 ? 's' : ''} ago`;
+    } else if (diffInHours < 24) {
+      return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+    } else {
+      return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
+    }
   };
 
   return (
@@ -61,21 +144,24 @@ export default function HomePage() {
           <SearchBar onSearch={handleSearch} initialQuery="" />
           
           {/* Recent searches */}
-          {searchHistory.length > 0 && (
+          {recentSearches.length > 0 && (
             <div className="mt-8">
               <h3 className="text-sm font-medium text-gray-500 mb-3">Recent searches</h3>
               <div className="flex flex-wrap gap-2">
-                {searchHistory.map((query, index) => (
+                {recentSearches.map((search, index) => (
                   <div 
                     key={index} 
-                    className="flex items-center bg-white border border-gray-200 rounded-full px-3 py-1 text-sm cursor-pointer hover:bg-gray-50"
-                    onClick={() => handleHistoryClick(query)}
+                    className="flex items-center bg-white border border-gray-200 rounded-full px-3 py-1 text-sm cursor-pointer hover:bg-gray-50 group"
+                    onClick={() => handleHistoryClick(search.query)}
                   >
                     <Clock size={14} className="mr-2 text-gray-400" />
-                    <span className="truncate max-w-[150px]">{query}</span>
+                    <span className="truncate max-w-[150px]">{search.query}</span>
+                    <span className="ml-2 text-gray-400 text-xs hidden group-hover:inline">
+                      {formatTimestamp(search.timestamp)}
+                    </span>
                     <button 
                       className="ml-2 text-gray-400 hover:text-gray-600"
-                      onClick={(e) => removeFromHistory(e, query)}
+                      onClick={(e) => removeFromHistory(e, search.query)}
                     >
                       <X size={14} />
                     </button>
@@ -85,10 +171,17 @@ export default function HomePage() {
             </div>
           )}
           
-          <div className="flex gap-4 justify-center mt-8">
-            <Button className="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-md">Advanced Search</Button>
-            <Button variant="outline" className="bg-gray-100 text-gray-800 border-0 hover:bg-gray-200 px-6 py-2 rounded-md">Search Filters</Button>
-          </div>
+          {isLoading && (
+            <div className="mt-8">
+              <div className="flex flex-wrap gap-2">
+                {[...Array(3)].map((_, index) => (
+                  <div key={index} className="bg-gray-200 animate-pulse rounded-full px-10 py-1.5 text-transparent">
+                    Loading...
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -96,9 +189,6 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center text-sm font-medium text-gray-700">
             Powered by StackAI - Your Intelligent Agent
-          </div>
-          <div className="flex justify-center mt-2 space-x-4 text-xs">
-            <a href="/location-test" className="text-teal-600 hover:underline">Test Location Services</a>
           </div>
         </div>
       </footer>

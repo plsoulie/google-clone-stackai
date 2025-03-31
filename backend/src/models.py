@@ -57,4 +57,23 @@ class SearchResult(BaseModel):
 class AIResponse(BaseModel):
     search_id: str
     response: str
-    timestamp: datetime = Field(default_factory=datetime.utcnow) 
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+
+
+class SearchResponse(BaseModel):
+    query: str
+    organic_results: List[OrganicResult]
+    local_results: Optional[List[LocalResult]] = None
+    knowledge_graph: Optional[KnowledgeGraph] = None
+    related_questions: Optional[List[RelatedQuestion]] = None
+    related_searches: Optional[List[str]] = None
+    inline_images: Optional[List[Dict[str, Any]]] = None
+    answer_box: Optional[Dict[str, Any]] = None
+    ai_response: Optional[str] = None
+    search_id: Optional[str] = None
+
+
+class AIResponseResult(BaseModel):
+    search_id: str
+    ai_response: Optional[str] = None
+    status: str = "pending" 

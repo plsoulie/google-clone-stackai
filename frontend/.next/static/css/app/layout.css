@@ -1704,6 +1704,10 @@ body{
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.px-10{
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
 .pb-3{
   padding-bottom: 0.75rem;
 }
@@ -1953,6 +1957,9 @@ body{
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.text-transparent{
+  color: transparent;
 }
 .underline-offset-4{
   text-underline-offset: 4px;
@@ -2533,6 +2540,10 @@ footer {
 
 .group\/menu-item:focus-within .group-focus-within\/menu-item\:opacity-100{
   opacity: 1;
+}
+
+.group:hover .group-hover\:inline{
+  display: inline;
 }
 
 .group:hover .group-hover\:text-black{
