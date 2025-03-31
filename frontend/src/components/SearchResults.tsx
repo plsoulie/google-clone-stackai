@@ -1,83 +1,129 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+'use client';
+
+import React, { useState, useEffect, useRef } from "react";
 import KnowledgePanel from "./KnowledgePanel";
 import OrganicResult from "./OrganicResult";
 import RelatedQuestions from "./RelatedQuestions";
 import LocalMap from "./LocalMap";
 import SearchBar from "./SearchBar";
+import { Search, ChevronDown, X } from "lucide-react";
+import { performSearch } from "@/api/search";
 
 interface SearchResultsProps {
   query: string;
 }
 
-const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [results, setResults] = useState<any>(null);
+interface SearchItem {
+  id: string;
+  query: string;
+  timestamp: Date;
+  results: any;
+  loading: boolean;
+  error: string | null;
+  isExpanded: boolean;
+}
 
+const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) => {
+  const [searchHistory, setSearchHistory] = useState<SearchItem[]>([]);
+  const [currentQuery, setCurrentQuery] = useState<string>("");
+  const resultsEndRef = useRef<HTMLDivElement>(null);
+  
+  // Effect to scroll to bottom whenever a new search is added
   useEffect(() => {
-    const fetchResults = async () => {
-      if (!query.trim()) return;
+    if (resultsEndRef.current) {
+      resultsEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [searchHistory.length]);
+
+  // Initialize with the first search query
+  useEffect(() => {
+    if (initialQuery && !searchHistory.some(item => item.query === initialQuery)) {
+      const initialSearchItem: SearchItem = {
+        id: `search-${Date.now()}`,
+        query: initialQuery,
+        timestamp: new Date(),
+        results: null,
+        loading: true,
+        error: null,
+        isExpanded: true
+      };
       
-      setLoading(true);
-      setError(null);
+      setSearchHistory([initialSearchItem]);
+      fetchResults(initialSearchItem.id, initialQuery);
+    }
+  }, [initialQuery]);
+
+  const fetchResults = async (searchId: string, searchQuery: string) => {
+    if (!searchQuery.trim()) return;
+    
+    // Update loading state
+    setSearchHistory(prev => prev.map(item => 
+      item.id === searchId 
+        ? { ...item, loading: true, error: null } 
+        : item
+    ));
+    
+    try {
+      const results = await performSearch({ query: searchQuery });
       
-      try {
-        console.log('SearchResults: Fetching results for query:', query);
-        const response = await axios.post("http://localhost:8000/api/search", {
-          query,
-          num_results: 10
-        });
-        
-        setResults(response.data);
-        console.log("SearchResults: Raw response data:", response.data);
-        console.log("SearchResults: Response data keys:", Object.keys(response.data));
-        
-        // Check for organic results
-        if (Array.isArray(response.data.organic_results)) {
-          console.log("SearchResults: Organic results length:", response.data.organic_results.length);
-          console.log("SearchResults: First organic result:", response.data.organic_results[0]);
-        } else {
-          console.log("SearchResults: No valid organic_results array found");
-        }
-        
-        // Detailed logging for local_results
-        console.log("SearchResults: Local results structure:", response.data.local_results);
-        if (Array.isArray(response.data.local_results)) {
-          console.log("SearchResults: Local results is an array with length:", response.data.local_results.length);
-          if (response.data.local_results.length > 0) {
-            console.log("SearchResults: First local result:", response.data.local_results[0]);
-            console.log("SearchResults: First local result keys:", Object.keys(response.data.local_results[0]));
-            console.log("SearchResults: First local result thumbnail:", response.data.local_results[0].thumbnail);
-          }
-        } else if (response.data.local_results && typeof response.data.local_results === 'object') {
-          console.log("SearchResults: Local results is an object with keys:", Object.keys(response.data.local_results));
-          if (response.data.local_results.places && Array.isArray(response.data.local_results.places)) {
-            console.log("SearchResults: Local results places array length:", response.data.local_results.places.length);
-            if (response.data.local_results.places.length > 0) {
-              console.log("SearchResults: First place:", response.data.local_results.places[0]);
-              console.log("SearchResults: First place keys:", Object.keys(response.data.local_results.places[0]));
-              console.log("SearchResults: First place thumbnail:", response.data.local_results.places[0].thumbnail);
-            }
-          }
-        }
-        
-        // Compare the structure with mockSerpData.json
-        console.log("SearchResults: Expected local_results structure from mockSerpData.json:", 
-          "{ places: [ { position, title, place_id, reviews, price, type, address, thumbnail, ... } ] }");
-      } catch (err) {
-        console.error("SearchResults: Error fetching search results:", err);
-        setError("Failed to fetch search results. Please try again.");
-      } finally {
-        setLoading(false);
-      }
+      // Update with results
+      setSearchHistory(prev => prev.map(item => 
+        item.id === searchId 
+          ? { 
+              ...item, 
+              loading: false, 
+              results,
+              error: null
+            } 
+          : item
+      ));
+    } catch (err) {
+      console.error("Error fetching search results:", err);
+      
+      // Update error state
+      setSearchHistory(prev => prev.map(item => 
+        item.id === searchId 
+          ? { 
+              ...item, 
+              loading: false, 
+              error: "Failed to fetch search results. Please try again."
+            } 
+          : item
+      ));
+    }
+  };
+
+  const handleNewSearch = (newQuery: string) => {
+    // Add the new search to history
+    const newSearchItem: SearchItem = {
+      id: `search-${Date.now()}`,
+      query: newQuery,
+      timestamp: new Date(),
+      results: null,
+      loading: true, 
+      error: null,
+      isExpanded: true
     };
     
-    fetchResults();
-  }, [query]);
+    setSearchHistory(prev => [...prev, newSearchItem]);
+    fetchResults(newSearchItem.id, newQuery);
+    setCurrentQuery("");
+  };
+
+  const toggleExpand = (searchId: string) => {
+    setSearchHistory(prev => prev.map(item =>
+      item.id === searchId
+        ? { ...item, isExpanded: !item.isExpanded }
+        : item
+    ));
+  };
+
+  const removeSearch = (searchId: string) => {
+    setSearchHistory(prev => prev.filter(item => item.id !== searchId));
+  };
 
   // Helper function to extract knowledge panel data
-  const getKnowledgePanelData = () => {
+  const getKnowledgePanelData = (results: any) => {
     if (!results?.knowledge_graph) return null;
     
     const kg = results.knowledge_graph;
@@ -85,22 +131,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
     
     // Deep copy approach to avoid mutating the original data
     const processedAttributes = { ...attributes };
-    
-    // Log the knowledge graph data
-    console.log("Knowledge Graph Data:", kg);
-    console.log("Knowledge Graph Attributes:", attributes);
-    
-    // Process nested links in attributes
-    Object.keys(processedAttributes).forEach(key => {
-      // Check for _links fields and merge them with main data
-      if (key.endsWith('_links') && Array.isArray(processedAttributes[key])) {
-        const baseKey = key.replace('_links', '');
-        // Only process if the base property exists
-        if (processedAttributes[baseKey]) {
-          console.log(`Processing links for ${baseKey}`);
-        }
-      }
-    });
     
     return {
       title: kg.title || "Knowledge Graph",
@@ -121,7 +151,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
   };
 
   // Helper function to format organic results
-  const getOrganicResults = () => {
+  const getOrganicResults = (results: any) => {
     if (!results?.organic_results) return [];
     
     return results.organic_results.map((result: any) => ({
@@ -147,12 +177,9 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
   };
 
   // Helper function to get local results if available
-  const getLocalResults = () => {
-    console.log("SearchResults: Processing local results:", results?.local_results);
-    
+  const getLocalResults = (results: any) => {
     // Check if results.local_results exists
     if (!results?.local_results) {
-      console.log("SearchResults: No local_results found in API response");
       return null;
     }
     
@@ -162,37 +189,25 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
     if (Array.isArray(results.local_results) && results.local_results.length > 0) {
       // Case 1: local_results is directly an array of places from our backend transformation
       placesData = results.local_results;
-      console.log("SearchResults: Case 1: local_results is an array with data");
     } else if (results.local_results.places && Array.isArray(results.local_results.places) && results.local_results.places.length > 0) {
       // Case 2: local_results has a 'places' property that is an array (from mockSerpData.json format)
       placesData = results.local_results.places;
-      console.log("SearchResults: Case 2: local_results has a places array with data");
     } else {
-      console.log("SearchResults: No valid places data found in local_results");
       // Return null instead of using hardcoded fallback data
       return null;
     }
     
-    console.log("Places data to map:", placesData);
-    
     const mappedPlaces = placesData.map((place: any, index: number) => {
-      console.log(`Processing place ${index}:`, place);
-      console.log(`Place ${index} keys:`, Object.keys(place));
-      console.log(`Place ${index} thumbnail:`, place.thumbnail);
-      
       // Get image URL with multiple fallbacks
       let imageUrl = place.thumbnail || place.image || place.photo || place.icon;
-      console.log(`Place ${index} imageUrl:`, imageUrl);
       
       // Force HTTPS if the URL starts with http://
       if (imageUrl && imageUrl.startsWith('http://')) {
         imageUrl = imageUrl.replace('http://', 'https://');
-        console.log(`Place ${index} imageUrl updated to https:`, imageUrl);
       }
 
       // Check if URL appears invalid due to unusual length or broken formatting
       if (imageUrl && (imageUrl.length > 400 || !imageUrl.match(/\.(jpeg|jpg|gif|png|svg|webp)($|\?)/i))) {
-        console.log(`Place ${index} imageUrl might be invalid, using fallback based on title`);
         imageUrl = null; // Will trigger the fallback logic below
       }
       
@@ -212,7 +227,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
       // Ensure imageUrl is a string and not null/undefined
       imageUrl = imageUrl || "";
       
-      const mappedPlace = {
+      return {
         id: `place-${index}`,
         name: place.title,
         rating: place.rating || 0,
@@ -222,21 +237,16 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
         features: place.features || [],
         image: imageUrl // Ensure this is always set
       };
-      
-      console.log(`Mapped place ${index} image:`, mappedPlace.image);
-      return mappedPlace;
     });
     
-    console.log("Final mapped places:", mappedPlaces);
-    
     return {
-      title: `${query} near you`,
+      title: `${results.search_parameters?.q || "Places"} near you`,
       places: mappedPlaces
     };
   };
 
   // Helper function to format related questions
-  const getRelatedQuestions = () => {
+  const getRelatedQuestions = (results: any) => {
     if (!results?.related_questions) return [];
     
     // Filter and map the questions to ensure we only get questions with good answers
@@ -249,74 +259,169 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
       }));
   };
 
-  if (loading) {
-    return <div className="py-10 text-center">Loading search results...</div>;
-  }
+  // Render a single search result item
+  const renderSearchItem = (searchItem: SearchItem) => {
+    const { id, query, loading, error, results, isExpanded } = searchItem;
+    
+    if (loading) {
+      return (
+        <div key={id} className="mb-8 pb-8 border-b border-gray-200">
+          <div className="flex items-center mb-4">
+            <div className="bg-teal-50 p-2 rounded-full mr-2">
+              <Search size={18} className="text-teal-600" />
+            </div>
+            <h2 className="text-lg font-medium">{query}</h2>
+            <button 
+              className="ml-auto p-1 hover:bg-gray-100 rounded-full"
+              onClick={() => removeSearch(id)}
+              aria-label="Remove search"
+            >
+              <X size={16} className="text-gray-500" />
+            </button>
+          </div>
+          <div className="py-4 text-center">
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-teal-600 motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+            </div>
+            <p className="mt-2 text-gray-600">Searching...</p>
+          </div>
+        </div>
+      );
+    }
 
-  if (error) {
-    return <div className="py-10 text-center text-red-500">{error}</div>;
-  }
+    if (error) {
+      return (
+        <div key={id} className="mb-8 pb-8 border-b border-gray-200">
+          <div className="flex items-center mb-4">
+            <div className="bg-teal-50 p-2 rounded-full mr-2">
+              <Search size={18} className="text-teal-600" />
+            </div>
+            <h2 className="text-lg font-medium">{query}</h2>
+            <button
+              className="ml-2 hover:bg-gray-100 p-1 rounded-full"
+              onClick={() => toggleExpand(id)}
+              aria-label={isExpanded ? "Collapse" : "Expand"}
+            >
+              <ChevronDown size={16} className={`transition-transform ${isExpanded ? '' : 'rotate-180'}`} />
+            </button>
+            <button 
+              className="ml-auto p-1 hover:bg-gray-100 rounded-full"
+              onClick={() => removeSearch(id)}
+              aria-label="Remove search"
+            >
+              <X size={16} className="text-gray-500" />
+            </button>
+          </div>
+          <div className="py-6 text-center text-red-500">
+            {error}
+          </div>
+        </div>
+      );
+    }
 
-  if (!results) {
-    return <div className="py-10 text-center">No results found</div>;
-  }
+    if (!results) {
+      return null;
+    }
 
-  const knowledgePanelData = getKnowledgePanelData();
-  const organicResults = getOrganicResults();
-  const relatedQuestions = getRelatedQuestions();
-  const localResults = getLocalResults();
+    const knowledgePanelData = getKnowledgePanelData(results);
+    const organicResults = getOrganicResults(results);
+    const relatedQuestions = getRelatedQuestions(results);
+    const localResults = getLocalResults(results);
+
+    return (
+      <div key={id} className="mb-8 pb-8 border-b border-gray-200">
+        <div className="flex items-center mb-4 sticky top-0 bg-white z-10 py-2 px-4 rounded-lg">
+          <div className="bg-teal-50 p-2 rounded-full mr-2">
+            <Search size={18} className="text-teal-600" />
+          </div>
+          <h2 className="text-lg font-medium">{query}</h2>
+          <button
+            className="ml-2 hover:bg-gray-100 p-1 rounded-full"
+            onClick={() => toggleExpand(id)}
+            aria-label={isExpanded ? "Collapse" : "Expand"}
+          >
+            <ChevronDown size={16} className={`transition-transform ${isExpanded ? '' : 'rotate-180'}`} />
+          </button>
+          <button 
+            className="ml-auto p-1 hover:bg-gray-100 rounded-full"
+            onClick={() => removeSearch(id)}
+            aria-label="Remove search"
+          >
+            <X size={16} className="text-gray-500" />
+          </button>
+        </div>
+
+        {isExpanded && (
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-2/3 pr-0 md:pr-6">
+              {localResults && localResults.places && localResults.places.length > 0 && (
+                <div className="mb-6">
+                  <LocalMap title={localResults.title} places={localResults.places} />
+                </div>
+              )}
+             
+              {/* Create a grid layout for organic results */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                {organicResults.map((result: any, index: number) => (
+                  <OrganicResult key={`result-${index}`} {...result} />
+                ))}
+              </div>
+
+              {relatedQuestions.length > 0 && (
+                <div className="mb-6">
+                  <RelatedQuestions 
+                    questions={relatedQuestions} 
+                    title="People also ask" 
+                  />
+                </div>
+              )}
+            </div>
+
+            <div className="md:w-1/3 mt-8 md:mt-0">
+              {knowledgePanelData ? (
+                <KnowledgePanel {...knowledgePanelData} />
+              ) : (
+                <div className="border border-gray-200 rounded-md p-4 bg-white">
+                  <p className="text-gray-500">No knowledge panel data available for this query.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
-    <div className="flex flex-col md:flex-row pb-40">
+    <div className="pb-40">
+      {/* History of search results */}
+      <div className="space-y-4">
+        {searchHistory.map(searchItem => renderSearchItem(searchItem))}
+      </div>
+
+      {/* Input area for new search */}
+      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 py-4 bg-gradient-to-r from-gray-100 to-gray-200 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center">
+            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+              <X size={16} className="text-gray-600" />
+            </div>
+            <div className="flex-grow">
+              <SearchBar 
+                initialQuery={currentQuery} 
+                onSearch={handleNewSearch} 
+                compact={true}
+              />
+            </div>
+          </div>
+          <div className="text-center mt-4 text-xs text-gray-500">
+            Powered by StackAI - Your Intelligent Agent
+          </div>
+        </div>
+      </div>
       
-      <div className="md:w-2/3 pr-0 md:pr-6">
-
-      {localResults && localResults.places && localResults.places.length > 0 && (
-          <div className="">
-            <LocalMap title={localResults.title} places={localResults.places} />
-          </div>
-        )}
-       
-        {/* Create a grid layout for organic results */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          {organicResults.map((result: any, index: number) => (
-            <OrganicResult key={`result-${index}`} {...result} />
-          ))}
-        </div>
-
-        {relatedQuestions.length > 0 && (
-          <div className="mt-6">
-          <RelatedQuestions 
-            questions={relatedQuestions} 
-            title="People also ask" 
-          />
-          </div>
-        )}
-
-        {/* <div className="mt-8 text-center">
-          <button className="bg-white hover:bg-gray-100 text-gray-800 font-medium py-3 px-6 rounded-md transition-colors border border-gray-200">
-            See more results
-          </button>
-        </div> */}
-      </div>
-
-      <div className="md:w-1/3 mt-8 md:mt-0">
-        {knowledgePanelData ? (
-          <KnowledgePanel {...knowledgePanelData} />
-        ) : (
-          <div className="border border-gray-200 rounded-md p-4 bg-white">
-            <p className="text-gray-500">No knowledge panel data available for this query.</p>
-          </div>
-        )}
-
-      </div>
-
-      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 pt-0 pb-6 bg-gradient-to-r from-gray-100 to-gray-200 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
-        <div className="container mx-auto px-2">
-          <SearchBar onSearch={(newQuery) => window.location.href = `/?q=${encodeURIComponent(newQuery)}`} initialQuery={query} />
-          <div className="text-center mb-3 text-sm font-medium text-black mt-6">Powered by StackAI - Your Intelligent Agent</div>
-        </div>
-      </div>
+      {/* This invisible div is used to scroll to the end of the results */}
+      <div ref={resultsEndRef} />
     </div>
   );
 };

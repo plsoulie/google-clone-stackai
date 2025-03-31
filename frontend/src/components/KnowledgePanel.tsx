@@ -250,7 +250,8 @@ const KnowledgePanel: React.FC<KnowledgePanelProps> = ({
       "entity_type", "knowledge_graph_search_link", "serpapi_knowledge_graph_search_link", 
       "header_images", "source", "patron_saint", "patron_saint_links", "chicory_coffee", 
       "coffee_books", "people_also_search_for", "list", "see_results_about", "type",
-      "kgmid", "nickname", "nickname_links", "neighborhoods_links", "mayor_links", "area1"
+      "kgmid", "nickname", "nickname_links", "neighborhoods_links", "mayor_links", "area1",
+      "web_results", "web_results_link"
     ];
     
     const relevantAttributes = Object.entries(attributes)

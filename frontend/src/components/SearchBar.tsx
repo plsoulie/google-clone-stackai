@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Mic, Search, Send, X } from "lucide-react";
-import axios from 'axios';
 
 interface SearchBarProps {
   initialQuery?: string;
@@ -14,29 +13,18 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch, comp
   const [query, setQuery] = useState(initialQuery);
   const [isSearching, setIsSearching] = useState(false);
 
+  // Update query if initialQuery changes (for controlled usage)
+  useEffect(() => {
+    setQuery(initialQuery);
+  }, [initialQuery]);
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
+      setIsSearching(true);
       try {
-        setIsSearching(true);
-        console.log('Initiating search for query:', query);
-        
-        // Update the URL to point to our backend server
-        console.log('Sending request to backend API...');
-        const response = await axios.post('http://localhost:8000/api/search', { 
-          query, 
-          num_results: 10 
-        });
-        
-        console.log('Search results received:', response.data);
-        console.log('Response has these keys:', Object.keys(response.data));
-        if (response.data.organic_results) {
-          console.log('Found', response.data.organic_results.length, 'organic results');
-        }
+        // We'll let the parent component handle the actual API call
         onSearch(query);
-      } catch (error) {
-        console.error('Error performing search:', error);
-        alert('Error performing search. Check if the backend server is running.');
       } finally {
         setIsSearching(false);
       }
@@ -58,7 +46,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch, comp
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search on StackAI..."
+            placeholder={compact ? "Ask a follow-up question..." : "Search on StackAI..."}
             className={`w-full bg-white border border-neutral-200 rounded-md ${
               compact ? 'py-2 pl-10 pr-16' : 'py-3 pl-12 pr-20'
             } focus:outline-none focus:ring-2 focus:ring-black shadow-sm`}
@@ -99,7 +87,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialQuery = "", onSearch, comp
       </form>
       {isSearching && (
         <div className="text-center mt-4 text-sm text-gray-600">
-          Searching with SerpAPI... Please wait.
+          Searching... Please wait.
         </div>
       )}
     </div>
