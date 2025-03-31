@@ -156,9 +156,6 @@ export default function HomePage() {
                   >
                     <Clock size={14} className="mr-2 text-gray-400" />
                     <span className="truncate max-w-[150px]">{search.query}</span>
-                    <span className="ml-2 text-gray-400 text-xs hidden group-hover:inline">
-                      {formatTimestamp(search.timestamp)}
-                    </span>
                     <button 
                       className="ml-2 text-gray-400 hover:text-gray-600"
                       onClick={(e) => removeFromHistory(e, search.query)}

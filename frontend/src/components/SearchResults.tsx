@@ -114,12 +114,32 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
     getUserLocation();
   }, []);
   
+  const scrollToLatestHeader = () => {
+    if (latestSearchHeaderRef.current) {
+      const headerOffset = 80; // Account for sticky header height
+      const elementPosition = latestSearchHeaderRef.current.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Effect to scroll to the latest search header whenever a new search is added
   useEffect(() => {
-    if (latestSearchHeaderRef.current) {
-      latestSearchHeaderRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToLatestHeader();
   }, [searchHistory.length]);
+
+  // Effect to scroll when results are loaded for the latest search
+  useEffect(() => {
+    const latestSearch = searchHistory[searchHistory.length - 1];
+    if (latestSearch && !latestSearch.loading && latestSearch.results) {
+      // Small delay to ensure content is rendered
+      setTimeout(scrollToLatestHeader, 100);
+    }
+  }, [searchHistory]);
 
   // Initialize with the first search query
   useEffect(() => {
@@ -356,7 +376,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
       let city = "";
       if (place.address) {
         // Split address by commas and get the city part
-        const addressParts = place.address.split(',').map(part => part.trim());
+        const addressParts = place.address.split(',').map((part: string) => part.trim());
         if (addressParts.length >= 2) {
           // City is typically the second-to-last part
           city = addressParts[addressParts.length - 2];
