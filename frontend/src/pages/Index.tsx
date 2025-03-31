@@ -58,7 +58,7 @@ const Index = () => {
             </div>
           </div>
 
-          <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+          <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-100 to-gray-200 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
             <div className="container mx-auto px-4">
               <div className="text-center mb-3 text-sm font-medium text-black">Powered by StackAI - Your Intelligent Agent</div>
             </div>
@@ -259,7 +259,7 @@ const DummySearchResults: React.FC<{ query: string }> = ({ query }) => {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 py-6 bg-gradient-to-r from-gray-100 to-gray-200 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-1 text-sm font-medium text-black">Search smarter with StackAI</div>
           <SearchBar onSearch={(newQuery) => window.location.href = `/?q=${encodeURIComponent(newQuery)}`} initialQuery={query} />

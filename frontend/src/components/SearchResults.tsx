@@ -305,7 +305,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
 
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 pt-0 pb-6 bg-gradient-to-r from-gray-50 to-gray-100 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 pt-0 pb-6 bg-gradient-to-r from-gray-100 to-gray-200 z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
         <div className="container mx-auto px-2">
           <SearchBar onSearch={(newQuery) => window.location.href = `/?q=${encodeURIComponent(newQuery)}`} initialQuery={query} />
           <div className="text-center mb-3 text-sm font-medium text-black mt-6">Powered by StackAI - Your Intelligent Agent</div>

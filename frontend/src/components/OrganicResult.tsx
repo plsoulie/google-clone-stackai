@@ -27,8 +27,15 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
   const hostname = new URL(url).hostname;
   const faviconUrl = `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
 
+  const handleClick = (e: React.MouseEvent) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <div className="mb-4 border border-gray-200 rounded-md overflow-hidden p-4 bg-white h-full flex flex-col">
+    <div 
+      className="mb-4 border border-gray-200 rounded-md overflow-hidden p-4 bg-white h-full flex flex-col transition-all duration-300 ease-in-out hover:shadow-lg hover:border-gray-300 hover:bg-gray-50 hover:translate-y-[-2px] group cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="flex-1">
         {breadcrumbs && (
           <div className="flex text-sm text-gray-500 items-center mb-1">
@@ -51,17 +58,21 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
               e.currentTarget.style.display = 'none';
             }}
           />
-          <h3 className="text-lg text-gray-800 font-medium hover:underline line-clamp-2">
-            <a href={url} target="_blank" rel="noopener noreferrer">
-              {title}
-            </a>
+          <h3 className="text-lg text-gray-800 font-medium group-hover:text-black-600 line-clamp-2 transition-colors duration-200">
+            {title}
           </h3>
         </div>
 
         <div className="flex items-center text-green-700 text-sm mb-2">
           <span className="truncate max-w-[90%]">{displayUrl}</span>
           {metadata?.type === "info" && (
-            <button className="ml-1 text-gray-500">
+            <button 
+              className="ml-1 text-gray-500"
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(url, '_blank', 'noopener,noreferrer');
+              }}
+            >
               <ExternalLink className="h-3 w-3" />
             </button>
           )}

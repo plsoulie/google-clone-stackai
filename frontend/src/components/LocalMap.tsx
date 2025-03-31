@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, ExternalLink } from "lucide-react";
 
 interface Place {
   id: string;
@@ -10,6 +10,7 @@ interface Place {
   type: string;
   features: string[];
   image?: string;
+  website?: string;
 }
 
 interface LocalMapProps {
@@ -40,6 +41,12 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
   };
   */
 
+  const handlePlaceClick = (place: Place) => {
+    // Open a Google Maps search for this business
+    const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="mb-6 border border-gray-200 rounded-lg overflow-hidden bg-white">
       <div className="flex justify-between items-center p-3 border-b border-gray-200">
@@ -61,19 +68,19 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
 
       <div className="border-t border-gray-200">
         <div className="p-2 flex gap-2 text-sm border-b border-gray-100">
-          <button className="flex items-center text-gray-700">
+          <button className="flex items-center text-gray-700 px-2 py-1 rounded transition-all duration-200 hover:bg-gray-100">
             <span>Rating</span>
             <svg className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 7L10 12L15 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <button className="flex items-center text-gray-700">
+          <button className="flex items-center text-gray-700 px-2 py-1 rounded transition-all duration-200 hover:bg-gray-100">
             <span>Price</span>
             <svg className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 7L10 12L15 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <button className="flex items-center text-gray-700">
+          <button className="flex items-center text-gray-700 px-2 py-1 rounded transition-all duration-200 hover:bg-gray-100">
             <span>Hours</span>
             <svg className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 7L10 12L15 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -82,9 +89,13 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
         </div>
 
         {places.map((place) => (
-          <div key={place.id} className="p-3 border-b border-gray-100 flex">
+          <div 
+            key={place.id} 
+            className="p-3 border-b border-gray-100 flex cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-50 hover:pl-5 hover:shadow-inner relative group"
+            onClick={() => handlePlaceClick(place)}
+          >
             <div className="flex-grow">
-              <h4 className="font-medium">{place.name}</h4>
+              <h4 className="font-medium group-hover:text-black transition-colors duration-200">{place.name}</h4>
               <div className="flex items-center text-sm mb-1">
                 <div className="flex text-amber-500">
                   {"★".repeat(Math.floor(place.rating))}
@@ -99,6 +110,11 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
                 {place.features.join(" · ")}
               </div>
             </div>
+
+            <div className="opacity-0 group-hover:opacity-100 absolute right-3 top-3 transition-opacity duration-200">
+              <ExternalLink className="h-4 w-4 text-gray-600" />
+            </div>
+            
             {/* Image rendering section - commented out for now
             <div className="ml-3">
               {(() => { 
@@ -119,7 +135,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
         ))}
 
         <div className="p-3 flex justify-center">
-          <button className="text-black-600 text-sm flex items-center">
+          <button className="text-gray-600 text-sm flex items-center transition-all duration-200 ease-in-out hover:text-black px-4 py-2 rounded-full hover:bg-gray-100">
             View all
             <svg className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 4L14 10L8 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

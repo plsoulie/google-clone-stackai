@@ -163,18 +163,18 @@ const KnowledgePanel: React.FC<KnowledgePanelProps> = ({
           </p>
         )}
 
-        {patron_saint && (
+        {/* {patron_saint && (
           <div className="border-t border-gray-200 pt-3 mb-4">
             <p className="text-sm mb-2">
               <span className="font-medium">Patron Saint:</span> {patron_saint}
             </p>
             {patron_saint_links && patron_saint_links.map((link, i) => (
-              <a key={i} href={link.patron_saint_link} className="text-xs text-blue-600 block">
+              <a key={i} href={link.patron_saint_link} className="text-xs text-black-600 block">
                 {link.patron_saint_text}
               </a>
             ))}
           </div>
-        )}
+        )} */}
 
         {renderNutritionSection()}
 
