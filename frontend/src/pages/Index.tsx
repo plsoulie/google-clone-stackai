@@ -4,7 +4,6 @@ import SearchFilters from "@/components/SearchFilters";
 import SearchInfo from "@/components/SearchInfo";
 import SearchResults from "@/components/SearchResults";
 import Header from "@/components/Header";
-// import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Clock, Search, X } from "lucide-react";
 
@@ -41,50 +40,46 @@ const Index = () => {
 
   if (!hasSearched) {
     return (
-      // <Layout>
-        <div className="min-h-screen flex flex-col bg-gray-50">
-          <Header />
+      <div className="min-h-screen flex flex-col bg-gray-50">
+        <Header />
 
-          <div className="flex-grow flex flex-col items-center justify-center px-4">
-            <div className="max-w-2xl text-center mb-8">
-              <p className="text-xl text-gray-600 mb-8">
-                Discover the power of AI-enhanced search. Get smarter results powered by StackAI's advanced machine learning algorithms.
-              </p>
-              <SearchBar onSearch={handleSearch} initialQuery="" />
-              <div className="flex gap-4 justify-center mt-8">
-                <Button className="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-md">Advanced Search</Button>
-                <Button variant="outline" className="bg-gray-100 text-gray-800 border-0 hover:bg-gray-200 px-6 py-2 rounded-md">Search Filters</Button>
-              </div>
+        <div className="flex-grow flex flex-col items-center justify-center px-4">
+          <div className="max-w-2xl text-center mb-8">
+            <p className="text-xl text-gray-600 mb-8">
+              Discover the power of AI-enhanced search. Get smarter results powered by StackAI's advanced machine learning algorithms.
+            </p>
+            <SearchBar onSearch={handleSearch} initialQuery="" />
+            <div className="flex gap-4 justify-center mt-8">
+              <Button className="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-md">Advanced Search</Button>
+              <Button variant="outline" className="bg-gray-100 text-gray-800 border-0 hover:bg-gray-200 px-6 py-2 rounded-md">Search Filters</Button>
             </div>
           </div>
-
-          <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-100 to-gray-200 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-3 text-sm font-medium text-black">Powered by StackAI - Your Intelligent Agent</div>
-            </div>
-          </footer>
         </div>
-      // </Layout>
+
+        <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-100 to-gray-200 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-3 text-sm font-medium text-black">Powered by StackAI - Your Intelligent Agent</div>
+          </div>
+        </footer>
+      </div>
     );
   }
 
   return (
-    // <Layout>
-      <div className="min-h-screen flex flex-col bg-gray-50">
-        <Header isSearchPage={true} />
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header isSearchPage={true} />
 
-        <main className="container mx-auto px-4 py-4 flex-grow">
-          <SearchInfo totalResults="2,600,000,000" searchTime="0.64" query={searchQuery} />
-          <SearchResults query={searchQuery} />
-        </main>
+      <main className="container mx-auto px-4 py-4 flex-grow">
+        <SearchInfo totalResults="2,600,000,000" searchTime="0.64" query={searchQuery} />
+        <SearchResults query={searchQuery} />
+      </main>
 
-        <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] hidden">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-3 text-sm font-medium text-black">Search smarter with StackAI</div>
-          </div>
-        </footer>
-      </div>
-    // </Layout>
+      <footer className="border-t border-gray-200 py-6 bg-gradient-to-r from-gray-50 to-gray-100 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-3 text-sm font-medium text-black">Search smarter with StackAI</div>
+        </div>
+      </footer>
+    </div>
   );
 };
 
