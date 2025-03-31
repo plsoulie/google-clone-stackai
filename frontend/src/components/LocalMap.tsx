@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MapPin, ExternalLink, Star } from "lucide-react";
 
 interface Place {
@@ -13,6 +13,10 @@ interface Place {
   features?: string[];
   image?: string;
   website?: string;
+  gps_coordinates?: {
+    latitude: number;
+    longitude: number;
+  };
 }
 
 interface LocalMapProps {
@@ -20,9 +24,210 @@ interface LocalMapProps {
   title: string;
 }
 
+declare global {
+  interface Window {
+    google: any;
+    googleMapsLoaded: boolean;
+    googleMapsLoadPromise: Promise<void>;
+  }
+}
+
 const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
   const [failedImages, setFailedImages] = useState<{[key: string]: boolean}>({});
+  const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<any>(null);
+  const markersRef = useRef<any[]>([]);
   
+  useEffect(() => {
+    const loadGoogleMaps = async () => {
+      // Add debug logging
+      console.log('Places data:', places);
+      
+      // If already loaded, initialize map
+      if (window.googleMapsLoaded && window.google && window.google.maps) {
+        initializeMap();
+        return;
+      }
+
+      // If already loading, wait for it and initialize
+      if (window.googleMapsLoadPromise) {
+        await window.googleMapsLoadPromise;
+        initializeMap();
+        return;
+      }
+
+      // Create new loading promise
+      window.googleMapsLoadPromise = new Promise((resolve, reject) => {
+        // Check if script is already in the document
+        if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
+          window.googleMapsLoaded = true;
+          resolve();
+          return;
+        }
+
+        // Load Google Maps script
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&v=beta`;
+        script.async = true;
+        script.defer = true;
+
+        script.onload = () => {
+          window.googleMapsLoaded = true;
+          resolve();
+        };
+
+        script.onerror = (error) => {
+          console.error('Error loading Google Maps:', error);
+          reject(error);
+        };
+
+        document.head.appendChild(script);
+      });
+
+      try {
+        await window.googleMapsLoadPromise;
+        initializeMap();
+      } catch (error) {
+        console.error('Failed to load Google Maps:', error);
+        if (mapRef.current) {
+          mapRef.current.innerHTML = `
+            <div class="absolute inset-0 flex items-center justify-center text-gray-500">
+              <div class="text-center">
+                <p>Unable to load Google Maps</p>
+                <p class="text-sm mt-1">Please check your ad blocker settings</p>
+              </div>
+            </div>
+          `;
+        }
+      }
+    };
+
+    const initializeMap = () => {
+      console.log('Initializing map...');
+      console.log('Map ref:', mapRef.current);
+      console.log('Google maps loaded:', window.google?.maps);
+      
+      if (!mapRef.current || !places.length || !window.google?.maps) {
+        console.log('Missing required dependencies for map initialization');
+        return;
+      }
+
+      // Default to Berkeley coordinates if no places have coordinates
+      const defaultCenter = { lat: 37.8715, lng: -122.2730 };
+      
+      let center = defaultCenter;
+      if (places[0]?.gps_coordinates) {
+        center = {
+          lat: places[0].gps_coordinates.latitude,
+          lng: places[0].gps_coordinates.longitude
+        };
+      }
+
+      const mapOptions = {
+        center,
+        zoom: 14,
+        styles: [
+          {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [{ visibility: "off" }]
+          }
+        ],
+        mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID,
+        disableDefaultUI: false, // Enable default UI for testing
+        zoomControl: true,
+        streetViewControl: true,
+        mapTypeControl: true,
+        fullscreenControl: true
+      };
+
+      try {
+        console.log('Creating map with options:', mapOptions);
+        mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
+        
+        // Clear existing markers
+        markersRef.current.forEach(marker => marker.setMap(null));
+        markersRef.current = [];
+
+        // Add markers for all places
+        places.forEach(place => {
+          if (place.gps_coordinates) {
+            try {
+              // Try to create an advanced marker first
+              const markerView = new window.google.maps.marker.PinView({
+                background: "#4285F4",
+                borderColor: "#ffffff",
+                glyphColor: "#ffffff",
+                scale: 1.2,
+              });
+
+              const marker = new window.google.maps.marker.AdvancedMarkerElement({
+                map: mapInstanceRef.current,
+                position: { 
+                  lat: place.gps_coordinates.latitude, 
+                  lng: place.gps_coordinates.longitude 
+                },
+                title: place.name,
+                content: markerView.element,
+              });
+
+              marker.addListener('click', () => {
+                const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
+                window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
+              });
+
+              markersRef.current.push(marker);
+            } catch (markerError) {
+              console.warn('Falling back to basic marker:', markerError);
+              // Fallback to basic marker
+              const marker = new window.google.maps.Marker({
+                position: { 
+                  lat: place.gps_coordinates.latitude, 
+                  lng: place.gps_coordinates.longitude 
+                },
+                map: mapInstanceRef.current,
+                title: place.name,
+                animation: window.google.maps.Animation.DROP
+              });
+
+              marker.addListener('click', () => {
+                const searchQuery = encodeURIComponent(`${place.name} ${place.address}`);
+                window.open(`https://www.google.com/maps/search/?api=1&query=${searchQuery}`, '_blank', 'noopener,noreferrer');
+              });
+
+              markersRef.current.push(marker);
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Error initializing Google Maps:', error);
+        if (mapRef.current) {
+          mapRef.current.innerHTML = `
+            <div class="absolute inset-0 flex items-center justify-center text-gray-500">
+              <div class="text-center">
+                <p>Error loading map</p>
+                <p class="text-sm mt-1">Please try refreshing the page</p>
+              </div>
+            </div>
+          `;
+        }
+      }
+    };
+
+    loadGoogleMaps();
+
+    return () => {
+      // Cleanup markers and map instance
+      if (markersRef.current) {
+        markersRef.current.forEach(marker => marker.setMap(null));
+        markersRef.current = [];
+      }
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current = null;
+      }
+    };
+  }, [places]);
+
   const handleImageError = (id: string, name: string, url: string) => {
     console.error(`Image load error for ${name}:`, url);
     setFailedImages(prev => ({...prev, [id]: true}));
@@ -94,13 +299,17 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
         </button>
       </div>
 
-      <div className="h-44 bg-gray-200 relative">
-        <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-          Map View
+      <div className="h-96 bg-gray-200 relative">
+        <div ref={mapRef} className="absolute inset-0 w-full h-full">
+          {!window.google && (
+            <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+              Loading map...
+            </div>
+          )}
         </div>
         
-        <div className="absolute bottom-2 right-2 bg-white rounded px-2 py-1 text-xs text-gray-600">
-          Map data ©2023 Google
+        <div className="absolute bottom-2 right-2 bg-white rounded px-2 py-1 text-xs text-gray-600 z-10">
+          Map data ©2024 Google
         </div>
       </div>
 

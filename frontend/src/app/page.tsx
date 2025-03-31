@@ -97,6 +97,9 @@ export default function HomePage() {
           <div className="text-center text-sm font-medium text-gray-700">
             Powered by StackAI - Your Intelligent Agent
           </div>
+          <div className="flex justify-center mt-2 space-x-4 text-xs">
+            <a href="/location-test" className="text-teal-600 hover:underline">Test Location Services</a>
+          </div>
         </div>
       </footer>
     </div>

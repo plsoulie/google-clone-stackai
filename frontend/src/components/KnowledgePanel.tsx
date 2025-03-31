@@ -79,6 +79,30 @@ const KnowledgePanel: React.FC<KnowledgePanelProps> = ({
   see_results_about,
   attributes,
 }) => {
+  // Check if there's meaningful data to display
+  const hasContent = () => {
+    // Essential content checks
+    if (!title || title === "Knowledge Graph") return false;
+    if (!description || description === "No description available.") {
+      // If description is missing, we need to have some other significant content
+      return !!(
+        (header_images && header_images.length > 0) ||
+        (people_also_search_for && people_also_search_for.length > 0) ||
+        (coffee_books && coffee_books.length > 0) ||
+        (chicory_coffee && chicory_coffee.length > 0) ||
+        patron_saint ||
+        (see_results_about && see_results_about.length > 0) ||
+        (attributes && Object.keys(attributes).length > 2) // More than just basic attributes
+      );
+    }
+    return true;
+  };
+  
+  // If there's no meaningful content, don't render the panel
+  if (!hasContent()) {
+    return null;
+  }
+
   const renderNutritionSection = () => {
     if (!list) return null;
     

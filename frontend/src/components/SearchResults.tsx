@@ -7,7 +7,8 @@ import RelatedQuestions from "./RelatedQuestions";
 import LocalMap from "./LocalMap";
 import SearchBar from "./SearchBar";
 import { Search, ChevronDown, X, MessageSquare } from "lucide-react";
-import { performSearch } from "@/api/search";
+import { performSearch, pollForAIResponse } from "@/api/search";
+import AIGeneratedResponse from './AIGeneratedResponse';
 
 interface SearchResultsProps {
   query: string;
@@ -21,12 +22,97 @@ interface SearchItem {
   loading: boolean;
   error: string | null;
   isExpanded: boolean;
+  location?: string | null;
+  aiResponseLoading?: boolean;
+  aiResponsePolling?: boolean;
 }
 
 const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) => {
   const [searchHistory, setSearchHistory] = useState<SearchItem[]>([]);
   const [currentQuery, setCurrentQuery] = useState<string>("");
   const latestSearchHeaderRef = useRef<HTMLDivElement>(null);
+  const [userLocation, setUserLocation] = useState<string | null>(null);
+  
+  // Get user's location on component mount
+  useEffect(() => {
+    const getUserLocation = async () => {
+      try {
+        // Check if geolocation is supported
+        if (navigator.geolocation) {
+          const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject, {
+              timeout: 10000,
+              maximumAge: 60000,
+              enableHighAccuracy: false
+            });
+          });
+          
+          // Use reverse geocoding to get location name from coordinates
+          const { latitude, longitude } = position.coords;
+          const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+          
+          if (!apiKey) {
+            console.error("Google Maps API key not found");
+            return;
+          }
+          
+          // Use result_type parameter to get more specific location components
+          // We're removing the result_type filter to get all components
+          const response = await fetch(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
+          );
+          
+          if (response.ok) {
+            const data = await response.json();
+            console.log("Geocoding API response:", data);
+            
+            if (data.results && data.results.length > 0) {
+              // First try to construct a properly formatted location string
+              let city = "";
+              let state = "";
+              let country = "";
+              
+              // Loop through address components to find city, state, and country
+              const components = data.results[0].address_components;
+              if (components && Array.isArray(components)) {
+                for (const component of components) {
+                  if (component.types.includes("locality")) {
+                    city = component.long_name;
+                  } else if (component.types.includes("administrative_area_level_1")) {
+                    state = component.long_name; // Use long_name for full state name (e.g., "California" not "CA")
+                  } else if (component.types.includes("country")) {
+                    country = component.long_name; // Use long_name for full country name
+                  }
+                }
+              }
+              
+              // Create a properly formatted location string
+              let formattedLocation = "";
+              if (city && state && country) {
+                formattedLocation = `${city}, ${state}, ${country}`;
+              } else {
+                // Fallback to formatted_address if we couldn't extract all components
+                formattedLocation = data.results[0].formatted_address;
+              }
+              
+              console.log("User location detected:", formattedLocation);
+              
+              // SerpAPI expects location in format "City, State, Country"
+              setUserLocation(formattedLocation);
+              
+              // Log for debugging
+              console.log("Setting search location parameter to:", formattedLocation);
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error getting user location:", error);
+        // Don't set a default location if there's an error
+      }
+    };
+    
+    getUserLocation();
+  }, []);
   
   // Effect to scroll to the latest search header whenever a new search is added
   useEffect(() => {
@@ -45,15 +131,16 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
         results: null,
         loading: true,
         error: null,
-        isExpanded: true
+        isExpanded: true,
+        location: userLocation
       };
       
       setSearchHistory([initialSearchItem]);
-      fetchResults(initialSearchItem.id, initialQuery);
+      fetchResults(initialSearchItem.id, initialQuery, userLocation);
     }
-  }, [initialQuery]);
+  }, [initialQuery, userLocation]);
 
-  const fetchResults = async (searchId: string, searchQuery: string) => {
+  const fetchResults = async (searchId: string, searchQuery: string, location: string | null) => {
     if (!searchQuery.trim()) return;
     
     // Update loading state
@@ -64,7 +151,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
     ));
     
     try {
-      const results = await performSearch({ query: searchQuery });
+      // Only pass location if it's available
+      const searchParams = {
+        query: searchQuery,
+        ...(location ? { location } : {})
+      };
+      
+      const results = await performSearch(searchParams);
       
       // Update with results
       setSearchHistory(prev => prev.map(item => 
@@ -73,10 +166,17 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
               ...item, 
               loading: false, 
               results,
-              error: null
+              error: null,
+              aiResponseLoading: true,
+              aiResponsePolling: false
             } 
           : item
       ));
+
+      // Start polling for AI response if search_id is available
+      if (results.search_id) {
+        startPollingAIResponse(searchId, results.search_id);
+      }
     } catch (err) {
       console.error("Error fetching search results:", err);
       
@@ -93,6 +193,44 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
     }
   };
 
+  // Function to start polling for AI response
+  const startPollingAIResponse = async (clientSearchId: string, serverSearchId: string) => {
+    // Mark as polling
+    setSearchHistory(prev => prev.map(item => 
+      item.id === clientSearchId 
+        ? { ...item, aiResponsePolling: true } 
+        : item
+    ));
+    
+    try {
+      const aiResponse = await pollForAIResponse(serverSearchId);
+      
+      // Update search history with AI response
+      setSearchHistory(prev => prev.map(item => 
+        item.id === clientSearchId 
+          ? { 
+              ...item, 
+              aiResponseLoading: false, 
+              aiResponsePolling: false,
+              results: {
+                ...item.results,
+                ai_response: aiResponse
+              }
+            } 
+          : item
+      ));
+    } catch (error) {
+      console.error("Error polling for AI response:", error);
+      
+      // Update polling state but keep loading true
+      setSearchHistory(prev => prev.map(item => 
+        item.id === clientSearchId 
+          ? { ...item, aiResponsePolling: false, aiResponseLoading: false } 
+          : item
+      ));
+    }
+  };
+
   const handleNewSearch = (newQuery: string) => {
     // Add the new search to history
     const newSearchItem: SearchItem = {
@@ -102,11 +240,12 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
       results: null,
       loading: true, 
       error: null,
-      isExpanded: true
+      isExpanded: true,
+      location: userLocation
     };
     
     setSearchHistory(prev => [...prev, newSearchItem]);
-    fetchResults(newSearchItem.id, newQuery);
+    fetchResults(newSearchItem.id, newQuery, userLocation);
     setCurrentQuery("");
   };
 
@@ -261,27 +400,32 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
 
   // Render a single search result item
   const renderSearchItem = (searchItem: SearchItem, index: number) => {
-    const { id, query, loading, error, results, isExpanded } = searchItem;
+    const { id, query, loading, error, results, isExpanded, aiResponseLoading } = searchItem;
     const isLatestSearch = index === searchHistory.length - 1;
     
     if (loading) {
       return (
         <div key={id} className="mb-8 pb-8 border-b border-gray-200">
           <div 
-            className="flex items-center mb-4 border border-gray-200 shadow-md rounded-lg py-2 px-4"
+            className="flex items-center mb-4 border border-gray-200 shadow-md rounded-lg py-2 px-4 cursor-pointer transition-all duration-200 hover:bg-gray-50"
             ref={isLatestSearch ? latestSearchHeaderRef : null}
           >
             <div className="bg-teal-50 p-2 rounded-full mr-2">
               <Search size={18} className="text-teal-600" />
             </div>
-            <h2 className="text-lg font-medium">{query}</h2>
-            <button 
-              className="ml-auto p-1 hover:bg-gray-100 rounded-full"
-              onClick={() => removeSearch(id)}
-              aria-label="Remove search"
-            >
-              <X size={16} className="text-gray-500" />
-            </button>
+            <h2 className="text-lg font-medium truncate flex-1 mr-2">{query}</h2>
+            <div className="flex items-center">
+              <button 
+                className="ml-2 p-1 hover:bg-gray-100 rounded-full"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent toggle when removing
+                  removeSearch(id);
+                }}
+                aria-label="Remove search"
+              >
+                <X size={16} className="text-gray-500" />
+              </button>
+            </div>
           </div>
           <div className="py-4 text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-teal-600 motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
@@ -297,27 +441,32 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
       return (
         <div key={id} className="mb-8 pb-8 border-b border-gray-200">
           <div 
-            className="flex items-center mb-4 border border-gray-200 shadow-md rounded-lg py-2 px-4"
+            className="flex items-center mb-4 border border-gray-200 shadow-md rounded-lg py-2 px-4 cursor-pointer transition-all duration-200 hover:bg-gray-50"
             ref={isLatestSearch ? latestSearchHeaderRef : null}
+            onClick={() => toggleExpand(id)}
           >
             <div className="bg-teal-50 p-2 rounded-full mr-2">
               <Search size={18} className="text-teal-600" />
             </div>
-            <h2 className="text-lg font-medium">{query}</h2>
-            <button
-              className="ml-2 hover:bg-gray-100 p-1 rounded-full"
-              onClick={() => toggleExpand(id)}
-              aria-label={isExpanded ? "Collapse" : "Expand"}
-            >
-              <ChevronDown size={16} className={`transition-transform ${isExpanded ? '' : 'rotate-180'}`} />
-            </button>
-            <button 
-              className="ml-auto p-1 hover:bg-gray-100 rounded-full"
-              onClick={() => removeSearch(id)}
-              aria-label="Remove search"
-            >
-              <X size={16} className="text-gray-500" />
-            </button>
+            <h2 className="text-lg font-medium truncate flex-1 mr-2">{query}</h2>
+            <div className="flex items-center">
+              <button
+                className="ml-2 hover:bg-gray-100 p-1 rounded-full w-6 h-6 flex items-center justify-center"
+                aria-label={isExpanded ? "Collapse" : "Expand"}
+              >
+                <ChevronDown size={16} className={`transition-transform duration-200 ${isExpanded ? '' : 'rotate-180'}`} />
+              </button>
+              <button 
+                className="ml-2 p-1 hover:bg-gray-100 rounded-full"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent toggle when removing
+                  removeSearch(id);
+                }}
+                aria-label="Remove search"
+              >
+                <X size={16} className="text-gray-500" />
+              </button>
+            </div>
           </div>
           <div className="py-6 text-center text-red-500">
             {error}
@@ -338,33 +487,38 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
     return (
       <div key={id} className="mb-8 pb-8 border-b border-gray-200">
         <div 
-          className="flex items-center mb-4 sticky top-20 bg-white z-10 py-2 px-4 rounded-lg border border-gray-200 shadow-md"
+          className="flex items-center mb-4 sticky top-20 bg-white z-10 py-2 px-4 rounded-lg border border-gray-200 shadow-md cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:shadow-lg"
           ref={isLatestSearch ? latestSearchHeaderRef : null}
+          onClick={() => toggleExpand(id)}
         >
           <div className="bg-teal-50 p-2 rounded-full mr-2">
             <Search size={18} className="text-teal-600" />
           </div>
-          <h2 className="text-lg font-medium">{query}</h2>
-          <button
-            className="ml-2 hover:bg-gray-100 p-1 rounded-full"
-            onClick={() => toggleExpand(id)}
-            aria-label={isExpanded ? "Collapse" : "Expand"}
-          >
-            <ChevronDown size={16} className={`transition-transform ${isExpanded ? '' : 'rotate-180'}`} />
-          </button>
-          <button 
-            className="ml-auto p-1 hover:bg-gray-100 rounded-full"
-            onClick={() => removeSearch(id)}
-            aria-label="Remove search"
-          >
-            <X size={16} className="text-gray-500" />
-          </button>
+          <h2 className="text-lg font-medium truncate flex-1 mr-2">{query}</h2>
+          <div className="flex items-center">
+            <button
+              className="ml-2 hover:bg-gray-100 p-1 rounded-full w-6 h-6 flex items-center justify-center"
+              aria-label={isExpanded ? "Collapse" : "Expand"}
+            >
+              <ChevronDown size={16} className={`transition-transform duration-200 ${isExpanded ? '' : 'rotate-180'}`} />
+            </button>
+            <button 
+              className="ml-2 p-1 hover:bg-gray-100 rounded-full"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent toggle when removing
+                removeSearch(id);
+              }}
+              aria-label="Remove search"
+            >
+              <X size={16} className="text-gray-500" />
+            </button>
+          </div>
         </div>
 
         {isExpanded && (
           <div className="flex flex-col md:flex-row">
             <div className="md:w-2/3 pr-0 md:pr-6">
-              {localResults && localResults.places && localResults.places.length > 0 && (
+              {userLocation && localResults && localResults.places && localResults.places.length > 0 && (
                 <div className="mb-6">
                   <LocalMap title={localResults.title} places={localResults.places} />
                 </div>
@@ -388,12 +542,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
             </div>
 
             <div className="md:w-1/3 mt-8 md:mt-0">
-              {knowledgePanelData ? (
+              <AIGeneratedResponse 
+                response={results.ai_response}
+                isLoading={aiResponseLoading || false}
+              />
+              
+              {knowledgePanelData && (
                 <KnowledgePanel {...knowledgePanelData} />
-              ) : (
-                <div className="border border-gray-200 rounded-md p-4 bg-white">
-                  <p className="text-gray-500">No knowledge panel data available for this query.</p>
-                </div>
               )}
             </div>
           </div>

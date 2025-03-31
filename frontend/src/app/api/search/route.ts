@@ -8,11 +8,23 @@ export async function POST(request: NextRequest) {
     // Parse request body
     const body = await request.json();
     
-    // Make request to backend API
-    const response = await axios.post(API_URL, {
+    // Log request for debugging
+    console.log('API route received request with location:', body.location);
+    
+    // Create the request payload with optional location
+    const payload = {
       query: body.query,
-      num_results: body.num_results || 10
-    });
+      num_results: body.num_results || 10,
+      ...(body.location ? { location: body.location } : {})
+    };
+    
+    console.log('Sending payload to backend:', JSON.stringify(payload));
+    
+    // Make request to backend API
+    const response = await axios.post(API_URL, payload);
+    
+    // Log response for debugging
+    console.log('Received response from backend with status:', response.status);
     
     // Return response data
     return NextResponse.json(response.data);

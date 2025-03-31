@@ -16,13 +16,13 @@ export default function RootLayout({
   const [queryClient] = React.useState(() => new QueryClient());
   
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <title>StackAI Search</title>
         <meta name="description" content="AI-enhanced search powered by StackAI" />
       </head>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider defaultTheme="light" enableSystem>
           <QueryClientProvider client={queryClient}>
             <TooltipProvider>
               <Toaster />
