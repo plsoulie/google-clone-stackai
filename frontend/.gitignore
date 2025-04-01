@@ -1,0 +1,7 @@
+# Ensure .next is ignored
+.next/
+.vercel
+.env*.local
+node_modules/
+.DS_Store
+dist/ 
