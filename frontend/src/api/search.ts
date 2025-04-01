@@ -47,29 +47,23 @@ export const performSearch = async ({
 
 export const pollForAIResponse = async (searchId: string, maxAttempts = 10, interval = 2000): Promise<string | null> => {
   try {
-    let attempts = 0;
-    
-    while (attempts < maxAttempts) {
-      const response = await fetch(`/api/search/${searchId}/ai_response`);
+    // With serverless approach, we'll just make a single call to get the AI response
+    const response = await fetch(`/api/ai-response`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ searchQuery: searchId }),
+    });
       
-      if (!response.ok) {
-        throw new Error(`Failed to poll for AI response with status ${response.status}`);
-      }
-      
-      const data: AIResponseResult = await response.json();
-      
-      if (data.status === 'complete' && data.ai_response) {
-        return data.ai_response;
-      }
-      
-      // If still pending, wait and try again
-      await new Promise(resolve => setTimeout(resolve, interval));
-      attempts++;
+    if (!response.ok) {
+      throw new Error(`Failed to get AI response with status ${response.status}`);
     }
-    
-    return null;
+      
+    const data = await response.json();
+    return data.ai_response;
   } catch (error) {
-    console.error('Error polling for AI response:', error);
+    console.error('Error getting AI response:', error);
     return null;
   }
 }; 
