@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 
 // CSS for animation
 const fadeInAnimation = `
@@ -55,7 +55,12 @@ const RelatedQuestions: React.FC<RelatedQuestionsProps> = ({ questions, title })
       <style dangerouslySetInnerHTML={{ __html: fadeInAnimation }} />
       
       <div className="flex justify-between items-center p-3 border-b border-gray-200">
-        <h3 className="text-lg font-medium">{title}</h3>
+        <div className="flex items-center gap-2">
+          <div className="bg-rose-50 p-2 rounded-full flex items-center justify-center">
+            <HelpCircle className="h-5 w-5 text-rose-600" />
+          </div>
+          <h3 className="text-lg font-medium">{title}</h3>
+        </div>
         <button className="text-gray-500">
           <svg className="h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.5"/>

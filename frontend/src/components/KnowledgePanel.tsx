@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import { ChevronRight, Share2, ExternalLink, MapPin, Calendar, Info, User, Building, MountainSnow } from "lucide-react";
+import { ChevronRight, Share2, ExternalLink, MapPin, Calendar, Info, User, Building, MountainSnow, BookOpen } from "lucide-react";
 
 interface Link {
   text: string;
@@ -341,10 +341,15 @@ const KnowledgePanel: React.FC<KnowledgePanelProps> = ({
   return (
     <div className="border border-gray-200 rounded-md overflow-hidden bg-white">
       <div className="p-4">
-        <div className="flex justify-between mb-3">
-          <div>
-            <h2 className="text-2xl font-medium mb-1">{title}</h2>
-            {type && <p className="text-gray-500 mb-2">{type}</p>}
+        <div className="flex justify-between items-center mb-3">
+          <div className="flex items-center gap-2">
+            <div className="bg-amber-50 p-2 rounded-full flex items-center justify-center">
+              <BookOpen className="h-5 w-5 text-amber-600" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-medium mb-1">{title}</h2>
+              {type && <p className="text-gray-500 mb-2">{type}</p>}
+            </div>
           </div>
           <Share2 className="h-5 w-5 text-gray-500" />
         </div>

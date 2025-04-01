@@ -63,6 +63,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
   const [geocodedCoordinates, setGeocodedCoordinates] = useState<{[key: string]: {lat: number, lng: number}}>({});
   const mapRef = useRef<HTMLDivElement>(null);
   const [bounds, setBounds] = useState<google.maps.LatLngBounds | null>(null);
+  const [cityBounds, setCityBounds] = useState<google.maps.LatLngBounds | null>(null);
   
   // Load the Google Maps API
   const { isLoaded, loadError } = useJsApiLoader({
@@ -111,32 +112,111 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
     updateBounds();
   }, [updateBounds, places, geocodedCoordinates]);
 
-  // Geocode addresses for places without coordinates
+  // Add this new function to get city bounds
+  const getCityBounds = useCallback(async (cityName: string) => {
+    if (!isLoaded) return null;
+    
+    const geocoder = new google.maps.Geocoder();
+    try {
+      const result = await geocoder.geocode({
+        address: cityName,
+        componentRestrictions: { country: 'US' }
+      });
+
+      if (result.results && result.results.length > 0) {
+        // Get the viewport of the city result
+        const viewport = result.results[0].geometry.viewport;
+        if (viewport) {
+          // Create a slightly smaller bounding box (about 2-3 miles around the city center)
+          const center = result.results[0].geometry.location;
+          const lat = center.lat();
+          const lng = center.lng();
+          const offset = 0.04; // Approximately 2-3 miles
+          
+          return new google.maps.LatLngBounds(
+            { lat: lat - offset, lng: lng - offset },
+            { lat: lat + offset, lng: lng + offset }
+          );
+        }
+        return result.results[0].geometry.viewport;
+      }
+    } catch (error) {
+      console.error('Error getting city bounds:', error);
+    }
+    return null;
+  }, [isLoaded]);
+
+  // Modify the geocodePlaces function
   const geocodePlaces = useCallback(async () => {
-    if (!isLoaded || !places) return;
+    if (!isLoaded || !places || !places.length) return;
 
     const geocoder = new google.maps.Geocoder();
     const newGeocodedCoordinates: {[key: string]: {lat: number, lng: number}} = {};
 
+    // Get the city name from the first place's address or city field
+    const firstPlace = places[0];
+    const cityMatch = firstPlace.address.match(/([^,]+),\s*([A-Z]{2})/);
+    const cityName = cityMatch ? cityMatch[1] : firstPlace.city;
+
+    // Get bounds for the city if we don't have them yet
+    if (!cityBounds && cityName) {
+      const bounds = await getCityBounds(cityName);
+      if (bounds) {
+        setCityBounds(bounds);
+      }
+    }
+
     for (const place of places) {
-      // Skip if place already has coordinates or has been geocoded
       if (place.gps_coordinates || geocodedCoordinates[place.id]) continue;
 
       try {
-        // Try geocoding with full address first
-        let result = await geocoder.geocode({ address: place.address });
+        let result;
         
-        // If full address fails, try with city
-        if (!result.results.length && place.city) {
-          result = await geocoder.geocode({ address: place.city });
+        // Extract city and state from address if possible
+        const addressParts = place.address.split(',').map(part => part.trim());
+        const cityStatePattern = /^([^,]+),\s*([A-Z]{2})/;
+        let state = '';
+        
+        // Look for city, state pattern in address parts
+        for (const part of addressParts) {
+          const match = part.match(cityStatePattern);
+          if (match) {
+            state = match[2];
+            break;
+          }
         }
 
-        if (result.results && result.results.length > 0) {
-          const location = result.results[0].geometry.location;
-          newGeocodedCoordinates[place.id] = {
-            lat: location.lat(),
-            lng: location.lng()
-          };
+        // Geocoding options using city bounds if available
+        const geocodeOptions: google.maps.GeocoderRequest = {
+          region: 'us',
+          bounds: cityBounds || undefined
+        };
+
+        // Try geocoding with full address first
+        result = await geocoder.geocode({ 
+          address: place.address,
+          ...geocodeOptions,
+          componentRestrictions: state ? { country: 'US', administrativeArea: state } : { country: 'US' }
+        });
+
+        if (result?.results && result.results.length > 0) {
+          // Filter results to prefer those with higher precision
+          const bestResult = result.results.find(r => 
+            r.types.includes('street_address') || 
+            r.types.includes('premise') ||
+            r.types.includes('subpremise') ||
+            r.types.includes('point_of_interest')
+          ) || result.results[0];
+
+          const location = bestResult.geometry.location;
+          
+          // Verify the location is within our city bounds if we have them
+          if (!cityBounds || cityBounds.contains(location)) {
+            newGeocodedCoordinates[place.id] = {
+              lat: location.lat(),
+              lng: location.lng()
+            };
+          }
         }
       } catch (error) {
         console.error(`Error geocoding address for ${place.name}:`, error);
@@ -144,7 +224,7 @@ const LocalMap: React.FC<LocalMapProps> = ({ places, title }) => {
     }
 
     setGeocodedCoordinates(prev => ({...prev, ...newGeocodedCoordinates}));
-  }, [isLoaded, places, geocodedCoordinates]);
+  }, [isLoaded, places, geocodedCoordinates, cityBounds, getCityBounds]);
 
   // Effect to geocode places when they change
   useEffect(() => {

@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Globe } from "lucide-react";
 
 interface OrganicResultProps {
   title: string;
@@ -78,7 +78,10 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
           </div>
         )}
         
-        <div className="flex items-center mb-1">
+        <div className="flex items-center mb-1 gap-2">
+          <div className="bg-blue-50 p-2 rounded-full flex items-center justify-center">
+            <Globe className="h-4 w-4 text-blue-600" />
+          </div>
           <img 
             src={faviconUrl} 
             alt={`${hostname} logo`} 

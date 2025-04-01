@@ -556,8 +556,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query: initialQuery }) =>
                 </div>
               )}
              
-              {/* Create a grid layout for organic results */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              {/* Change grid layout to single column */}
+              <div className="grid grid-cols-1 gap-4 mb-6">
                 {organicResults.map((result: any, index: number) => (
                   <OrganicResult key={`result-${index}`} {...result} />
                 ))}

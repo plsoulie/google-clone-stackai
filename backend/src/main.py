@@ -22,7 +22,10 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 # DeepSeek API configuration
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-d3ef9fa2019249adb0b5f5e95b285c72")
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+if not DEEPSEEK_API_KEY:
+    logger.error("DEEPSEEK_API_KEY not found in environment variables")
+    raise ValueError("DEEPSEEK_API_KEY environment variable is required")
 DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
 
 app = FastAPI()
@@ -193,9 +196,7 @@ async def search(query_request: SearchQuery, background_tasks: BackgroundTasks):
         logger.info(f"Search query received: {query_request.query}")
         
         # Get SerpAPI key from environment variables
-        # serpapi_key = os.getenv("SERPAPI_KEY")
-        # Explicitly set the key to ensure it's using the correct one
-        serpapi_key = "a5ea802c16d807959aa91eca47efc339a6cd42f33b68c8d3613e64646a9c7f65"
+        serpapi_key = os.getenv("SERPAPI_KEY")
         if not serpapi_key:
             logger.error("SERPAPI_KEY not found in environment variables")
             raise HTTPException(status_code=500, detail="SERPAPI_KEY not configured")
@@ -486,8 +487,7 @@ async def debug():
     Get debug information about the API and the last search.
     """
     try:
-        # serpapi_key = os.getenv("SERPAPI_KEY", "Not found")
-        serpapi_key = "a5ea802c16d807959aa91eca47efc339a6cd42f33b68c8d3613e64646a9c7f65"
+        serpapi_key = os.getenv("SERPAPI_KEY", "Not found")
         
         # Mask the API key for security
         masked_key = "Not found" if serpapi_key == "Not found" else f"{serpapi_key[:5]}...{serpapi_key[-5:]}"
