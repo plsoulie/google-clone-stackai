@@ -27,6 +27,27 @@ else:
         # Simple client initialization for version 1.0.4
         supabase_client = create_client(supabase_url, supabase_key)
         logger.info("Supabase client initialized successfully.")
+    except TypeError as e:
+        # If there's a TypeError (like unexpected keyword argument 'proxy')
+        # Try an alternative initialization method
+        if 'proxy' in str(e):
+            try:
+                logger.info("Trying alternative Supabase client initialization without proxy settings")
+                # Import directly from supabase.client to have more control
+                from supabase.client import Client
+                
+                # Create client instance directly without proxy parameter
+                supabase_client = Client(
+                    supabase_url=supabase_url,
+                    supabase_key=supabase_key,
+                )
+                logger.info("Supabase client initialized with alternative method.")
+            except Exception as alt_e:
+                logger.error(f"Alternative Supabase client initialization failed: {str(alt_e)}")
+                supabase_client = None
+        else:
+            logger.error(f"Failed to initialize Supabase client: {str(e)}")
+            supabase_client = None
     except Exception as e:
         logger.error(f"Failed to initialize Supabase client: {str(e)}")
         supabase_client = None

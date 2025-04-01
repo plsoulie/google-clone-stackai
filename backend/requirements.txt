@@ -6,4 +6,4 @@ pydantic==2.6.1
 python-multipart==0.0.9
 httpx==0.25.2
 rich==13.7.0
-supabase==2.3.4 
+supabase==1.0.4 
