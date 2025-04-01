@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { storeSearchQuery } from '@/lib/supabase';
 
 // SerpAPI parameters
 const SERPAPI_KEY = process.env.SERPAPI_KEY || 'a5ea802c16d807959aa91eca47efc339a6cd42f33b68c8d3613e64646a9c7f65';
@@ -14,6 +15,11 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    
+    // Store search query in Supabase (non-blocking)
+    storeSearchQuery(query).catch(err => 
+      console.error('Failed to store search query:', err)
+    );
 
     // Build the SerpAPI URL with parameters
     const params = new URLSearchParams({

@@ -11,6 +11,7 @@ This project uses a serverless approach, where API calls to external services (S
 - **SerpAPI**: Used for search results, directly called from Next.js API route
 - **DeepSeek**: Used for AI-generated responses
 - **Google Maps**: Used for map visualization, called from the client-side
+- **Supabase**: Used for storing and retrieving recent searches
 
 ## Environment Variables
 
@@ -27,9 +28,23 @@ SERPAPI_KEY=your_serpapi_key
 # DeepSeek (for AI responses)
 DEEPSEEK_API_KEY=your_deepseek_api_key
 
+# Supabase (for database functionality)
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_anon_key
+
 # Configuration
 NEXT_PUBLIC_USE_SERVERLESS=true
 ```
+
+## Supabase Setup
+
+This project uses Supabase as a backend database for storing search history. The following tables are required:
+
+### `recent_searches` Table
+- `id`: bigint (primary key, auto-increment)
+- `query`: text (not null)
+- `timestamp`: timestamp with time zone (not null)
+- `user_id`: uuid (optional, for future user authentication)
 
 ## Deployment on Vercel
 
@@ -57,6 +72,7 @@ NEXT_PUBLIC_USE_SERVERLESS=true
 - Modern search interface with multiple result types
 - Server-side rendering for fast initial load
 - Client-side search for subsequent queries
+- Recent search history stored in Supabase
 - Mobile-responsive design
 - Integration with Google Maps for location results
 
@@ -66,6 +82,7 @@ NEXT_PUBLIC_USE_SERVERLESS=true
 - `/src/app/api`: API routes for serverless functionality
 - `/src/components`: React components for the UI
 - `/src/api`: Client-side API utilities
+- `/src/lib`: Utility functions including Supabase client
 - `/public`: Static assets
 
 ## Note on API Keys
