@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import SearchBar from "@/components/SearchBar";
 import Header from "@/components/Header";
 import { Clock, X } from "lucide-react";
 import { fetchRecentSearches, RecentSearch } from "@/api/recent-searches";
 
-export default function HomePage() {
+// Client component that uses searchParams
+function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
@@ -190,5 +191,47 @@ export default function HomePage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+// Loading fallback for Suspense
+function HomeLoading() {
+  return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header />
+      <div className="flex-grow flex flex-col items-center justify-center px-4">
+        <div className="max-w-2xl text-center mb-8">
+          <p className="text-xl text-gray-600 mb-8">
+            Discover the power of AI-enhanced search. Get smarter results powered by StackAI's advanced machine learning algorithms.
+          </p>
+          <div className="h-12 bg-gray-200 animate-pulse rounded-full mb-8"></div>
+          <div className="mt-8">
+            <h3 className="text-sm font-medium text-gray-500 mb-3">Recent searches</h3>
+            <div className="flex flex-wrap gap-2">
+              {[...Array(5)].map((_, index) => (
+                <div key={index} className="bg-gray-200 animate-pulse rounded-full px-10 py-1.5 text-transparent">
+                  Loading...
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer className="border-t border-gray-200 py-4 bg-gradient-to-r from-gray-100 to-gray-200 sticky bottom-0 w-full z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <div className="container mx-auto px-4">
+          <div className="text-center text-sm font-medium text-gray-700">
+            Powered by StackAI - Your Intelligent Agent
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<HomeLoading />}>
+      <HomeContent />
+    </Suspense>
   );
 } 
