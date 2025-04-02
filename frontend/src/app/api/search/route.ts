@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 // SerpAPI parameters
 const SERPAPI_KEY = process.env.SERPAPI_KEY || 'a5ea802c16d807959aa91eca47efc339a6cd42f33b68c8d3613e64646a9c7f65';
@@ -13,7 +13,7 @@ const supabaseKey = process.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp
 console.log(`Search API: Supabase URL = ${supabaseUrl}, Key available: ${!!supabaseKey}`);
 
 // Create Supabase client with error handling
-let supabase;
+let supabase: SupabaseClient;
 try {
   supabase = createClient(supabaseUrl, supabaseKey, {
     auth: {
@@ -29,7 +29,7 @@ try {
     from: () => ({
       insert: () => Promise.resolve({ error: new Error('Supabase client initialization failed') })
     })
-  };
+  } as unknown as SupabaseClient;
 }
 
 // Helper function to store a search query

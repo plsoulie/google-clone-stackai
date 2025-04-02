@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 // Get Supabase credentials from environment variables
 const supabaseUrl = process.env.SUPABASE_URL || 'https://emhyyzqavqijgumbnpzo.supabase.co';
@@ -10,7 +10,7 @@ console.log(`Initializing Supabase client with URL: ${supabaseUrl}`);
 console.log(`Supabase key available: ${!!supabaseKey}`);
 
 // Create Supabase client with error handling
-let supabase;
+let supabase: SupabaseClient;
 try {
   supabase = createClient(supabaseUrl, supabaseKey, {
     auth: {
@@ -31,7 +31,7 @@ try {
       }),
       insert: () => Promise.resolve({ error: new Error('Supabase client initialization failed') })
     })
-  };
+  } as unknown as SupabaseClient;
 }
 
 // Helper function to get recent searches
