@@ -67,17 +67,6 @@ const OrganicResult: React.FC<OrganicResultProps> = ({
           <div className="float-right text-xs text-gray-400 ml-2">{ranking}</div>
         )}
       
-        {breadcrumbs && breadcrumbs.length > 0 && (
-          <div className="flex text-sm text-gray-500 items-center mb-1">
-            {breadcrumbs.map((crumb, index) => (
-              <React.Fragment key={index}>
-                {index > 0 && <span className="mx-1">›</span>}
-                <span>{crumb}</span>
-              </React.Fragment>
-            ))}
-          </div>
-        )}
-        
         <div className="flex items-center mb-1 gap-2">
           <div className="bg-blue-50 p-2 rounded-full flex items-center justify-center">
             <Globe className="h-4 w-4 text-blue-600" />

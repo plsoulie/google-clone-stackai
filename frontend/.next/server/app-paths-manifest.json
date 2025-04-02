@@ -1,8 +1,8 @@
 {
-  "/(routes)/search/page": "app/(routes)/search/page.js",
   "/api/ai-response/route": "app/api/ai-response/route.js",
-  "/api/search/route": "app/api/search/route.js",
   "/api/recent-searches/route": "app/api/recent-searches/route.js",
-  "/page": "app/page.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/api/search/route": "app/api/search/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(routes)/search/page": "app/(routes)/search/page.js",
+  "/page": "app/page.js"
 }
