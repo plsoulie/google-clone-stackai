@@ -10,7 +10,12 @@ const nextConfig = {
       'www.google.com',
     ],
   },
+  // Only include rewrites if not in serverless mode
   async rewrites() {
+    if (process.env.NEXT_PUBLIC_USE_SERVERLESS === 'true') {
+      return [];
+    }
+    
     return [
       {
         source: '/api/:path*',
@@ -20,6 +25,8 @@ const nextConfig = {
       },
     ];
   },
+  // Add transpilePackages if any packages need to be transpiled
+  transpilePackages: ['sonner', 'next-themes'],
 };
 
 module.exports = nextConfig; 
