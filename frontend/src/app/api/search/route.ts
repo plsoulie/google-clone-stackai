@@ -1,9 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { storeSearchQuery } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 
 // SerpAPI parameters
 const SERPAPI_KEY = process.env.SERPAPI_KEY || 'a5ea802c16d807959aa91eca47efc339a6cd42f33b68c8d3613e64646a9c7f65';
 const SERPAPI_BASE_URL = 'https://serpapi.com/search';
+
+// Get Supabase credentials
+const supabaseUrl = process.env.SUPABASE_URL || 'https://emhyyzqavqijgumbnpzo.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVtaHl5enFhdnFpamd1bWJucHpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwMTM2OTUsImV4cCI6MjA1ODU4OTY5NX0.FwrMjA5E-LQWru3mwGfb1BtfcCu9m_25EgsZzSniv0Y';
+
+// Create Supabase client
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Helper function to store a search query
+async function storeSearchQuery(query: string): Promise<void> {
+  try {
+    const { error } = await supabase
+      .from('recent_searches')
+      .insert([
+        { 
+          query, 
+          timestamp: new Date().toISOString()
+        }
+      ]);
+
+    if (error) {
+      console.error('Error storing search query:', error);
+    }
+  } catch (error) {
+    console.error('Failed to store search query:', error);
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
