@@ -26,7 +26,7 @@ const nextConfig = {
     ];
   },
   // Add transpilePackages if any packages need to be transpiled
-  transpilePackages: ['sonner', 'next-themes'],
+  transpilePackages: ['sonner', 'next-themes', 'recharts'],
 };
 
 module.exports = nextConfig; 
